@@ -180,7 +180,7 @@ public class Gameplay : MonoBehaviour
             InitializeSaves(fileNo);
             //RoomManager.destination = SaveData.Current.location;
 
-            Menu.Manager.CloseAllMenus();
+            Menu.CloseAllMenus();
             var Load = SceneManager.LoadSceneAsync(GAMEPLAY_SCENE);
 
             yield return WaitFor.Until(() => Load.isDone && Active);
