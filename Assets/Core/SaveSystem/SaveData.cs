@@ -11,20 +11,10 @@ namespace SaveSystem
     /// </summary>
     public class SaveData : ICloneable<SaveData>
     {
-        /// <summary>
-        /// The currently active Save Data during Gameplay.
-        /// </summary>
-        public static SaveData Current;
-        /// <summary>
-        /// The Save Data used to reload data after the player experiences a death.    
-        /// </summary>
-        /// <remarks> See <see cref="RevertToDeathData"/></remarks>
-        public static SaveData DeathReloadData;
-
         #region Actual Data
 
         public const string targetFileVersion = "1.0.0";
-        //public Destination location;
+        private int FUNValue;
 
         #endregion Actual Data
 
@@ -36,17 +26,31 @@ namespace SaveSystem
         /// <remarks>Remarks: For the love of god, if the <see cref="SavedValueRegistry"/> Scriptable Object is missing from the project, we have a problem.</remarks>
         public SaveData()
         {
-
+            FUN.SetPlaythrough(FUN.Roll());
+            FUNValue = FUN.Playthrough;
         }
 
         public SaveData Clone(SaveData target = null)
         {
             target ??= new SaveData();
 
-            //Do Clone
+            target.FUNValue = FUNValue;
 
+            if(target == Current) FUN.SetPlaythrough(FUNValue);
             return target;
         }
+
+
+        /// <summary>
+        /// The currently active Save Data during Gameplay.
+        /// </summary>
+        public static SaveData Current;
+        /// <summary>
+        /// The Save Data used to reload data after the player experiences a death.    
+        /// </summary>
+        /// <remarks> See <see cref="RevertToDeathData"/></remarks>
+        public static SaveData DeathReloadData;
+
 
         /// <summary>
         /// The active IO Stream for saving data during gameplay.
@@ -168,6 +172,8 @@ namespace SaveSystem
             Current.Clone(DeathReloadData);
             IO.Save();
         }
+
+
 
     }
 }

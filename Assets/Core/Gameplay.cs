@@ -125,6 +125,7 @@ public class Gameplay : MonoBehaviour
         Overlay.OverMenus.BasicBlackout = 1;
         Overlay.OverGameplay.Reset();
         Overlay.OverHUD.Reset();
+        FUN.RollSession();
 
         Enum().Begin(this);
         static IEnumerator Enum() 
