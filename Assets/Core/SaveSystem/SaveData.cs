@@ -30,15 +30,34 @@ namespace SaveSystem
 
         public partial class IOStream
         {
-            public void ReadTo(SaveData data)
+            private bool ReadToData(JToken jObject, SaveData targetData)
             {
+                try
+                {
+                    targetData.FUNValue = (int)jObject["FUNValue"];
+                    FUN.SetPlaythrough(targetData.FUNValue);
+                }
+                catch (Exception) { return false; }
 
+                return true;
             }
-            public void WriteFrom(SaveData data)
+
+            private bool WriteFromData(SaveData sourceData, out JToken result)
             {
+                result = null;
 
-                
+                try
+                {
+                    result = new JObject
+                    {
+                        ["FileVersion"] = targetFileVersion
+                    };
+                }
+                catch (Exception) { return false; }
+
+                return true;
             }
+
         }
     }
 
@@ -76,70 +95,61 @@ namespace SaveSystem
             public IOStream(int fileID)
             {
                 this.fileID = fileID;
-                fileRoot = Path.Combine(UnityEngine.Application.persistentDataPath, "Saves", $"File{fileID}");
-
-                playerFile = new JsonFile(fileRoot, "playerData");
-                
+                file = new JsonFile(Path.Combine(UnityEngine.Application.persistentDataPath, "Saves"), $"File{fileID}");
             }
 
 
-            public SaveData file = new();
+            public JsonFile file;
 
             public int fileID = -1;
-            public string fileRoot;
-            public bool doesFileExist => Directory.Exists(fileRoot);
+            public bool doesFileExist => Directory.Exists(file.path) && File.Exists(file.FullPath);
 
-            public JsonFile playerFile;
 
             public void ClearFileTarget()
             {
                 fileID = -1;
-                fileRoot = null;
-                playerFile = null;
+                file = null;
             }
 
-            public JsonFile.LoadResult Load()
+            public JsonFile.LoadResult LoadFromFile(SaveData targetData)
             {
                 if (fileID == -1) throw new Exception("No file target set. Use SetFileTarget before loading or saving.");
                 if (!doesFileExist) return JsonFile.LoadResult.FileNotFound;
 
                 JsonFile.LoadResult result;
-                result = playerFile.LoadFromFile();
+                result = file.LoadFromFile();
                 if (result != JsonFile.LoadResult.Success) return result;
 
-                if ((string)playerFile.Data["FileVersion"] != targetFileVersion)
+                if ((string)file.Data["FileVersion"] != targetFileVersion)
                 {
-                    UnityEngine.Debug.LogWarning($"Save file version mismatch. Expected {targetFileVersion}, found {(string)playerFile.Data["FileVersion"]}. Attempting to load anyway.");
+                    UnityEngine.Debug.LogWarning($"Save file version mismatch. Expected {targetFileVersion}, found {(string)file.Data["FileVersion"]}. Attempting to load anyway.");
                 }
 
-                //file.location = (Destination)(DestinationSerial)playerFile.Data[nameof(file.location)];
+                SaveData process = new();
+
+                if (ReadToData(file.Data, process)) Clone(process, targetData);
+                else return JsonFile.LoadResult.FileCorrupted;
 
                 return JsonFile.LoadResult.Success;
             }
 
-            public JsonFile.FileState Save()
+            public JsonFile.FileState SaveToFile(SaveData sourceData)
             {
                 if (fileID == -1) throw new Exception("No file target set. Use SetFileTarget before loading or saving.");
 
-                playerFile.Data = new JObject
-                {
-                    ["FileVersion"] = targetFileVersion,
-                    //[nameof(file.location)] = (JToken)(DestinationSerial)file.location,
-                };
+                if (WriteFromData(sourceData, out JToken result)) file.Data = result;
+                else return JsonFile.FileState.Error;
 
-                // Save all files
-                JsonFile.FileState state = playerFile.SaveToFile();
+                JsonFile.FileState state = file.SaveToFile();
                 if (state != JsonFile.FileState.Valid) return state;
-
                 return JsonFile.FileState.Valid;
             }
 
-            public JsonFile.FileState Delete()
+            public JsonFile.FileState DeleteFile()
             {
                 if (fileID == -1) throw new Exception("No file target set. Use SetFileTarget before loading or saving.");
-                playerFile.DeleteFile();
-                Directory.Delete(fileRoot);
-                file = new();
+                file.DeleteFile();
+                File.Delete(file.FullPath);
                 return JsonFile.FileState.Null;
             }
 
@@ -162,7 +172,7 @@ namespace SaveSystem
         /// </summary>
         public static void RevertToDeathData()
         {
-            DeathReloadData.Clone(Current);
+            Clone(DeathReloadData, Current);
         }
         /// <summary>
         /// Reverts the current save data to the data last saved to disk.
@@ -170,8 +180,8 @@ namespace SaveSystem
         /// <remarks>See <see cref="IO"/>.</remarks>
         public static void RevertToSaveFile()
         {
-            Current = IO.file.Clone(Current);
-            DeathReloadData = IO.file.Clone(DeathReloadData);
+            IO.LoadFromFile(Current);
+            Clone(Current, DeathReloadData);
         }
         /// <summary>
         /// Saves the current Data to disk.
@@ -179,9 +189,8 @@ namespace SaveSystem
         /// <param name="destination">The current location of the player, as will be applied to all active SaveData objects.</param>
         public static void SaveFileToDisk()
         {
-            Current.Clone(IO.file);
-            Current.Clone(DeathReloadData);
-            IO.Save();
+            Clone(Current, DeathReloadData);
+            IO.SaveToFile(Current);
         }
 
 

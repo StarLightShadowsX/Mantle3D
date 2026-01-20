@@ -245,7 +245,12 @@ namespace SaveSystem
             /// <summary>
             /// The file path or filename is invalid.
             /// </summary>
-            NoPath
+            NoPath,
+
+            /// <summary>
+            /// Some other error occurred.
+            /// </summary>
+            Error
         }
 
         /// <summary>
