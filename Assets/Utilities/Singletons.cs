@@ -17,12 +17,16 @@ public interface ISingleton<T> where T : class, ISingleton<T>, new()
     {
         if(slot != null && slot != newInstance)
         {
+#if UNITY_EDITOR
             Debug.LogWarning($"Singleton of type {typeof(T)} is already registered. Ignoring new instance.");
+#endif
             return SingletonOperationMessage.AlreadyRegistered;
         }
         if(newInstance == null)
         {
+#if UNITY_EDITOR
             Debug.LogWarning($"Cannot register null instance for singleton of type {typeof(T)}.");
+#endif
             return SingletonOperationMessage.NullInstance;
         }
 
@@ -34,19 +38,23 @@ public interface ISingleton<T> where T : class, ISingleton<T>, new()
     {
         if (slot == null)
         {
+#if UNITY_EDITOR
             Debug.LogWarning($"No singleton of type {typeof(T)} is registered to unregister.");
+#endif
             return SingletonOperationMessage.NullInstance;
         }
         if (slot != instance)
         {
+#if UNITY_EDITOR
             Debug.LogWarning($"The provided instance does not match the registered singleton of type {typeof(T)}.");
+#endif
             return SingletonOperationMessage.NotRegisteredInstance;
         }
         slot = null;
         return SingletonOperationMessage.Success;
     }
 
-    public delegate object GetObjectDelegate();
+    public delegate T GetObjectDelegate();
 
     public static T Get(ref T slot, params GetObjectDelegate[] createAttempts)
     {
@@ -61,9 +69,14 @@ public interface ISingleton<T> where T : class, ISingleton<T>, new()
         return slot;
     }
 
-    public static bool TryGet(Func<T> getInstance, out T instance)
+    public static bool TryGet(GetObjectDelegate getInstance, out T instance)
     {
         instance = getInstance();
+        return instance != null;
+    }
+    public static bool TryGet(T getterPlug, out T instance)
+    {
+        instance = getterPlug;
         return instance != null;
     }
 }
@@ -72,9 +85,8 @@ public interface ISingleton<T> where T : class, ISingleton<T>, new()
 public abstract class GlobalAsset<T> : GlobalAssetGeneric, ISingleton<T> where T : GlobalAsset<T>, new()
 {
     private static T _instance;
-    public static T Get => Getter();
-    public static T Getter() => ISingleton<T>.Get(ref _instance);
-    public static bool TryGet(out T instance) => ISingleton<T>.TryGet(Getter, out instance);
+    public static T Get => ISingleton<T>.Get(ref _instance);
+    public static bool TryGet(out T instance) => ISingleton<T>.TryGet(Get, out instance);
 
     public override void OnEnable() => ISingleton<T>.Register(ref _instance, this as T);
     private void OnDisable() => ISingleton<T>.Unregister(ref _instance, this as T);

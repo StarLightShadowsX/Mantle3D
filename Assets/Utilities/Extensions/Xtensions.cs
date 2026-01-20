@@ -28,18 +28,8 @@ public static class XtensionsBasic
     public static Color SetAlpha(this ref Color color, float set) => color = new Color(color.r, color.g, color.b, set);
     public static Color ChangeAlpha(this ref Color color, float change) => color = new Color(color.r, color.g, color.b, color.a + change);
 
-    // Collection helpers
-    public static void ClearNull<T>(this List<T> list) where T : class
-    {
-        if (list == null) return;
-        for (int i = list.Count - 1; i >= 0; i--)
-            if (list[i] == null)
-                list.RemoveAt(i);
-    }
-
     // String helpers
     public static string Join(this List<string> list, string buffer = null) => string.Join(buffer, list);
-
     public static string CamelCaseToDisplay(this string camelCase)
     {
         if (string.IsNullOrEmpty(camelCase))
@@ -58,7 +48,6 @@ public static class XtensionsBasic
 
         return result.ToString();
     }
-
     public static string PascalCaseToDisplay(this string pascalCase)
     {
         if (string.IsNullOrEmpty(pascalCase))
@@ -77,7 +66,6 @@ public static class XtensionsBasic
 
         return result.ToString();
     }
-
     public static string DisplayToCamelCase(this string display)
     {
         if (string.IsNullOrEmpty(display))
@@ -102,7 +90,6 @@ public static class XtensionsBasic
 
         return result.ToString();
     }
-
     /// <summary>
     /// Adds the surrounding <>k__BackingField to a property name, to reference the backing field of an auto-property.
     /// </summary>
@@ -114,6 +101,13 @@ public static class XtensionsBasic
     [MenuItem("Assets/Force Compile")]
     public static void ForceCompile() => UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation();
 #endif
+
+    public static bool Gotten<T>(this T obj, out T result) where T : class
+    {
+        result = obj as T;
+        return result != null;
+    }
+    public static bool Exists<T>(this T obj) where T : class => obj != null;
 }
 
 public static class XtensionsMath
@@ -336,5 +330,13 @@ public static class XtensionsCollections
         int index = array.Count - i;
         if (index >= 0 && index < array.Count) array.RemoveAt(index);
     }
+    public static void ClearNull<T>(this List<T> list) where T : class
+    {
+        if (list == null) return;
+        for (int i = list.Count - 1; i >= 0; i--)
+            if (list[i] == null)
+                list.RemoveAt(i);
+    }
+
 
 }

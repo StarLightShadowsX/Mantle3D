@@ -7,8 +7,7 @@ public class PauseMenu : Menu, ISingleton<PauseMenu>
 
     private static PauseMenu instance;
     public static PauseMenu Get => ISingleton<PauseMenu>.Get(ref instance);
-    public static PauseMenu Getter() => ISingleton<PauseMenu>.Get(ref instance);
-    public static bool TryGet(out PauseMenu instance) => ISingleton<PauseMenu>.TryGet(Getter, out instance);
+    public static bool TryGet(out PauseMenu instance) => Get.Gotten(out instance);
     public static bool Loaded => instance != null;
 
 

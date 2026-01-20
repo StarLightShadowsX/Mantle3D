@@ -14,14 +14,6 @@ public class Prefab
     [field: SerializeField] public GameObject readOnlyObject { get; private set; } = null;
     [field: SerializeField] public string path { get; private set; } = string.Empty;
 
-    //public GameObject readOnlyObject { get
-    //    {
-    //        if (_readOnlyObjectCache == null) _readOnlyObjectCache = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-    //        return _readOnlyObjectCache;
-    //    }  
-    //}
-    //private GameObject _readOnlyObjectCache = null;
-    
 
     public Prefab(GameObject existingInstance)
     {
