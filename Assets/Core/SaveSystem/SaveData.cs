@@ -6,50 +6,61 @@ using UnityEngine;
 
 namespace SaveSystem
 {
-    /// <summary>
-    /// A class tracking saved values across the game.
-    /// </summary>
-    public class SaveData : ICloneable<SaveData>
+    public partial class SaveData
     {
-        #region Actual Data
-
         public const string targetFileVersion = "1.0.0";
         private int FUNValue;
 
-        #endregion Actual Data
 
+        public static SaveData Clone(SaveData source, SaveData target)
+        {
+            target ??= new SaveData();
 
+            target.FUNValue = source.FUNValue;
+            if (target == Current) FUN.SetPlaythrough(target.FUNValue);
 
-        /// <summary>
-        /// Default Constructor, Clones data from default assets.
-        /// </summary>
-        /// <remarks>Remarks: For the love of god, if the <see cref="SavedValueRegistry"/> Scriptable Object is missing from the project, we have a problem.</remarks>
+            return target;
+        }
+
         public SaveData()
         {
             FUN.SetPlaythrough(FUN.Roll());
             FUNValue = FUN.Playthrough;
         }
 
-        public SaveData Clone(SaveData target = null)
+        public partial class IOStream
         {
-            target ??= new SaveData();
+            public void ReadTo(SaveData data)
+            {
 
-            target.FUNValue = FUNValue;
+            }
+            public void WriteFrom(SaveData data)
+            {
 
-            if(target == Current) FUN.SetPlaythrough(FUNValue);
-            return target;
+                
+            }
         }
+    }
 
 
-        /// <summary>
-        /// The currently active Save Data during Gameplay.
-        /// </summary>
+
+
+
+
+    /// <summary>
+    /// A class tracking saved values across the game.
+    /// </summary>
+    public partial class SaveData
+    {
+        /// <summary> The currently active Save Data during Gameplay. </summary>
         public static SaveData Current;
         /// <summary>
         /// The Save Data used to reload data after the player experiences a death.    
         /// </summary>
         /// <remarks> See <see cref="RevertToDeathData"/></remarks>
         public static SaveData DeathReloadData;
+        /// <summary>  Default Save Data template created from the <see cref="SavedValueRegistry"/>. </summary>
+        public static SaveData Default;
 
 
         /// <summary>
@@ -60,7 +71,7 @@ namespace SaveSystem
         /// <summary>
         /// An Input Output stream for Saving/Loading Save Data to/from disk. Also used to display save files in UI.
         /// </summary>
-        public class IOStream
+        public partial class IOStream
         {
             public IOStream(int fileID)
             {

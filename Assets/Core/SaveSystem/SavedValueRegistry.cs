@@ -12,6 +12,19 @@ namespace SaveSystem
     /// </summary>
     public class SavedValueRegistry : GlobalAsset<SavedValueRegistry>
     {
+        public override void OnEnable()
+        {
+            base.OnEnable();
+            EstablishDefaultSaveData();
+        }
 
+        private void EstablishDefaultSaveData()
+        {
+            SaveData Def = new();
+            SaveData.Default = Def;
+
+
+
+        }
     }
 }
