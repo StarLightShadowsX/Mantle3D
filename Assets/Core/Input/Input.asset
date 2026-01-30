@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4349ae82ba99f60428041bb1bc4f1434, type: 3}
+  m_Name: Input
+  m_EditorClassIdentifier: Assembly-CSharp::Input
+  in_move: {fileID: 0}
+  in_look: {fileID: 0}
+  in_pan: {fileID: 0}
+  in_interact: {fileID: 0}
+  in_run: {fileID: 0}
+  in_abilityA: {fileID: 0}
+  in_abilityB: {fileID: 0}
+  in_abilityC: {fileID: 0}
+  in_UI:
+    in_ui_navigate: {fileID: 0}
+    in_ui_submit: {fileID: 0}
+    in_ui_cancel: {fileID: 0}
+  in_Debug:
+    in_debug_console: {fileID: 0}

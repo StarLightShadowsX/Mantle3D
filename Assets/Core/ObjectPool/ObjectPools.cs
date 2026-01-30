@@ -28,8 +28,8 @@ namespace ObjectPooling
                 dictionary_string.Add(item.name, item);
                 dictionary_prefab.Add(item.prefab, item);
             }
-            Gameplay.onUpdate += Update;
-            Gameplay.onDestroy += DeInitialize;
+            GameSession.onUpdate += Update;
+            GameSession.onDestroy += DeInitialize;
 
             initialized = true;
         }
@@ -44,8 +44,8 @@ namespace ObjectPooling
         {
             initialized = false;
             Instance = null;
-            Gameplay.onUpdate -= Update;
-            Gameplay.onDestroy -= DeInitialize;
+            GameSession.onUpdate -= Update;
+            GameSession.onDestroy -= DeInitialize;
             foreach (var pool in serializedPools) pool.DeInitialize();
         }
 
@@ -135,7 +135,7 @@ namespace ObjectPooling
         public void Initialize()
         {
             if (initialized) return;
-            Enum().Begin(Gameplay.Instance);
+            Enum().Begin(GameSession.Instance);
             IEnumerator Enum()
             {
                 var op = UnityEngine.Object.InstantiateAsync(prefab, initialSize, ObjectPools.poolParent);

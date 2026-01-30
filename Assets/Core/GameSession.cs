@@ -22,7 +22,7 @@ using UnityEditor;
 /// To begin gameplay, use methods such as <see cref="BeginSaveFile(int)"/> or <see cref="BeginEditor()"/>.
 /// </summary>
 [DefaultExecutionOrder(ExecutionOrders.Gameplay)]
-public class Gameplay : MonoBehaviour
+public class GameSession : MonoBehaviour
 {
     public enum GameStates
     {
@@ -62,7 +62,7 @@ public class Gameplay : MonoBehaviour
     /// The Script instance of the Gameplay system. Not truly relevant to much. Null if not active.
     /// <br/> Can be used as the source script for a Coroutine to ensure it runs.
     /// </summary>
-    public static Gameplay Instance { get; private set; }
+    public static GameSession Instance { get; private set; }
     /// <summary>
     /// The <see cref="UnityEngine.GameObject"/> that this script is attached to. Null if not active."/>
     /// </summary>
@@ -71,7 +71,7 @@ public class Gameplay : MonoBehaviour
     /// <summary>
     /// A reference to the Scene for this system.
     /// </summary>
-    public static SceneReference GAMEPLAY_SCENE = new("GameplayScene");
+    public static SceneReference GAMEPLAY_SCENE = new("GAME_SESSION");
 
     /// <summary>
     /// Callback event for when a Save is about to be reloaded.
@@ -270,7 +270,7 @@ public class Gameplay : MonoBehaviour
 
 
 #if UNITY_EDITOR
-    [CustomEditor(typeof(Gameplay))]
+    [CustomEditor(typeof(GameSession))]
     public class Editor : UnityEditor.Editor
     {
     }
