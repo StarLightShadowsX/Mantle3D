@@ -6,7 +6,7 @@ public interface ICloneable<T> where T : class
 {
     /// <summary>
     /// Deep Clones this object, creating a new instance or populating the provided instance field.
-    /// Note: Does not properly populate existing null fields. Use <see cref="CloneInto"/> instead.
+    /// Note: Does not properly populate existing null fields. Use <see cref="Clone(out)"/> instead.
     /// </summary>
     public T Clone(T target = null);
 }
@@ -16,7 +16,7 @@ public static class XtensionsICloneable
     /// <summary>
     /// Deep Clones this object into the null field provided.
     /// </summary>
-    public static T CloneInto<T>(this T source, out T result) where T : class, ICloneable<T>
+    public static T Clone<T>(this T source, out T result) where T : class, ICloneable<T>
     {
         result = source.Clone();
         return result;
