@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// A customized, advanced Coroutine solution with various features for easier to write and more effective Coroutines. Use a constructor to create.
 /// </summary>
-public class CoroutinePlus : IEnumerator
+public class Coroutine : IEnumerator
 {
 
     #region Fields
@@ -62,7 +62,7 @@ public class CoroutinePlus : IEnumerator
     /// </summary>
     /// <param name="enumerator">The IEnumerator that dictates the code ran by this Coroutine.</param>
     /// <param name="owner">The MonoBehavior that owns and runs the coroutine. Necessary for it to be automatic. Input Null to require activation via MoveNext().</param>
-    public CoroutinePlus(IEnumerator enumerator, MonoBehaviour owner)
+    public Coroutine(IEnumerator enumerator, MonoBehaviour owner)
     {
         this.owner = owner;
         this.enumerator = enumerator;
@@ -76,7 +76,7 @@ public class CoroutinePlus : IEnumerator
     /// <param name="enumerator">The IEnumerator that dictates the code ran by this Coroutine.</param>
     /// <param name="automatic">Whether or not this coroutine runs automatically. Setting to true does not do anything unless owner is made non-null.</param>
     /// <param name="owner">The MonoBehavior that owns and runs the coroutine. Necessary for automatic running. Input Null to require activation via MoveNext().</param>
-    public CoroutinePlus(IEnumerator enumerator, bool automatic, MonoBehaviour owner = null)
+    public Coroutine(IEnumerator enumerator, bool automatic, MonoBehaviour owner = null)
     {
         this.owner = owner;
         this.enumerator = enumerator;
@@ -149,7 +149,7 @@ public class CoroutinePlus : IEnumerator
     }
 
 
-    public static implicit operator bool(CoroutinePlus a) => a != null && a.running;
+    public static implicit operator bool(Coroutine a) => a != null && a.running;
 
     public override string ToString() => base.ToString();
     public override bool Equals(object obj) => base.Equals(obj);
@@ -162,14 +162,32 @@ public class CoroutinePlus : IEnumerator
     /// <returns>True if equal.</returns>
     public bool Uses(IEnumerator compare) => compare == wrappedEnumerator;
 
-    
-    public static void Begin(ref CoroutinePlus slot, IEnumerator Enum, MonoBehaviour owner, bool replace = true)
+
+    public static Coroutine Begin(ref Coroutine slot, IEnumerator Enum, MonoBehaviour owner, bool replace = true)
     {
-        if (!replace && slot && slot.running) return;
+        if (!replace && slot && slot.running) return null;
         slot?.StopAuto(true);
         slot = new(Enum, owner);
+        return slot;
     }
-    public static void Stop(ref CoroutinePlus slot) => slot?.StopAuto();
+    public static Coroutine Begin(ref Coroutine slot, IEnumerator Enum, bool replace = true)
+    {
+        if (!replace && slot && slot.running) return null;
+        slot?.StopAuto(true);
+        slot = new(Enum, omniCoroutineRunner);
+        return slot;
+    }
+    public static void Stop(ref Coroutine slot) => slot?.StopAuto();
+
+    internal static GameObject omniCoroutineRunner {  get; private set; }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void OnLoad()
+    {
+        omniCoroutineRunner = new GameObject("Omni-Coroutine-Runner");
+        GameObject.DontDestroyOnLoad(omniCoroutineRunner);
+        omniCoroutineRunner.hideFlags = HideFlags.HideAndDontSave;
+    }
 }
 
 public static class SceneOperationRoutine
@@ -189,11 +207,34 @@ public static class SceneOperationRoutine
         if (operation != null && !operation.isDone) yield return null;
     }
 }
-    //Bonus!
-    //"WaitFor" Premade Coroutines.
-    //By StarLightShadows.
 
-    public static class WaitFor
+public static class XtensionsCoroutine
+{
+    /// <summary>
+    /// Begins a Coroutine using this Enumerator and returns it as a Coroutine+. (Automatically attaches to Omni-Coroutine-Runner)
+    /// </summary>
+    public static Coroutine Begin(this IEnumerator Enum) => new(Enum, Coroutine.omniCoroutineRunner);
+
+    /// <summary>
+    /// Begins a Coroutine using this Enumerator and returns it as a Coroutine+.
+    /// </summary>
+    /// <param name="owner">The MonoBehavior that owns and runs the coroutine. Necessary for it to be automatic. Input Null to require activation via MoveNext().</param>
+    public static Coroutine Begin(this IEnumerator Enum, MonoBehaviour owner) => new(Enum, owner);
+
+    /// <summary>
+    /// Begins a Coroutine using this Enumerator and returns it as a Coroutine+.
+    /// </summary>
+    /// <param name="automatic">Whether or not this coroutine runs automatically. Setting to true does not do anything unless owner is made non-null.</param>
+    /// <param name="owner">The MonoBehavior that owns and runs the coroutine. Necessary for automatic running. Input Null to require activation via MoveNext().</param>
+    public static Coroutine Begin(this IEnumerator Enum, bool automatic, MonoBehaviour owner = null) => new(Enum, automatic, owner);
+
+}
+
+//Bonus!
+//"WaitFor" Premade Coroutines.
+//By StarLightShadows.
+
+public static class WaitFor
 {
 
     #region PreExisting
@@ -241,17 +282,4 @@ public static class SceneOperationRoutine
         }
     }
 
-    /// <summary>
-    /// Begins a Coroutine using this Enumerator and returns it as a Coroutine Plus.
-    /// </summary>
-    /// <param name="owner">The MonoBehavior that owns and runs the coroutine. Necessary for it to be automatic. Input Null to require activation via MoveNext().</param>
-
-    public static CoroutinePlus Begin(this IEnumerator Enum, MonoBehaviour owner) => new CoroutinePlus(Enum, owner);
-    /// <summary>
-    /// Begins a Coroutine using this Enumerator and returns it as a Coroutine Plus.
-    /// </summary>
-    /// <param name="automatic">Whether or not this coroutine runs automatically. Setting to true does not do anything unless owner is made non-null.</param>
-    /// <param name="owner">The MonoBehavior that owns and runs the coroutine. Necessary for automatic running. Input Null to require activation via MoveNext().</param>
-
-    public static CoroutinePlus Begin(this IEnumerator Enum, bool automatic, MonoBehaviour owner = null) => new CoroutinePlus(Enum, automatic, owner);
 }

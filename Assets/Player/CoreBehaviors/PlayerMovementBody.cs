@@ -648,7 +648,7 @@ public sealed class PlayerMovementBody : MonoBehaviour, IMovableBody
             direction = newForward;
         }
     }
-    private CoroutinePlus QuickTurnRoutine;
+    private Coroutine QuickTurnRoutine;
 
 
 
