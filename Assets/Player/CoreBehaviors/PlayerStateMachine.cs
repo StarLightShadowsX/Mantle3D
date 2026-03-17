@@ -58,20 +58,6 @@ namespace PlayerCore
             Player.Animator.Play("GroundBasic");
         }
 
-        private State prevState;
-        public void CutsceneState()
-        {
-            prevState = CurrentState;
-            pauseState.Enter();
-            //body.velocity = Vector3.zero;
-            //body.CurrentSpeed = 0;
-            Player.Animator.CrossFade("GroundBasic", .2f);
-        }
-        public void UnCutsceneState()
-        {
-            prevState.Enter();
-        }
-
         public State this[string stateName] => states[stateName];
     }
 

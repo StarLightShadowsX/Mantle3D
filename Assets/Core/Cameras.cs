@@ -7,65 +7,57 @@ using UnityEngine;
 public class Cameras : MonoBehaviour
 {
     private static Cameras instance;
+    public static Cameras Get => Singleton.Get(ref instance);
 
     #region Instance Fields
 
     [SerializeField] CinemachineBrain inputBrain;
-    [SerializeField] CinemachineFreeLook inputNormalCamera;
-    [SerializeField] CinemachineFreeLook inputAimingCamera;
-    [SerializeField] CinemachineVirtualCameraBase inputDialogueCamera;
-    [SerializeField] CinemachineVirtualCameraBase inputCutsceneCamera;
+    [SerializeField] CinemachineCamera inputNormalCamera;
 
     #endregion Instance Fields
 
     public void Awake()
     {
-        if (instance != null)
-        {
-            if(instance != this) Destroy(gameObject);
-            return;
-        }
-        instance = this;
+        Singleton.Register(ref instance, this);
 
-        RealCamera.brain = inputBrain;
-        RealCamera.camera = inputBrain.GetComponent<Camera>();
-        RealCamera.transform = inputBrain.transform;
+        Brain = inputBrain;
+        UnityCamera = inputBrain.GetComponent<Camera>();
+        CurrentTransform = inputBrain.transform;
 
-        normalCamera = inputNormalCamera;
-        aimingCamera = inputAimingCamera;
-        dialogueCamera = inputDialogueCamera;
-        cutsceneCamera = inputCutsceneCamera;
+        NormalCamera = inputNormalCamera;
 
-        currentVirtualCamera = normalCamera;
-        normalCamera.Priority = 10;
-        aimingCamera.Priority = 0;
-        aimingCamera.gameObject.SetActive(false);
-        dialogueCamera.Priority = 0;
-        dialogueCamera.gameObject.SetActive(false);
-        //cutsceneCamera.Priority = 0;
-        //cutsceneCamera.gameObject.SetActive(false);
+        CurrentVirtualCamera = NormalCamera;
+        SetTargetVirtualCamera(NormalCamera);
     }
 
-    public static class RealCamera
+    private void OnDestroy()
     {
-        public static Camera camera;
-        public static Transform transform;
-        public static CinemachineBrain brain;
+        Singleton.Unregister(ref instance, this);
     }
 
-    public static CinemachineVirtualCameraBase currentVirtualCamera;
-    public static CinemachineFreeLook normalCamera;
-    public static CinemachineFreeLook aimingCamera;
-    public static CinemachineVirtualCameraBase dialogueCamera;
-    public static CinemachineVirtualCameraBase cutsceneCamera;
+
+    public static Camera UnityCamera;
+    public static Transform CurrentTransform;
+    public static CinemachineBrain Brain;
+
+    public static CinemachineCamera CurrentVirtualCamera;
+    public static CinemachineCamera NormalCamera;
 
 
-    public void SetTargetVirtualCamera(CinemachineVirtualCameraBase newTarget)
+    public static void SetTargetVirtualCamera(CinemachineCamera newTarget)
     {
-        currentVirtualCamera.Priority = 0;
-        currentVirtualCamera.gameObject.SetActive(false);
-        currentVirtualCamera = newTarget; 
-        currentVirtualCamera.Priority = 10;
-        currentVirtualCamera.gameObject.SetActive(true);
+        if(CurrentVirtualCamera != null) CurrentVirtualCamera.Priority = 0;
+        if(CurrentVirtualCamera != null) CurrentVirtualCamera.gameObject.SetActive(false);
+        CurrentVirtualCamera = newTarget;
+        CurrentVirtualCamera.Priority = 10;
+        CurrentVirtualCamera.gameObject.SetActive(true);
     }
+
+
+    public static Quaternion CurrentRotationQ => CurrentVirtualCamera.State.GetFinalOrientation();
+    public static Vector3 CurrentRotation => CurrentVirtualCamera.State.GetFinalOrientation().eulerAngles;
+
+    public static Vector3 AdjustVector(Vector3 vector, bool yToo = false) => !yToo 
+        ? vector.Rotated(CurrentRotation.y, Vector3.up) 
+        : CurrentVirtualCamera.transform.TransformDirection(vector);
 }

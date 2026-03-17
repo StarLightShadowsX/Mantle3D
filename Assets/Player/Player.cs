@@ -9,7 +9,7 @@ using PlayerCore;
 /// <summary>
 /// A global Singleton representing the Player entity in the game. Provides static access to commonly used components and systems related to the player.
 /// </summary>
-[DefaultExecutionOrder(ExecutionOrders.Player)]
+[DefaultExecutionOrder(ExecutionOrders.PlayerRoot)]
 public class Player : MonoBehaviour
 {
     #region GameplayState
@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The <see cref="Animator"/> component attached to the <see cref="Player"/>.
     /// </summary>
-    public static Animator Animator { get; private set; }
+    public static PlayerAnimator Animator { get; private set; }
     /// <summary>
     /// The <see cref="AudioCaller"/> component attached to the <see cref="Player"/>. <br/>
     /// Handles One-Time Sound emission from the <see cref="Player"/>.
@@ -222,14 +222,14 @@ public class Player : MonoBehaviour
         MovementBody = GetComponent<PlayerMovementBody>();
         Collider = GetComponent<CapsuleCollider>();
         Controller = GetComponent<PlayerController>();
-        Animator = GetComponent<Animator>();
-        //Audio = GetComponent<AudioCaller>();
+        Animator = in_PAnim;
         Health.Initialize();
 
         _activeState = ActivityStates.Active;
 
 
     }
+    [SerializeField] PlayerAnimator in_PAnim;
     #endregion
 
     #region Models (Health / Ammo / Currency)

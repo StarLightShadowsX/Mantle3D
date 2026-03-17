@@ -25,13 +25,13 @@ public static class Layers
 /// systems, player systems, and other game-related behaviors.</remarks>
 public static class ExecutionOrders
 {
-    public const int Gameplay = -101;
+    public const int GameplayRoot = -101;
     public const int GameplaySystems = -100;
 
-    public const int Player = -91;
+    public const int PlayerRoot = -91;
     public const int PlayerSystems = -90;
     public const int PlayerBehaviors = -89;
+    public const int PlayerVisualizer = -88;
 
-    public const int Area = -71;
-    public const int Room = -70;
+    public const int Room = -50;
 }

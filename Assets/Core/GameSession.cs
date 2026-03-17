@@ -21,7 +21,7 @@ using UnityEditor;
 /// Provides static access to important gameplay-related properties and methods. <br/>
 /// To begin gameplay, use methods such as <see cref="BeginSaveFile(int)"/> or <see cref="BeginEditor()"/>.
 /// </summary>
-[DefaultExecutionOrder(ExecutionOrders.Gameplay)]
+[DefaultExecutionOrder(ExecutionOrders.GameplayRoot)]
 public class GameSession : MonoBehaviour
 {
     public enum GameStates

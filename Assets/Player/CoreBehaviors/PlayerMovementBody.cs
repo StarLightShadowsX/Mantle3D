@@ -173,7 +173,7 @@ public sealed class PlayerMovementBody : MonoBehaviour, IMovableBody
         if (GroundCheck(out _))
         {
             //Player.StateMachine.IdleWalk.Enter();
-            if (doCrossFade) Player.Animator.CrossFade("GroundBasic", .1f);
+            //if (doCrossFade) Player.Animator.CrossFade("GroundBasic", .1f);
         }
         //else Player.StateMachine.Airborne.Enter();
     }
@@ -186,7 +186,7 @@ public sealed class PlayerMovementBody : MonoBehaviour, IMovableBody
     void FixedUpdate()
     {
         sweepsThisPhysUpdate.Clear();
-        Player.Animator.SetFloat("CurrentSpeed", currentSpeed);
+        //Player.Animator.SetFloat("CurrentSpeed", currentSpeed);
         //if (Upgrades.Active.d_moonJump && Input.Jump.IsPressed()) VelocitySet(y: 10f);
 
         Vector3 prePos = Position;
