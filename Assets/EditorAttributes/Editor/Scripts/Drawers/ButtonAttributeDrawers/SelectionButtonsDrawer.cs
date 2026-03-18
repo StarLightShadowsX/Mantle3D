@@ -59,7 +59,10 @@ namespace EditorAttributes.Editor
 				var memberInfo = ReflectionUtility.GetValidMemberInfo(selectionButtonsAttribute.CollectionName, property);
 				var displayNames = ConvertCollectionValuesToStrings(selectionButtonsAttribute.CollectionName, property, memberInfo, errorBox).ToArray();
 
-				var buttonsValue = Array.IndexOf(displayNames, GetPropertyValueAsString(property));
+				string[] ConvertCollectionValuesToStrings(string A, SerializedProperty B, System.Reflection.MemberInfo C, HelpBox D) { return null; }
+
+
+                var buttonsValue = Array.IndexOf(displayNames, GetPropertyValueAsString(property));
 
 				root.Add(DrawButtons(buttonsValue, displayNames, property, selectionButtonsAttribute, (value) =>
 				{

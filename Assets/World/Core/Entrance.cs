@@ -1,6 +1,11 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public abstract class Entrance : MonoBehaviour
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+public abstract class Entrance : MonoBehaviour, IRoomActor
 {
     public enum Type
     {
@@ -13,21 +18,78 @@ public abstract class Entrance : MonoBehaviour
         JumpFromPit,
     }
 
-    public class Data
+    [System.Serializable]
+    public struct Data
     {
-        public Type type { get; private set; }
-        public string name { get; private set; }
-        public int id { get; private set; }
+        [field: SerializeField] public string name { get; private set; }
+        [field: SerializeField] public Type type { get; private set; }
+
+        public Data(Entrance input)
+        {
+            name = input.name;
+            type = input.type;
+        }
+
+#if UNITY_EDITOR
+        [CustomPropertyDrawer(typeof(Data))]
+        private class Editor : PropertyDrawer
+        {
+            public override VisualElement CreatePropertyGUI(SerializedProperty property)
+            {
+                string nameString = property.FindPropertyRelative(nameof(name).BackingField()).stringValue;
+                var enumProp = property.FindPropertyRelative(nameof(type).BackingField());
+                string typeString = enumProp.enumDisplayNames[enumProp.enumValueIndex];
+                return new Label($"{nameString} ({typeString})");
+            }
+        }
+#endif
     }
 
     public abstract Type type { get; }
-    public string Name;
-    public int ID;
-    public RoomRoot RoomRoot;
+    [SerializeField] private RoomRoot root; public RoomRoot Root => root;
 
-    public abstract void PlacePlayer()
+    public string Name => gameObject.name;
+    public int ID => root.entrances.IndexOf(this);
+
+    private void Reset()
     {
+        if (Application.isEditor)
+        {
+            Register();
+            return;
+        }
+    }
+    [ExecuteInEditMode]
+    private void Awake()
+    {
+        if (Application.isEditor)
+        {
+            Register();
+            return;
+        }
+    }
+    public virtual void Register()
+    {
+        if (!this.FindRoot(out root)) return;
+        root.AddEntrance(this);
+    }
+
+    [ExecuteInEditMode]
+    private void OnDestroy()
+    {
+        if (Application.isEditor)
+        {
+            Deregister();
+            return;
+        }
+    }
+    public virtual void Deregister()
+    {
+        if (!this.FindRoot(out root)) return;
+        root.RemoveEntrance(this);
 
     }
+
+    public abstract void PlacePlayer();
 }
 

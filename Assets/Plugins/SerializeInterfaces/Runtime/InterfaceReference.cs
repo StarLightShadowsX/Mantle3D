@@ -55,6 +55,7 @@ namespace AYellowpaper
 		public InterfaceReference(TInterface @interface) => _underlyingValue = @interface as UObject;
 
 		public static implicit operator TInterface(InterfaceReference<TInterface, UObject> obj) => obj.Value;
+		public static implicit operator InterfaceReference<TInterface, UObject>(TInterface inter) => new(@interface: inter);
 	}
 
 	/// <summary>

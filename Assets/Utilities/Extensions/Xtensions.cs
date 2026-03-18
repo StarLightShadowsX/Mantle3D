@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -201,7 +202,7 @@ public static class XtensionsMonoBehavior
             result?.Invoke();
         }
     }
-    
+
 
     public static bool Unloading(this MonoBehaviour M) => !M.gameObject.scene.isLoaded;
 
@@ -337,8 +338,11 @@ public static class XtensionsCollections
             if (list[i] == null)
                 list.RemoveAt(i);
     }
-
-
+    public static void AddUnique<T>(this List<T> list, T item) where T : class
+    {
+        if (list == null || item == null || list.Contains(item)) return;
+        list.Add(item);
+    }
 }
 
 public static class XtensionsTransform

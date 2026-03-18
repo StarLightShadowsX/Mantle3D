@@ -1,5 +1,5 @@
 # EditorAttributes
-EditorAttributes is a unity package that adds some extra editor attributes to your project to easily customize your editors without having to write any editor code.
+Some handy editor attributes to easily customize editors without code.
 
 # Links
 Documentation: https://editorattributesdocs.readthedocs.io
@@ -13,7 +13,7 @@ Support Me: https://buymeacoffee.com/v0lt
 # FAQ
 Q: With what Unity version is the package compatible with?
 
-A: The package is compatible with Unity 2022 and above, but there a few features that are only available in Unity 6 and above. Package versions before v2.2.0 that use ImGUI may be compatible with Unity 2021 as well.
+A: The package is compatible with Unity 6.0 and above. Editor Attributes versions eariler then 3.0.0 are also compatible with Unity 2022.
 
 Q: Does this package serialize Dictionaries, HashSets, 2D Arrays, etc.?
 
@@ -56,17 +56,17 @@ A: While the package is lightweight there is a small impact on editor performanc
 
 # Common Issues
 
-1. The attribute applies on the collection elements instead of the collection itself.
-- Unity only supports property drawers applying to collections in Unity 6 and above, upgrading your project will fix the issue.
-  
-2. Attribute doesn't work on custom serialized object members inside collections.
-- It's a Unity bug, a temporary solution until Unity fixes this is to go to the attribute's definition and add an additional parameter to any of the constructors like this `ExampleConstructor(applyToCollection = false) : base(applyToCollection)` now you can individually set when an attribute should apply to a collection or not from the attribute itself, leaving it to false will fix the problem with nested objects in collections.
+1. Attributes like Button Attribute, ShowInInspector Attribute, GUIColor Attribute and PropertyOrder Attribute don’t work after I create a custom inspector.
 
-3. Attributes like Button, ShowInInspector, GUIColor and PropertyOrder don't work after I create a custom inspector.
-- The logic for Button, ShowInInspector, GUIColor and PropertyOrder attributes is implemented in an EditorExtension class that inherits from the UnityEditor.Editor class, if you want those attributes to work with your custom editor you need to inherit your editor from EditorAttributes.Editor.EditorExtension and call the appropriate functions, you can read more in the Scripting API documentation.
+- The logic for Button Attribute, ShowInInspector Attribute, GUIColor Attribute and PropertyOrder Attribute is implemented in an EditorExtension class that inherits from the UnityEditor.Editor class, if you want those attributes to work with your custom editor you need to inherit your editor from EditorExtension and call the appropriate functions
+
+2. I get a “You cannot use EditorAttributes with ImGUI based editors. Convert your editor to UI Toolkit for attributes to work, or remove the attributes from properties drawn by the editor script.” warning message in my inspector.
+
+- This warning message appears when you try to use EditorAttributes in an ImGUI based custom editor, EditorAttributes only works with UI Toolkit based editors. To fix this follow the instructions in the message, also check if the issue comes from another package you have installed that overrides the base editor using ImGUI.
 
 # Features
-- The asset adds over 50 Attributes that:
+The asset adds over 50 Attributes that:
+
 - Show/Hide or Enable/Disable fields based on one or more conditions
 - Easily add buttons with parameter support
 - Mark fields as readonly
@@ -77,7 +77,7 @@ A: While the package is lightweight there is a small impact on editor performanc
 - Create min max sliders
 - Add dropdowns for Tags, Scenes, Animator Parameters and SortingLayers
 - Make data tables
-- Add helpboxes
+- Add help boxes
 - Clamp or Wrap numerical values
 - Group together multiple fields
 - Draw non serialized members in the inspector
