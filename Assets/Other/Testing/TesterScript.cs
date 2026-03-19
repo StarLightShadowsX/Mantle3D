@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper;
 using EditorAttributes;
 using UnityEngine;
 
@@ -29,5 +30,7 @@ public class TesterScript : MonoBehaviour
     private void OnDisable() => DisplaySituation("OnDisable");
     [ExecuteInEditMode]
     private void OnDestroy() => DisplaySituation("OnDestroy");
+
+    public InterfaceList<IRoomActor, Component> LIST;
 
 }

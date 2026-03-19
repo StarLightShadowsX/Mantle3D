@@ -11,8 +11,8 @@ public class RoomRoot : MonoBehaviour
     [field: SerializeField] public RoomAsset asset { get; private set; }
     [field: SerializeField] public List<GameObject> RootGameObjects { get; private set; } = new();
 
-    
-    [field: SerializeField] public InterfaceComponentList<IRoomActor, Component> roomActors { get; private set; } = new();
+
+    [field: SerializeField] public IComponentList<IRoomActor> roomActors { get; private set; } = new();
     [field: SerializeField] public List<Entrance> entrances { get; private set; } = new();
 
     private void Awake() => asset.Connect(this);
@@ -99,7 +99,7 @@ public static class Xtensions_RoomActors
     public static void RegisterWithRoot<T>(this T actor) where T : Component, IRoomActor
     {
         var root = RoomRoot.Find(actor);
-        if(!root.roomActors.Contains(actor)) root.roomActors.Add(actor);
+        if (!root.roomActors.Contains(actor)) root.roomActors.Add(actor);
     }
     public static void DeregisterFromRoot<T>(this T actor) where T : Component, IRoomActor
     {
