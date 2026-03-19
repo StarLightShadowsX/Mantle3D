@@ -66,4 +66,16 @@ namespace AYellowpaper
 	public class InterfaceReference<TInterface> : InterfaceReference<TInterface, Object> where TInterface : class
 	{
 	}
+
+    [System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false)]
+    public class RequireInterfaceAttribute : PropertyAttribute
+    {
+        public readonly System.Type InterfaceType;
+
+        public RequireInterfaceAttribute(System.Type interfaceType)
+        {
+            Debug.Assert(interfaceType.IsInterface, $"{nameof(interfaceType)} needs to be an interface.");
+            InterfaceType = interfaceType;
+        }
+    }
 }
