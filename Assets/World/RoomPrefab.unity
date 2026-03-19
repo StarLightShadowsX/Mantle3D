@@ -474,7 +474,8 @@ MonoBehaviour:
   - {fileID: 984595881}
   - {fileID: 1338946350}
   <roomActors>k__BackingField:
-  - _underlyingValue: {fileID: 1011297793}
+    list:
+    - {fileID: 1011297793}
   <entrances>k__BackingField:
   - {fileID: 1011297793}
 --- !u!4 &2146082664

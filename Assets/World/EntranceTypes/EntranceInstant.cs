@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntranceInstant : Entrance
+public class EntranceInstant : Entrance, IRoomActor
 {
     public override Type type => Type.Instant;
 

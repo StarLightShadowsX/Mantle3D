@@ -5,15 +5,15 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using AYellowpaper;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 
 public class RoomRoot : MonoBehaviour
 {
     [field: SerializeField] public RoomAsset asset { get; private set; }
-    [field: SerializeField] public List<GameObject> RootGameObjects { get; private set; } = new();
-
-
-    [field: SerializeField] public IComponentList<IRoomActor> roomActors { get; private set; } = new();
-    [field: SerializeField] public List<Entrance> entrances { get; private set; } = new();
+    [field: SerializeField, HideInInspector] public List<GameObject> RootGameObjects { get; private set; } = new();
+    [field: SerializeField, HideInInspector] public IComponentList<IRoomActor> roomActors { get; private set; } = new();
+    [field: SerializeField, HideInInspector] public List<Entrance> entrances { get; private set; } = new();
 
     private void Awake() => asset.Connect(this);
 
@@ -35,23 +35,73 @@ public class RoomRoot : MonoBehaviour
     public static RoomRoot Find(GameObject G) => Find(G.scene);
     public static RoomRoot Find(Component C) => Find(C.gameObject.scene);
 
-    public void AddEntrance(Entrance entrance)
-    {
-        if (!Application.isEditor || Application.isPlaying || entrances.Contains(entrance)) return;
-        roomActors.Add(entrance);
-        entrances.Add(entrance);
-    }
-    public void RemoveEntrance(Entrance entrance)
-    {
-        if (!Application.isEditor || Application.isPlaying || !entrances.Contains(entrance)) return;
-        roomActors.Remove(entrance);
-        entrances.Remove(entrance);
-    }
-
-
 #if UNITY_EDITOR
-    public class Editor
+    [CustomEditor(typeof(RoomRoot))]
+    private class Editor : UnityEditor.Editor
     {
+        public override VisualElement CreateInspectorGUI()
+        {
+            VisualElement root = new();
+
+            SerializedProperty scriptProp = serializedObject.FindProperty("m_Script");
+            PropertyField scriptField = new(scriptProp);
+            scriptField.SetEnabled(false);
+            root.Add(scriptField);
+
+
+            RoomRoot This = target as RoomRoot;
+
+            PropertyField assetField = new(serializedObject.FindProperty(nameof(asset).BackingField()));
+            root.Add(assetField);
+
+            SerializedProperty rootObjects = serializedObject.FindProperty(nameof(RoomRoot.RootGameObjects).BackingField());
+            Foldout rootObjectsDisplay = new()
+            {
+                text = $"Root GameObjects : {This.RootGameObjects.Count}",
+                value = false
+            };
+            root.Add(rootObjectsDisplay);
+            for (int i = 0; i < This.RootGameObjects.Count; i++)
+            {
+                var iProp = rootObjects.GetArrayElementAtIndex(i);
+                PropertyField iPropField = new(iProp, "");
+                rootObjectsDisplay.Add(iPropField);
+                iPropField.SetEnabled(false);
+            }
+
+            SerializedProperty roomActors = serializedObject.FindProperty($"{nameof(RoomRoot.roomActors).BackingField()}.list");
+            Foldout roomActorsDisplay = new()
+            {
+                text = $"Room Actors : {This.roomActors.Count}",
+                value = false
+            };
+            root.Add(roomActorsDisplay);
+            for (int i = 0; i < This.roomActors.Count; i++)
+            {
+                var iProp = roomActors.GetArrayElementAtIndex(i);
+                PropertyField iPropField = new(iProp, "");
+                roomActorsDisplay.Add(iPropField);
+                iPropField.SetEnabled(false);
+            }
+
+            SerializedProperty entrances = serializedObject.FindProperty(nameof(RoomRoot.entrances).BackingField());
+            Foldout entrancesDisplay = new()
+            {
+                text = $"Entrances : {entrances.arraySize}",
+                value = false
+            };
+            root.Add(entrancesDisplay);
+            for (int i = 0; i < This.entrances.Count; i++)
+            {
+                var iProp = entrances.GetArrayElementAtIndex(i);
+                PropertyField iPropField = new(iProp, "");
+                entrancesDisplay.Add(iPropField);
+                iPropField.SetEnabled(false);
+            }
+
+            return root;
+        }
+
         [InitializeOnLoad]
         public static class RoomRootSceneHook
         {
@@ -78,10 +128,6 @@ public class RoomRoot : MonoBehaviour
                 EditorUtility.SetDirty(roomRoot);
             }
         }
-
-
-
-
     }
 #endif
 }
@@ -98,12 +144,12 @@ public static class Xtensions_RoomActors
 {
     public static void RegisterWithRoot<T>(this T actor) where T : Component, IRoomActor
     {
-        var root = RoomRoot.Find(actor);
+        RoomRoot root = RoomRoot.Find(actor);
         if (!root.roomActors.Contains(actor)) root.roomActors.Add(actor);
     }
     public static void DeregisterFromRoot<T>(this T actor) where T : Component, IRoomActor
     {
-        var root = RoomRoot.Find(actor);
+        RoomRoot root = RoomRoot.Find(actor);
         root.roomActors.Remove(actor);
     }
     public static RoomRoot FindRoot<T>(this T actor) where T : Component, IRoomActor

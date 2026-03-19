@@ -70,8 +70,9 @@ public abstract class Entrance : MonoBehaviour, IRoomActor
     }
     public virtual void Register()
     {
-        if (!this.FindRoot(out root)) return;
-        root.AddEntrance(this);
+        if (!this.FindRoot(out root) || !Application.isEditor || Application.isPlaying || root.entrances.Contains(this)) return;
+        root.entrances.Add(this);
+        root.roomActors.Add(this);
     }
 
     [ExecuteInEditMode]
@@ -85,9 +86,9 @@ public abstract class Entrance : MonoBehaviour, IRoomActor
     }
     public virtual void Deregister()
     {
-        if (!this.FindRoot(out root)) return;
-        root.RemoveEntrance(this);
-
+        if (!this.FindRoot(out root) || !Application.isEditor || Application.isPlaying || !root.entrances.Contains(this)) return;
+        root.entrances.Remove(this);
+        root.roomActors.Remove(this);
     }
 
     public abstract void PlacePlayer();

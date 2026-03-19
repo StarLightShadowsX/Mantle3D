@@ -73,7 +73,9 @@ namespace AYellowpaper
         public void CopyTo(Array array, int index) => CopyTo(array, index);
     }
 
+    [System.Serializable]
     public class IComponentList<T> : InterfaceList<T, Component> where T : class { }
+    [System.Serializable]
     public class IScriptableObjectList<T> : InterfaceList<T, ScriptableObject> where T : class { }
 
     public interface INgb_InterfaceListNGB

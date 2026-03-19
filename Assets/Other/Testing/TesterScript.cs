@@ -32,5 +32,6 @@ public class TesterScript : MonoBehaviour
     private void OnDestroy() => DisplaySituation("OnDestroy");
 
     public InterfaceList<IRoomActor, Component> LIST;
+    public InterfaceReference<IRoomActor, Component> i;
 
 }
