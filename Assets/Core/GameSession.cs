@@ -19,7 +19,7 @@ using UnityEditor;
 /// <summary>
 /// A Global System managing the core gameplay systems and lifecycle. A singleton that persists as long as gameplay is running. <br/>
 /// Provides static access to important gameplay-related properties and methods. <br/>
-/// To begin gameplay, use methods such as <see cref="BeginSaveFile(int)"/> or <see cref="BeginEditor()"/>.
+/// To begin gameplay, use methods such as <see cref="BeginFromSaveFile(int)"/> or <see cref="BeginRoom()"/>.
 /// </summary>
 [DefaultExecutionOrder(ExecutionOrders.GameplayRoot)]
 public class GameSession : MonoBehaviour
@@ -102,6 +102,54 @@ public class GameSession : MonoBehaviour
 
     #endregion Instance Fields
 
+
+    /// <summary>
+    /// Begins The Gameplay Phase using the specified Save File on Disk.
+    /// </summary>
+    /// <param name="fileNo"></param>
+    public static void BeginFromSaveFile(int fileNo)
+    {
+        if (Active) return;
+
+        Enum().Begin(Overlay.OverMenus);
+        IEnumerator Enum()
+        {
+
+            yield return Overlay.OverMenus.BasicFadeOutWait();
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            InitializeSaves(fileNo);
+            //RoomManager.destination = SaveData.Current.location;
+
+            Menu.CloseAllMenus();
+            var Load = SceneManager.LoadSceneAsync(GAMEPLAY_SCENE);
+
+            yield return WaitFor.Until(() => Load.isDone && Active);
+            yield return WaitFor.SecondsRealtime(0.2f);
+        }
+    }
+    /// <summary>
+    /// Begins the Gameplay Phase in Editor Mode, using the settings in <see cref="EditorState"/> to determine spawn location. <br/>
+    /// </summary>
+    public static void BeginRoom(RoomAsset room)
+    {
+        if (Active) return;
+
+        InitializeSaves(0);
+
+        SceneManager.LoadScene(GAMEPLAY_SCENE, LoadSceneMode.Additive);
+    }
+
+    public static void InitializeSaves(int fileNo)
+    {
+        SaveData.IO = new(fileNo);
+        SaveData.IO.LoadFromFile(SaveData.Current);
+        SaveData.RevertToSaveFile();
+    }
+
+
     private void Awake()
     {
         if(Active)
@@ -161,51 +209,7 @@ public class GameSession : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Begins The Gameplay Phase using the specified Save File on Disk.
-    /// </summary>
-    /// <param name="fileNo"></param>
-    public static void BeginSaveFile(int fileNo)
-    {
-        if (Active) return;
 
-        Enum().Begin(Overlay.OverMenus);
-        IEnumerator Enum()
-        {
-
-            yield return Overlay.OverMenus.BasicFadeOutWait();
-
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-
-            InitializeSaves(fileNo);
-            //RoomManager.destination = SaveData.Current.location;
-
-            Menu.CloseAllMenus();
-            var Load = SceneManager.LoadSceneAsync(GAMEPLAY_SCENE);
-
-            yield return WaitFor.Until(() => Load.isDone && Active);
-            yield return WaitFor.SecondsRealtime(0.2f);
-        }
-    }
-    /// <summary>
-    /// Begins the Gameplay Phase in Editor Mode, using the settings in <see cref="EditorState"/> to determine spawn location. <br/>
-    /// </summary>
-    public static void BeginEditor()
-    {
-        if (Active) return;
-
-        InitializeSaves(0);
-
-        SceneManager.LoadScene(GAMEPLAY_SCENE);
-    }
-
-    public static void InitializeSaves(int fileNo)
-    {
-        SaveData.IO = new(fileNo);
-        SaveData.IO.LoadFromFile(SaveData.Current);
-        SaveData.RevertToSaveFile();
-    }
 
 
 
@@ -240,10 +244,6 @@ public class GameSession : MonoBehaviour
     }
 
 
-
-
-
-    //protected override void OnDeInitialize() => EnemyCullingGroup.DeInitialize();
 
 
 

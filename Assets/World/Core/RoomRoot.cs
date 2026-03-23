@@ -15,7 +15,12 @@ public class RoomRoot : MonoBehaviour
     [field: SerializeField, HideInInspector] public IComponentList<IRoomActor> roomActors { get; private set; } = new();
     [field: SerializeField, HideInInspector] public List<Entrance> entrances { get; private set; } = new();
 
-    private void Awake() => asset.Connect(this);
+    private void Awake()
+    {
+        asset.Connect(this);
+
+        if (GameSession.GameState == GameSession.GameStates.Null) GameSession.BeginRoom(this);
+    }
 
     public static RoomRoot Find(Scene scene)
     {

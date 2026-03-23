@@ -36,6 +36,8 @@ public class RoomAsset : ScriptableObject
 
 
 
+    public static implicit operator RoomAsset(RoomRoot room) => room.asset;
+    public static implicit operator RoomRoot(RoomAsset room) => room.root;
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(RoomAsset))]
