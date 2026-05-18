@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using AYellowpaper;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using Utilities.Xtensions;
 
 public class RoomRoot : MonoBehaviour
 {
@@ -59,50 +60,27 @@ public class RoomRoot : MonoBehaviour
             PropertyField assetField = new(serializedObject.FindProperty(nameof(asset).BackingField()));
             root.Add(assetField);
 
-            SerializedProperty rootObjects = serializedObject.FindProperty(nameof(RoomRoot.RootGameObjects).BackingField());
-            Foldout rootObjectsDisplay = new()
+            Foldout MakeDisplayOnlyList(string propName, string displayName)
             {
-                text = $"Root GameObjects : {This.RootGameObjects.Count}",
-                value = false
-            };
-            root.Add(rootObjectsDisplay);
-            for (int i = 0; i < This.RootGameObjects.Count; i++)
-            {
-                var iProp = rootObjects.GetArrayElementAtIndex(i);
-                PropertyField iPropField = new(iProp, "");
-                rootObjectsDisplay.Add(iPropField);
-                iPropField.SetEnabled(false);
+                SerializedProperty prop = serializedObject.FindProperty(propName);
+                Foldout foldout = new()
+                {
+                    text = $"{displayName} : {prop.arraySize}",
+                    value = false
+                };
+                for (int i = 0; i < prop.arraySize; i++)
+                {
+                    var iProp = prop.GetArrayElementAtIndex(i);
+                    PropertyField iPropField = new(iProp, "");
+                    foldout.Add(iPropField);
+                    iPropField.SetEnabled(false);
+                }
+                return foldout;
             }
 
-            SerializedProperty roomActors = serializedObject.FindProperty($"{nameof(RoomRoot.roomActors).BackingField()}.list");
-            Foldout roomActorsDisplay = new()
-            {
-                text = $"Room Actors : {This.roomActors.Count}",
-                value = false
-            };
-            root.Add(roomActorsDisplay);
-            for (int i = 0; i < This.roomActors.Count; i++)
-            {
-                var iProp = roomActors.GetArrayElementAtIndex(i);
-                PropertyField iPropField = new(iProp, "");
-                roomActorsDisplay.Add(iPropField);
-                iPropField.SetEnabled(false);
-            }
-
-            SerializedProperty entrances = serializedObject.FindProperty(nameof(RoomRoot.entrances).BackingField());
-            Foldout entrancesDisplay = new()
-            {
-                text = $"Entrances : {entrances.arraySize}",
-                value = false
-            };
-            root.Add(entrancesDisplay);
-            for (int i = 0; i < This.entrances.Count; i++)
-            {
-                var iProp = entrances.GetArrayElementAtIndex(i);
-                PropertyField iPropField = new(iProp, "");
-                entrancesDisplay.Add(iPropField);
-                iPropField.SetEnabled(false);
-            }
+            root.Add(MakeDisplayOnlyList(nameof(RootGameObjects).BackingField(), "Root GameObjects"));
+            root.Add(MakeDisplayOnlyList($"{nameof(roomActors).BackingField()}.list", "All RoomActors"));
+            root.Add(MakeDisplayOnlyList(nameof(entrances).BackingField(), "Entrances"));
 
             return root;
         }
@@ -143,31 +121,21 @@ public interface IRoomActor
 
     public void Register();
     public void Deregister();
-}
 
-public static class Xtensions_RoomActors
-{
-    public static void RegisterWithRoot<T>(this T actor) where T : Component, IRoomActor
+    public static bool RegisterWithRoot(Component actor, out RoomRoot rootResult)
     {
-        RoomRoot root = RoomRoot.Find(actor);
-        if (!root.roomActors.Contains(actor)) root.roomActors.Add(actor);
+        rootResult = RoomRoot.Find(actor);
+        if(rootResult != null) rootResult.roomActors.AddU(actor);
+        return rootResult != null;
     }
-    public static void DeregisterFromRoot<T>(this T actor) where T : Component, IRoomActor
+    public static void DeregisterWithRoot(Component actor, ref RoomRoot rootResult)
     {
         RoomRoot root = RoomRoot.Find(actor);
         root.roomActors.Remove(actor);
     }
-    public static RoomRoot FindRoot<T>(this T actor) where T : Component, IRoomActor
-    {
-        if (actor == null || actor.gameObject.scene == null) return null;
+}
 
-        actor.gameObject.scene.GetRootGameObjects()[0].TryGetComponent(out RoomRoot res);
-        return res;
-    }
-    public static bool FindRoot<T>(this T actor, out RoomRoot result) where T : Component, IRoomActor
-    {
-        result = null;
-        return actor != null && actor.gameObject.scene != null && actor.gameObject.scene.GetRootGameObjects()[0].TryGetComponent(out result);
-    }
+public static class Xtensions_RoomActors
+{
 
 }

@@ -4,15 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-//using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-/// <summary>
-/// A Base Menu class with simplified background behavior:
-/// - Any non-top menu is frozen (non-interactable).
-/// - Only the topmost menu is unfrozen (Focus).
-/// - No BackgroundLocked state or switching focus between active menus.
-/// </summary>
+
 public class Menu : MonoBehaviour
 {
     #region Config

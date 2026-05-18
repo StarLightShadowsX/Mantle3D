@@ -2,12 +2,13 @@ using Unity.Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities.Singletons;
 
 [DefaultExecutionOrder(ExecutionOrders.GameplaySystems)]
 public class Cameras : MonoBehaviour
 {
-    private static Cameras instance;
-    public static Cameras Get => Singleton.Get(ref instance);
+    private static Singleton<Cameras> Singleton;
+    public static Cameras Get => Singleton.Get;
 
     #region Instance Fields
 
@@ -18,7 +19,7 @@ public class Cameras : MonoBehaviour
 
     public void Awake()
     {
-        Singleton.Register(ref instance, this);
+        Singleton.Register(this);
 
         Brain = inputBrain;
         UnityCamera = inputBrain.GetComponent<Camera>();
@@ -32,7 +33,7 @@ public class Cameras : MonoBehaviour
 
     private void OnDestroy()
     {
-        Singleton.Unregister(ref instance, this);
+        Singleton.Deregister(this);
     }
 
 

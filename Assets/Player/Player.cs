@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
             //    : value is ActivityStates.Dying ? CharacterMovementBody.BodyState.Ragdoll
             //    : CharacterMovementBody.BodyState.OFF;
 
-            MovementBody.enabled = value is ActivityStates.Active or ActivityStates.Dying;
+            //MovementBody.enabled = value is ActivityStates.Active or ActivityStates.Dying;
             Controller.enabled = value is ActivityStates.Active;
             Animator.enabled = value is ActivityStates.Active or ActivityStates.Cutscene;
         }
@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
     /// The <see cref="PlayerMovementBody"/> component attached to the <see cref="Player"/>. <br/>
     /// Handles movement and physics interactions.
     /// </summary>
-    public static PlayerMovementBody MovementBody { get; private set; }
+    //public static PlayerMovementBody MovementBody { get; private set; }
     /// <summary>
     /// The <see cref="CapsuleCollider"/> component attached to the <see cref="Player"/>. <br/>
     /// </summary>
@@ -184,7 +184,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The current velocity of the <see cref="Player"/>'s <see cref="PlayerMovementBody"/>.
     /// </summary>
-    public static Vector3 Velocity => MovementBody.velocity;
+    //public static Vector3 Velocity => MovementBody.velocity;
 
     /// <param name="pos">The position to be compared.</param>
     /// <returns>The distance between the <see cref="Player"/> and and a given position, such as an enemy.</returns>
@@ -219,7 +219,7 @@ public class Player : MonoBehaviour
         GameObject = gameObject;
         Transform = transform;
         StateMachine = GetComponent<PlayerStateMachine>();
-        MovementBody = GetComponent<PlayerMovementBody>();
+        //MovementBody = GetComponent<PlayerMovementBody>();
         Collider = GetComponent<CapsuleCollider>();
         Controller = GetComponent<PlayerController>();
         Animator = in_PAnim;

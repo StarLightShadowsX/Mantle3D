@@ -3,6 +3,7 @@ using SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities.Singletons;
 
 namespace SaveSystem
 {
@@ -12,11 +13,7 @@ namespace SaveSystem
     /// </summary>
     public class SavedValueRegistry : GlobalAsset<SavedValueRegistry>
     {
-        public override void OnEnable()
-        {
-            base.OnEnable();
-            EstablishDefaultSaveData();
-        }
+        public override void OnInit() => EstablishDefaultSaveData();
 
         private void EstablishDefaultSaveData()
         {

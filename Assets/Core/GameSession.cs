@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using SaveSystem;
-using ObjectPooling;
+using Utilities.ObjectPooling;
+using Utilities.Singletons;
+
 
 
 
@@ -96,7 +98,7 @@ public class GameSession : MonoBehaviour
 
     [SerializeField] Transform cameraTransform;
     [SerializeField] HUD hud;
-    [SerializeField] DontDestroyMeOnLoad overlayPrefab;
+    [SerializeField] GameObject overlayPrefab;
     [SerializeField] Player inputPlayer;
     [SerializeField] PauseMenu pauseMenu;
 
@@ -168,7 +170,7 @@ public class GameSession : MonoBehaviour
         inputPlayer.Awake();
         //inputUI.Awake();
         GetComponent<Cameras>().Awake();
-        ObjectPools.poolParent = transform.Find("PooledObjects");
+        GlobalPool.poolParent = transform.Find("PooledObjects");
         IGlobalPrefab.RegisterPrefab(pauseMenu.gameObject);
         Overlay.OverMenus.BasicBlackout = 1;
         Overlay.OverGameplay.Reset();

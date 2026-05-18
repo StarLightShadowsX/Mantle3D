@@ -8,21 +8,8 @@ using UnityEngine;
 [DefaultExecutionOrder(ExecutionOrders.PlayerVisualizer)]
 public class PlayerAnimator : MonoBehaviour
 {
-    private static PlayerAnimator instance;
-    public static PlayerAnimator Get => Singleton.Get(ref instance);
 
     [field: SerializeField] public Animator Animator { get; private set; }
-
-    private void Awake()
-    {
-        Singleton.Register(ref instance, this);
-
-    }
-    private void OnDestroy()
-    {
-        Singleton.Unregister(ref instance, this);
-
-    }
 
     private void Update()
     {

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AYellowpaper.SerializedCollections;
+using Utilities.Singletons;
 
 [CreateAssetMenu(fileName = "Input", menuName = "Core/Input/Input")]
 public class Input : GlobalAsset<Input>
@@ -72,10 +73,8 @@ public class Input : GlobalAsset<Input>
     public SerializedDictionary<string, Sprite> buttonIcons = new();
     public static SerializedDictionary<string, Sprite> ButtonIcons;
 
-    public override void OnEnable()
+    public override void OnInit()
     {
-        base.OnEnable();
-
         MoveRef = in_move;
         Look.Ref = in_look;
         Pan.Ref = in_pan;

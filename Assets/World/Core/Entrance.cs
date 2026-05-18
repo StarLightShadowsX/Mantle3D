@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using Utilities.Xtensions;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -70,9 +72,8 @@ public abstract class Entrance : MonoBehaviour, IRoomActor
     }
     public virtual void Register()
     {
-        if (!this.FindRoot(out root) || !Application.isEditor || Application.isPlaying || root.entrances.Contains(this)) return;
+        if (IRoomActor.RegisterWithRoot(this, out root) || !Application.isEditor || Application.isPlaying || root.entrances.Contains(this)) return;
         root.entrances.Add(this);
-        root.roomActors.Add(this);
     }
 
     [ExecuteInEditMode]
@@ -86,9 +87,9 @@ public abstract class Entrance : MonoBehaviour, IRoomActor
     }
     public virtual void Deregister()
     {
-        if (!this.FindRoot(out root) || !Application.isEditor || Application.isPlaying || !root.entrances.Contains(this)) return;
+        if (!Application.isEditor || Application.isPlaying || !root.entrances.Contains(this)) return;
+        IRoomActor.DeregisterWithRoot(this, ref root);
         root.entrances.Remove(this);
-        root.roomActors.Remove(this);
     }
 
     public abstract void PlacePlayer();
