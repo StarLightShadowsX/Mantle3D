@@ -47,7 +47,8 @@ public class Input : GlobalAsset<Input>
         public static InputAction C => CRef.action;
     }
 
-    public UI in_UI; [Serializable] public class UI
+    public UI in_UI; [Serializable]
+    public class UI
     {
         public InputActionReference in_ui_navigate;
         public static InputActionReference NavigateRef;
@@ -63,7 +64,8 @@ public class Input : GlobalAsset<Input>
 
     }
 
-    public Debug in_Debug; [Serializable] public class Debug
+    public Debug in_Debug; [Serializable]
+    public class Debug
     {
         public InputActionReference in_debug_console;
         public static InputActionReference ConsoleRef;
@@ -73,8 +75,14 @@ public class Input : GlobalAsset<Input>
     public DictionaryS<string, Sprite> buttonIcons = new();
     public static DictionaryS<string, Sprite> ButtonIcons;
 
+    public InputActionAsset in_Asset;
+    public static InputActionAsset Asset;
+
+
     public override void OnInit()
     {
+        Asset = in_Asset; 
+        Asset.Enable();
         MoveRef = in_move;
         Look.Ref = in_look;
         Pan.Ref = in_pan;

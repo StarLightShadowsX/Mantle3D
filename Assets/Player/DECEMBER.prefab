@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &608056239810310576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 827038216450462812}
+  - component: {fileID: 5383213878064720791}
+  - component: {fileID: 8284293782883209851}
+  m_Layer: 0
+  m_Name: Walking
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &827038216450462812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608056239810310576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7468136571605932951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5383213878064720791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608056239810310576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d0add41dc610045864e8ea0d860708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SLS.StateMachineH::SLS.StateMachineH.State
+  <Behaviors>k__BackingField:
+  - {fileID: 8284293782883209851}
+  <Machine>k__BackingField: {fileID: 6992392476702148775}
+  <Parent>k__BackingField: {fileID: 6992392476702148775}
+  <Layer>k__BackingField: 0
+  <Children>k__BackingField: []
+  <ChildCount>k__BackingField: 0
+--- !u!114 &8284293782883209851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608056239810310576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf6562d96e303648a6ecf502713d582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviors.GroundWalk
+  <State>k__BackingField: {fileID: 5383213878064720791}
+  walkSpeed: 4
+  runSpeed: 6
 --- !u!1 &6213286693002979790
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,12 +78,13 @@ GameObject:
   - component: {fileID: 7322942565246978031}
   - component: {fileID: 2027688877086225781}
   - component: {fileID: 6992392476702148775}
-  - component: {fileID: 410343853458350033}
+  - component: {fileID: 8938862998843422425}
   - component: {fileID: 3116005111480894675}
   - component: {fileID: 4001557612358756997}
   - component: {fileID: 2421466790729210382}
   - component: {fileID: 7017826178951454911}
   - component: {fileID: 7474030835807540540}
+  - component: {fileID: 2536113610115638332}
   m_Layer: 0
   m_Name: DECEMBER
   m_TagString: Untagged
@@ -52,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d7fb5dadb1220498987e705b792eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  in_PAnim: {fileID: 0}
 --- !u!114 &6992392476702148775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,16 +137,18 @@ MonoBehaviour:
   <Machine>k__BackingField: {fileID: 0}
   <Parent>k__BackingField: {fileID: 0}
   <Layer>k__BackingField: 0
-  <Children>k__BackingField: []
-  <ChildCount>k__BackingField: 0
+  <Children>k__BackingField:
+  - {fileID: 5383213878064720791}
+  <ChildCount>k__BackingField: 1
   <StatesSetup>k__BackingField: 0
   <StateHolder>k__BackingField: {fileID: 7468136571605932951}
   _singalManager: {fileID: 0}
   pauseState: {fileID: 0}
   ragDollState: {fileID: 0}
   states:
-    _serializedList: []
---- !u!114 &410343853458350033
+    serializedKeys: []
+    serializedValues: []
+--- !u!114 &8938862998843422425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,35 +157,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6213286693002979790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa29ac75fdacf424eb72e10c53797c1d, type: 3}
+  m_Script: {fileID: 11500000, guid: fd1ceeb6b04eb3b46bb10bbf97f93e2b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCore.PlayerMovementBody
-  <RB>k__BackingField: {fileID: 0}
-  <Collider>k__BackingField: {fileID: 0}
-  <NavAgent>k__BackingField: {fileID: 0}
-  defaultGravity: {x: 0, y: 1, z: 0}
-  autoApplyGravity: 0
-  maxSlopeNormalAngle: 45
-  groundCheckBuffer: 0.1
-  movementProjectionSteps: 5
-  bonkThreshold: 15
-  frontCheckDefaultOffset: {x: 0, y: 0, z: 0}
-  frontCheckDefaultRadius: 0
-  validGroundMask:
-    serializedVersion: 2
-    m_Bits: 0
-  platformDetectionFactor: 3
-  platformLockRadius: 0.25
-  _useNavMeshIfPossible: 1
-  lockToNavMesh: 0
-  _direction: {x: 0, y: 0, z: 1}
-  velocity: {x: 0, y: 0, z: 0}
-  currentSpeed: 0
-  movementModifier: 1
-  baseMovability: 1
-  canJump: 1
-  navMeshDetectionRange: 0.35
-  jumpMarkers: []
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPhysics
+  <Resolvers>k__BackingField:
+    <groundedResolver>k__BackingField: {fileID: 2536113610115638332}
+    <airborneResolver>k__BackingField: {fileID: 0}
+  <Velocity>k__BackingField:
+    allowBackwards: 1
+  <Ground>k__BackingField:
+    <groundCheckBuffer>k__BackingField: 0
+    <maxSlopeNormalAngle>k__BackingField: 0
+  maxPhysicsSteps: 6
+  <RB>k__BackingField: {fileID: 7017826178951454911}
+  <Collider>k__BackingField: {fileID: 2421466790729210382}
 --- !u!114 &3116005111480894675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +267,23 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2536113610115638332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213286693002979790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c4dcee11ed9ef4f919bfb1021a72fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SLS.Physics.3D::SLS.Physics3D.NavMeshPhysResolver
+  <Body>k__BackingField: {fileID: 8938862998843422425}
+  <NavAgent>k__BackingField: {fileID: 7474030835807540540}
+  lockToNavMesh: 1
+  <detectionRange>k__BackingField: 0.35
+  <nonNavResolver>k__BackingField: {fileID: 0}
 --- !u!1 &6426966401810121805
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +312,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 827038216450462812}
   m_Father: {fileID: 7322942565246978031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

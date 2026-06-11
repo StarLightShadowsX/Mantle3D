@@ -2,32 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// A unique Player behavior that is actually a separate object from the player itself, and simply tries its best to visually match the current state of the actual Player.
-/// </summary>
-[DefaultExecutionOrder(ExecutionOrders.PlayerVisualizer)]
-public class PlayerAnimator : MonoBehaviour
+namespace PlayerCore
 {
-
-    [field: SerializeField] public Animator Animator { get; private set; }
-
-    private void Update()
+    /// <summary>
+    /// A unique Player behavior that is actually a separate object from the player itself, and simply tries its best to visually match the current state of the actual Player.
+    /// </summary>
+    [DefaultExecutionOrder(ExecutionOrders.PlayerVisualizer)]
+    public class PlayerAnimator : MonoBehaviour
     {
-        transform.position = Player.Position;
 
+        [field: SerializeField] public Animator Animator { get; private set; }
+
+        private readonly int dirXHash = Animator.StringToHash("DirX");
+        private readonly int dirYHash = Animator.StringToHash("DirY");
+
+        private void Update() => transform.position = Player.Position;
+        private void FixedUpdate() => transform.position = Player.Position;
+
+        public void Play(string name) => Animator.Play(name);
+
+
+        public void SetDirection() => SetDirection(Cameras.AdjustVector(Player.Forward));
+        public void SetDirection(Vector3 direction)
+        {
+            Animator.SetFloat(dirXHash, direction.x);
+            Animator.SetFloat(dirYHash, direction.z);
+            //Change the current animation to the correct visual direction.
+        }
     }
-    private void FixedUpdate()
-    {
-        transform.position = Player.Position;
 
-    }
-
-    public void Play(string name) => Animator.Play(name);
-
-
-    public void SetDirection() => SetDirection(Cameras.AdjustVector(Player.Forward));
-    public void SetDirection(Vector3 direction)
-    {
-        //Change the current animation to the correct visual direction.
-    }
 }

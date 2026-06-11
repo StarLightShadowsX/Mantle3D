@@ -12,8 +12,8 @@ namespace SLS.GameStateMachine
     [DefaultExecutionOrder(-160)]
     public class GameStateRegistry : GlobalAsset<GameStateRegistry>
     {
-        public List<GameStateBase> AllStates = new();
-        public static Dictionary<string, GameStateBase> Dict;
+        public List<GameState> AllStates = new();
+        public static Dictionary<string, GameState> Dict;
 
         public static Action Setup;
 
@@ -24,7 +24,7 @@ namespace SLS.GameStateMachine
 
             Setup?.Invoke();
 
-            if(Application.isPlaying) GameStateBase.Transition(AllStates[0]);
+            if(Application.isPlaying) GameState.TransitionPrimaryState(AllStates[0]);
         }
 
 #if UNITY_EDITOR

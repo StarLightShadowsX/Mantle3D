@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41693b6f2efe3a4698cc1fbf89527aa, type: 3}
   m_Name: Gameplay
   m_EditorClassIdentifier: Assembly-CSharp::Core.Gameplay
-  <Scene>k__BackingField: {fileID: 11400000, guid: e475f63cc3e4b9e4fa3025cd7a51e4b0, type: 2}
-  <PreExit>k__BackingField:
-    Real:
-      _PersistentCalls: []
+  <Additive>k__BackingField: 0
+  <Scene>k__BackingField:
+    <sceneName>k__BackingField: GAME_SESSION
+    <asset>k__BackingField: {fileID: 102900000, guid: 71ba562c511532a4c847401a9cb1d699, type: 3}
+  <FreezeTillSceneLoad>k__BackingField: 1
   <OnExit>k__BackingField:
-    Real:
-      _PersistentCalls: []
-  <PreEnter>k__BackingField:
     Real:
       _PersistentCalls: []
   <OnEnter>k__BackingField:

@@ -26,7 +26,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] Transform cameraTransform;
     [SerializeField] HUD hud;
     [SerializeField] GameObject overlayPrefab;
-    [SerializeField] Player inputPlayer;
+    [SerializeField] PlayerCore.Player inputPlayer;
     [SerializeField] PauseMenu pauseMenu;
 
     #endregion Instance Fields

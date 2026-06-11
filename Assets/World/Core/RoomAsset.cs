@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Scene = UnityEngine.SceneManagement.Scene;
 using UnityEngine.UIElements;
-using Utilities.Xtensions;
-
+using System.Collections;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,11 +10,10 @@ using UnityEditor.UIElements;
 #endif
 
 [CreateAssetMenu(fileName = "RoomAsset", menuName = "Scriptable Objects/Room")]
-public class RoomAsset : ScriptableObject
+public class RoomAsset : SceneAsset
 {
     // Serialized Data
     public string displayName;
-    public SceneReference scene;
     public List<Entrance.Data> entrances = new();
 
     //Active Data
@@ -36,6 +34,17 @@ public class RoomAsset : ScriptableObject
     public static RoomAsset Find(GameObject G) => Find(G.scene);
     public static RoomAsset Find(Component C) => Find(C.gameObject.scene);
 
+
+    public void EnterAtEntrance(int id)
+    {
+        En().Begin();
+        IEnumerator En()
+        {
+            Load();
+            yield return new WaitUntil(() => root != null);
+            root.entrances[id].PlacePlayer();
+        }
+    }
 
 
     public static implicit operator RoomAsset(RoomRoot room) => room.asset;
@@ -59,7 +68,7 @@ public class RoomAsset : ScriptableObject
             displayNameProp = serializedObject.FindProperty(nameof(displayName));
             displayNameField = new(displayNameProp);
 
-            sceneProp = serializedObject.FindProperty(nameof(scene));
+            sceneProp = serializedObject.FindBackingField(nameof(Scene));
             sceneField = new(sceneProp);
 
             entrancesProp = serializedObject.FindProperty(nameof(entrances));

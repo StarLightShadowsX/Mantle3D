@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -99,6 +100,9 @@ public static class Xtensions_String
     /// <param name="propertyName">the input property name. Generally advised to use a "nameof()"</param>
     /// <returns>the identifier of the backing field for use in a FindProperty method.</returns>
     public static string BackingField(this string propertyName) => $"<{propertyName}>k__BackingField";
+
+    public static SerializedProperty FindBackingField(this SerializedObject obj, string propertyName) => obj.FindProperty($"<{propertyName}>k__BackingField");
+    public static SerializedProperty FindBackingFieldRelative(this SerializedProperty property, string propertyName) => property.FindPropertyRelative($"<{propertyName}>k__BackingField");
 }
 
 public static class Xtensions_Collections

@@ -1,6 +1,5 @@
 using System;
 using System.Reflection;
-using SLS.AssetUtilties;
 using SLS.ListUtilities;
 using SLS.Singletons;
 using UnityEngine;
@@ -8,7 +7,7 @@ using UnityEngine;
 namespace SLS.GameStateMachine
 {
     [DefaultExecutionOrder(-155)]
-    public abstract class GameStateSingle<T> : _GameStateSingleBase where T : GameStateBase
+    public abstract class GameStateSingle<T> : _GameStateSingleBase where T : GameState
     {
         /// Backing field for the late object singleton instance.
         /// </summary>
@@ -22,7 +21,7 @@ namespace SLS.GameStateMachine
         /// <summary>
         /// Whether an instance of this Singleton Type is Active.
         /// </summary>
-        public static bool Active => S.Active;
+        public static bool Present => S.Active;
 
         /// <summary>
         /// Attempts to get the currently registered singleton instance.
@@ -38,7 +37,7 @@ namespace SLS.GameStateMachine
             if (res != Singleton.OperationMessage.Success) return;
         }
     }
-    public abstract class _GameStateSingleBase : GameStateBase
+    public abstract class _GameStateSingleBase : GameState
     {
 #if UNITY_EDITOR
         // Non-generic variant to create/load assets by runtime Type

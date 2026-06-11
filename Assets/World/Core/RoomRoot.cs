@@ -19,9 +19,12 @@ public class RoomRoot : MonoBehaviour
 
     private void Awake()
     {
+        if (!Gameplay.Active)
+        {
+            Gameplay.BeginRoom(this);
+            return;
+        }
         asset.Connect(this);
-
-        //if (Gameplay.Active) GameInitializer.BeginRoom(this);
     }
 
     public static RoomRoot Find(Scene scene)

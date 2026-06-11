@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785a12d12101d9e418edd5476b869ed6, type: 3}
   m_Name: RoomPrefab
   m_EditorClassIdentifier: Assembly-CSharp::RoomAsset
-  displayName: Room_Prefab
-  scene:
+  <Scene>k__BackingField:
     <sceneName>k__BackingField: RoomPrefab
     <asset>k__BackingField: {fileID: 102900000, guid: c5c56c6741e9d4f46b006e2a6e048431, type: 3}
+  <Additive>k__BackingField: 1
+  displayName: Room_Prefab
   entrances: []
-  root: {fileID: 0}

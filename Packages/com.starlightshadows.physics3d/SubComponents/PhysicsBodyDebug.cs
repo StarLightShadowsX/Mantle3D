@@ -6,7 +6,7 @@ using UnityEngine.AI;
 //using Utilities.Xtensions;
 //using Utilities.Xtensions.Unity;
 
-namespace SLS.Physics
+namespace SLS.Physics3D
 {
     [System.Serializable]
     public class PhysicsBodyDebug : PhysicsSubComponent
@@ -109,6 +109,7 @@ namespace SLS.Physics
 
         public void DisplayGizmos()
         {
+            if (!Application.isPlaying) return;
             if (DisplaySweeps)
             {
                 foreach (var sweep in SweepsThisUpdate)
