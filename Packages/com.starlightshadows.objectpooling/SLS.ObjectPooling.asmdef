@@ -1,0 +1,17 @@
+{
+    "name": "SLS.ObjectPooling",
+    "rootNamespace": "SLS.ObjectPooling",
+    "references": [
+        "SLS.Singletons",
+        "Unity.VisualScripting.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using AYellowpaper.SerializedCollections;
-using Utilities.Singletons;
+using SLS.ListUtilities;
+using SLS.Singletons;
 
 [CreateAssetMenu(fileName = "Input", menuName = "Core/Input/Input")]
 public class Input : GlobalAsset<Input>
@@ -70,8 +70,8 @@ public class Input : GlobalAsset<Input>
         public static InputAction Console => ConsoleRef.action;
     }
 
-    public SerializedDictionary<string, Sprite> buttonIcons = new();
-    public static SerializedDictionary<string, Sprite> ButtonIcons;
+    public DictionaryS<string, Sprite> buttonIcons = new();
+    public static DictionaryS<string, Sprite> ButtonIcons;
 
     public override void OnInit()
     {

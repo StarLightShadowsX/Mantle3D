@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public enum ActivityStates
     {
-        /// <summary> The <see cref="Player"/> has not been loaded in as <see cref="GameSession"/> is not active. </summary>
+        /// <summary> The <see cref="Player"/> has not been loaded in as <see cref="GameInitializer"/> is not active. </summary>
         Null = -1,
         /// <summary> The <see cref="Player"/> is active and controlled by the player. </summary>
         Active = 0,

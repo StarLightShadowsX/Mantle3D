@@ -8,6 +8,7 @@ using AYellowpaper;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using Utilities.Xtensions;
+using Core;
 
 public class RoomRoot : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class RoomRoot : MonoBehaviour
     {
         asset.Connect(this);
 
-        if (GameSession.GameState == GameSession.GameStates.Null) GameSession.BeginRoom(this);
+        //if (Gameplay.Active) GameInitializer.BeginRoom(this);
     }
 
     public static RoomRoot Find(Scene scene)

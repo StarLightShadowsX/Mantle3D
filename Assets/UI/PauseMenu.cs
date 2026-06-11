@@ -1,5 +1,5 @@
 using UnityEngine;
-using Utilities.Singletons;
+using SLS.Singletons;
 
 public class PauseMenu : Menu
 {

@@ -5,7 +5,7 @@ using SLS.StateMachineH;
 using System;
 using Unity.Cinemachine;
 using System.Linq;
-using AYellowpaper.SerializedCollections;
+using SLS.ListUtilities;
 
 namespace PlayerCore
 {
@@ -21,7 +21,7 @@ namespace PlayerCore
         public State pauseState;
         public State ragDollState;
 
-        public SerializedDictionary<string, State> states = new SerializedDictionary<string, State>();
+        public DictionaryS<string, State> states = new();
 
         #endregion
 
