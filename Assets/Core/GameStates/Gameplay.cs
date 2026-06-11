@@ -12,14 +12,10 @@ using SceneState = SLS.AssetUtilties.SceneAsset.SceneState;
 
 namespace Core
 {
-    public class Gameplay : GameStateBase
+    public class Gameplay : GameStateSingle<Gameplay>
     {
-        private static Singleton<Gameplay> Singleton;
-        public static bool Active = Singleton.Get.IsCurrent;
-
         public static GameObject[] rootObjects;
 
-        public override void Init() => Singleton.Register(this);
         protected override void TransitionLogic(Action SetCurrent, Action PostAction)
         {
             Enum().Begin();

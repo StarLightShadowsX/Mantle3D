@@ -2,9 +2,10 @@
 using SLS.ListUtilities;
 using SLS.Singletons;
 
+[UnityEngine.DefaultExecutionOrder(-160)]
 public class GlobalSceneRegistry : GlobalAsset<GlobalSceneRegistry>
 {
-    public DictionaryS<string, SceneReference> NamedScenes;
+    public DictionaryS<string, SceneReference> NamedScenes = new();
 
     public override void OnInit()
     {

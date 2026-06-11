@@ -4,10 +4,11 @@ using SLS.ListUtilities;
 using SLS.Singletons;
 using UnityEngine;
 
+[DefaultExecutionOrder(-160)]
 public class GlobalPrefabRegistry : SLS.Singletons.GlobalAsset<GlobalPrefabRegistry>
 {
-    [SerializeField] private List<GameObject> typedPrefabs;
-    [SerializeField] private DictionaryS<string, GameObject> namedPrefabs;
+    [SerializeField] private List<GameObject> typedPrefabs = new();
+    [SerializeField] private DictionaryS<string, GameObject> namedPrefabs = new();
 
 
     public override void OnInit()

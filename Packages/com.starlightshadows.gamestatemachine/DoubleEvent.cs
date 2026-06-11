@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UltEvents;
+using UnityEditor;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 namespace SLS.GameStateMachine
 {
@@ -58,6 +60,23 @@ namespace SLS.GameStateMachine
             Un?.Invoke();
             Act?.Invoke();
         } 
+#endif
+
+#if UNITY_EDITOR
+        [UnityEditor.CustomPropertyDrawer(typeof(DualEvent))]
+        internal class Drawer : UnityEditor.PropertyDrawer
+        {
+            public override VisualElement CreatePropertyGUI(SerializedProperty property)
+            {
+                return new UnityEditor.UIElements.PropertyField(property.FindPropertyRelative(
+#if ULT_EVENTS
+                    "Real"
+#else
+                    "Un"
+#endif
+                    ), preferredLabel);
+            }
+        }
 #endif
     }
 }

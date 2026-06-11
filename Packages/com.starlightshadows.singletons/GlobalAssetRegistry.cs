@@ -12,9 +12,10 @@ namespace SLS.Singletons
     /// <remarks>
     /// An instance of this, and all <see cref="GlobalAsset{t}"/>s are automatically created and registered if they don't already exist. <see cref="GlobalAsset{t}"/>s are registered to this, which is in turn registered to PlayerSettings preloaded assets, ensuring they are always loaded and accessible at runtime and in the editor.
     /// </remarks>
+    [DefaultExecutionOrder(-165)]
     public class GlobalAssetRegistry : GlobalAsset<GlobalAssetRegistry>
     {
-        public List<GlobalAssetBase> assets;
+        public List<_GlobalAssetBase> assets = new();
 
         public override void OnInit()
         { 
@@ -43,21 +44,18 @@ namespace SLS.Singletons
                 {
                     if (type == typeof(GlobalAssetRegistry)) continue;
 
-                    // Look for a static "_instance" field on the concrete asset type
-                    FieldInfo instanceField = type.GetField("_instance", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
-                    object currentInstance = instanceField?.GetValue(null);
 
                     // If no existing in-memory instance is found, ensure an asset exists on disk
-                    if (currentInstance == null)
+                    if(_GlobalAssetBase.TryGetAlreadyActive(type, out _GlobalAssetBase currentInstance))
                     {
-                        GlobalAssetBase created = GetOrCreate(type);
-                        if (created != null)
-                        {
-                            registry.assets ??= new List<GlobalAssetBase>();
-                            if (!registry.assets.Contains(created)) registry.assets.Add(created);
-                            // Initialize the created asset if needed
-                            created.OnEnable();
-                        }
+                        if (!registry.assets.Contains(currentInstance)) registry.assets.Add(currentInstance);
+                        currentInstance.OnEnable();
+                    }
+                    else
+                    {
+                        _GlobalAssetBase created = GetOrCreate(type);
+                        if (!registry.assets.Contains(created)) registry.assets.Add(created);
+                        created.OnEnable();
                     }
                 }
 
@@ -80,39 +78,6 @@ namespace SLS.Singletons
 
                 UnityEditor.AssetDatabase.SaveAssets();
                 UnityEditor.AssetDatabase.Refresh();
-            }
-
-            // Non-generic variant to create/load assets by runtime Type
-            static GlobalAssetBase GetOrCreate(Type t)
-            {
-                if (t == null) return null;
-
-                string searchFilter = $"t:{t.Name}";
-                string[] guids = UnityEditor.AssetDatabase.FindAssets(searchFilter);
-
-                if (guids != null && guids.Length > 0)
-                {
-                    if (guids.Length > 1)
-                    {
-                        for (int i = guids.Length - 1; i > 0; i--)
-                        {
-                            UnityEngine.Object obj = UnityEditor.AssetDatabase.LoadMainAssetAtPath(UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]));
-                            if (obj != null) Destroy(obj);
-                        }
-                    }
-
-                    UnityEngine.Object loaded = UnityEditor.AssetDatabase.LoadMainAssetAtPath(UnityEditor.AssetDatabase.GUIDToAssetPath(guids[0]));
-                    if (loaded is GlobalAssetBase asset) return asset;
-                }
-
-                // Create new ScriptableObject instance of the requested Type
-                ScriptableObject created = CreateInstance(t);
-                if (created == null) return null;
-
-                UnityEditor.AssetDatabase.CreateAsset(created, $"Assets/Data/{t.Name}.asset");
-                UnityEditor.AssetDatabase.SaveAssets();
-
-                return created as GlobalAssetBase;
             }
 
             static bool ImplementsOrDerives(Type @this, Type from)

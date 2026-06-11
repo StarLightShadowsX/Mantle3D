@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41693b6f2efe3a4698cc1fbf89527aa, type: 3}
+  m_Name: Gameplay
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Gameplay
+  <Scene>k__BackingField: {fileID: 11400000, guid: e475f63cc3e4b9e4fa3025cd7a51e4b0, type: 2}
+  <PreExit>k__BackingField:
+    Real:
+      _PersistentCalls: []
+  <OnExit>k__BackingField:
+    Real:
+      _PersistentCalls: []
+  <PreEnter>k__BackingField:
+    Real:
+      _PersistentCalls: []
+  <OnEnter>k__BackingField:
+    Real:
+      _PersistentCalls: []
+  Parameters:
+    serializedKeys: []
+    serializedValues: []

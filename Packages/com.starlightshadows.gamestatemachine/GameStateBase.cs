@@ -5,6 +5,7 @@ using System;
 
 namespace SLS.GameStateMachine
 {
+    [DefaultExecutionOrder(-150)]
     [CreateAssetMenu(fileName = "GameState", menuName = "Scriptable Objects/GameState")]
     public class GameStateBase : ScriptableObject
     {
@@ -63,7 +64,7 @@ namespace SLS.GameStateMachine
             else PostAction();
         }
 
-        private void OnEnable()
+        public virtual void OnEnable()
         {
             #if UNITY_EDITOR
             if(!GameStateRegistry.Get.AllStates.Contains(this)) 
@@ -72,7 +73,6 @@ namespace SLS.GameStateMachine
             Destroy(this);
             #endif
         }
-        public virtual void Init() { }
 
         public static implicit operator bool(GameStateBase gameStateBase) => gameStateBase != null && gameStateBase.IsCurrent;
     }

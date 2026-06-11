@@ -1,19 +1,14 @@
 using System;
 using System.Reflection;
+using SLS.AssetUtilties;
+using SLS.ListUtilities;
+using SLS.Singletons;
 using UnityEngine;
 
-namespace SLS.Singletons
+namespace SLS.GameStateMachine
 {
-    /// <summary>
-    /// A base class for globally accessible "Singleton" type Scriptable Object Assets.
-    /// Inherit from `GlobalAsset&lt;YourType&gt;` to gain automatic registration and availability.
-    /// </summary>
-    /// <remarks>
-    /// <see cref="GlobalAsset{T}"/>s are automatically registered with the <see cref="GlobalAssetRegistry"/>, which is itself automatically registered with Preloaded Assets. 
-    /// </remarks>
-    /// <typeparam name="T">The concrete type inheriting this base class (the singleton type).</typeparam>
     [DefaultExecutionOrder(-155)]
-    public abstract class GlobalAsset<T> : _GlobalAssetBase where T : class
+    public abstract class GameStateSingle<T> : _GameStateSingleBase where T : GameStateBase
     {
         /// Backing field for the late object singleton instance.
         /// </summary>
@@ -36,46 +31,18 @@ namespace SLS.Singletons
         /// <returns>True if an instance is present; otherwise false.</returns>
         public static bool TryGet(out T instance) => S.TryGet(out instance);
 
-
-        /// <summary>
-        /// Unity OnEnable callback override - registers this ScriptableObject as the singleton instance.
-        /// </summary>
-        public sealed override void OnEnable()
+        public override void OnEnable()
         {
+            base.OnEnable();
             Singleton.OperationMessage res = S.Register(this as T);
             if (res != Singleton.OperationMessage.Success) return;
-            OnInit();
         }
-
-        /// <summary>
-        /// Unity OnDisable callback - unregisters this ScriptableObject if it is registered.
-        /// </summary>
-        private void OnDisable()
-        {
-            Singleton.OperationMessage res = S.Deregister(this as T);
-            if (res != Singleton.OperationMessage.Success) return;
-            OnDeInit();
-        }
-
-        public virtual void OnInit() { }
-        public virtual void OnDeInit() { }
     }
-
-
-    /// <summary>
-    /// Lightweight ScriptableObject base to allow `GlobalAsset` to inherit.
-    /// </summary>
-    public abstract class _GlobalAssetBase : ScriptableObject
+    public abstract class _GameStateSingleBase : GameStateBase
     {
-        /// <summary>
-        /// Called by Unity when this ScriptableObject becomes enabled. Can be called to force initialization. <br/>
-        /// Override OnInit() instead of this method in derived classes as needed.
-        /// </summary>
-        public virtual void OnEnable() { }
-
 #if UNITY_EDITOR
         // Non-generic variant to create/load assets by runtime Type
-        public static _GlobalAssetBase GetOrCreate(Type t, string path = "Data/")
+        public static _GameStateSingleBase GetOrCreate(Type t, string path = "Data/GameStates/")
         {
             if (t == null) return null;
 
@@ -92,7 +59,7 @@ namespace SLS.Singletons
                     }
 
                 UnityEngine.Object loaded = UnityEditor.AssetDatabase.LoadMainAssetAtPath(UnityEditor.AssetDatabase.GUIDToAssetPath(guids[0]));
-                if (loaded is _GlobalAssetBase asset) return asset;
+                if (loaded is _GameStateSingleBase asset) return asset;
             }
 
             // Create new ScriptableObject instance of the requested Type
@@ -103,12 +70,12 @@ namespace SLS.Singletons
             UnityEditor.AssetDatabase.CreateAsset(created, $"Assets/{path}{t.Name}.asset");
             UnityEditor.AssetDatabase.SaveAssets();
 
-            return created as _GlobalAssetBase;
+            return created as _GameStateSingleBase;
         }
 
-        public static bool TryGetAlreadyActive(Type t, out _GlobalAssetBase result)
+        public static bool TryGetAlreadyActive(Type t, out _GameStateSingleBase result)
         {
-            FieldInfo singletonField = typeof(GlobalAsset<>).MakeGenericType(t)
+            FieldInfo singletonField = typeof(GameStateSingle<>).MakeGenericType(t)
                 .GetField("S", BindingFlags.Static | BindingFlags.NonPublic);
             PropertyInfo slotField = typeof(Singleton<>).MakeGenericType(t)
                 .GetProperty("slot", BindingFlags.Instance | BindingFlags.Public);
@@ -125,9 +92,11 @@ namespace SLS.Singletons
                 result = null;
                 return false;
             }
-            result = slot as _GlobalAssetBase;
+            result = slot as _GameStateSingleBase;
             return true;
         }
+
 #endif
+
     }
 }
