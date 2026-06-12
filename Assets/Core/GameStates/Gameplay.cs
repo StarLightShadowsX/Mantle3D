@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using PlayerCore;
 using SLS.GameStateMachine;
 using SLS.Singletons;
 using UnityEngine;
@@ -18,30 +19,35 @@ namespace Core
 
         protected override void TransitionLogic(Action SetCurrent, Action PostAction)
         {
-            SetCurrent();
-            SceneManager.LoadScene(Scene, LoadSceneMode.Single);
-            var s = SceneManager.GetSceneByName(Scene);
-            rootObjects = s.GetRootGameObjects();
-
-            //FUN.RollSession();
-            //GlobalPool.poolParent = transform.Find("PooledObjects");
-            //IGlobalPrefab.RegisterPrefab(pauseMenu.gameObject);
-            //Overlay.OverMenus.BasicBlackout = 1;
-            //Overlay.OverGameplay.Reset();
-            //Overlay.OverHUD.Reset();
-
-            for (int i = 0; i < rootObjects.Length; i++)
+            E().Begin();
+            IEnumerator E()
             {
-                DontDestroyOnLoad(rootObjects[i]);
-                if (rootObjects[i].TryGetComponent(out PlayerCore.Player player)) player.Awake();
-                if (rootObjects[i].TryGetComponent(out Cameras cameras)) cameras.Awake();
-                //if (rootObjects[i].TryGetComponent(out HUD hud)) hud.Awake();
-                //if (rootObjects[i].TryGetComponent(out PauseMenu pauseMenu)) pauseMenu.Awake();
+                SetCurrent();
+                SceneManager.LoadScene(Scene, LoadSceneMode.Single);
+                var s = SceneManager.GetSceneByName(Scene);
+                rootObjects = s.GetRootGameObjects();
+
+                //FUN.RollSession();
+                //GlobalPool.poolParent = transform.Find("PooledObjects");
+                //IGlobalPrefab.RegisterPrefab(pauseMenu.gameObject);
+                //Overlay.OverMenus.BasicBlackout = 1;
+                //Overlay.OverGameplay.Reset();
+                //Overlay.OverHUD.Reset();
+
+                for (int i = 0; i < rootObjects.Length; i++)
+                {
+                    DontDestroyOnLoad(rootObjects[i]);
+                    if (rootObjects[i].TryGetComponent(out PlayerCore.Player player)) player.Awake();
+                    if (rootObjects[i].TryGetComponent(out Cameras cameras)) cameras.Awake();
+                    //if (rootObjects[i].TryGetComponent(out HUD hud)) hud.Awake();
+                    //if (rootObjects[i].TryGetComponent(out PauseMenu pauseMenu)) pauseMenu.Awake();
+                }
+
+                PostAction();
+
+                yield return loadTargetRoom.LoadRoutine();
+                Player.MovementBody.enabled = true;
             }
-
-            PostAction();
-
-            loadTargetRoom.Load();
         }
 
 

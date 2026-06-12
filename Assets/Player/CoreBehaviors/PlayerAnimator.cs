@@ -16,8 +16,13 @@ namespace PlayerCore
         private readonly int dirXHash = Animator.StringToHash("DirX");
         private readonly int dirYHash = Animator.StringToHash("DirY");
 
-        private void Update() => transform.position = Player.Position;
-        private void FixedUpdate() => transform.position = Player.Position;
+        //private void Update() => transform.position = Player.Position;
+        //private void FixedUpdate() => transform.position = Player.Position;
+        public void UpdatePosition()
+        {
+            transform.position = Player.Position;
+            SetDirection(Player.Forward);
+        }
 
         public void Play(string name) => Animator.Play(name);
 
