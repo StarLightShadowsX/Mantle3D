@@ -3,6 +3,8 @@ using UnityEngine;
 using Scene = UnityEngine.SceneManagement.Scene;
 using UnityEngine.UIElements;
 using System.Collections;
+using UnityEditor.SceneManagement;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -34,7 +36,9 @@ public class RoomAsset : SceneAsset
     public static RoomAsset Find(GameObject G) => Find(G.scene);
     public static RoomAsset Find(Component C) => Find(C.gameObject.scene);
 
-
+#if UNITY_EDITOR
+    private void OnEnable() => RoomRegistry.EnsureListed(this);
+#endif
     public void EnterAtEntrance(int id)
     {
         En().Begin();
@@ -51,8 +55,22 @@ public class RoomAsset : SceneAsset
     public static implicit operator RoomRoot(RoomAsset room) => room.root;
 
 #if UNITY_EDITOR
+    [UnityEditor.Callbacks.OnOpenAsset()]
+    private static bool DoubleClick(int instanceID, int line)
+    {
+        Object target = EditorUtility.InstanceIDToObject(instanceID);
+        if(target is RoomAsset room)
+        {
+            room.OpenScene();
+            return true;
+        }
+        return false;
+    }
+
+    public void OpenScene() => UnityEditor.SceneManagement.EditorSceneManager.OpenScene(AssetDatabase.GetAssetPath(Scene.asset));
+
     [CustomEditor(typeof(RoomAsset))]
-    private class Editor : UnityEditor.Editor
+    public class Editor : UnityEditor.Editor
     {
         SerializedProperty displayNameProp;
         PropertyField displayNameField;
@@ -91,6 +109,38 @@ public class RoomAsset : SceneAsset
             root.Add(entrancesDisplay);
 
             return root;
+        }
+
+        public static RoomAsset CREATE(string displayName)
+        {
+            string fileName = displayName.Replace(" ", "");
+
+            string roomPath = $"Assets/Content/Rooms/{fileName}.asset";
+            string scenePath = $"Assets/Content/Rooms/{fileName}.unity";
+
+            RoomAsset room = RoomAsset.CreateInstance<RoomAsset>();
+            AssetDatabase.CreateAsset(room, roomPath);
+
+            if (!AssetDatabase.CopyAsset("Assets/World/RoomPrefab.unity", scenePath)) return null;
+
+            room.displayName = displayName;
+            room.Scene = new(AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(scenePath));
+            EditorUtility.SetDirty(room);
+            RoomRegistry.EnsureListed(room);
+            EditorUtility.SetDirty(RoomRegistry.Get);
+
+            AssetDatabase.SaveAssets();
+
+            // Open, attach, save, and close scene
+            var scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
+            RoomRoot.Editor.AttachAssetToRoot(scene.GetRootGameObjects()[0].GetComponent<RoomRoot>(), room);
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            EditorSceneManager.CloseScene(scene, true);
+
+            Debug.Log($"Successfully created new Room: {displayName}. Note that its Scene cannot be automatically registered in the build settings, YOU have to do that.");
+
+            return room;
         }
     }
 #endif 

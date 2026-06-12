@@ -19,7 +19,7 @@ public class TimeBackgroundUtility : MonoBehaviour
         }
     }
 
-    private static List<Timer> attachedTimers;
+    private static List<Timer> attachedTimers = new();
 
     internal static void AttachTimer(Timer timer)
     {

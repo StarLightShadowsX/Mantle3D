@@ -47,7 +47,7 @@ public class RoomRoot : MonoBehaviour
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(RoomRoot))]
-    private class Editor : UnityEditor.Editor
+    public class Editor : UnityEditor.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {
@@ -115,6 +115,12 @@ public class RoomRoot : MonoBehaviour
                 EditorUtility.SetDirty(roomRoot);
             }
         }
+
+        public static void AttachAssetToRoot(RoomRoot root, RoomAsset asset)
+        {
+            root.asset = asset;
+            UnityEditor.EditorUtility.SetDirty(root);
+        }
     }
 #endif
 }
@@ -129,7 +135,7 @@ public interface IRoomActor
     public static bool RegisterWithRoot(Component actor, out RoomRoot rootResult)
     {
         rootResult = RoomRoot.Find(actor);
-        if(rootResult != null) rootResult.roomActors.AddU(actor);
+        if (rootResult != null) rootResult.roomActors.AddU(actor);
         return rootResult != null;
     }
     public static void DeregisterWithRoot(Component actor, ref RoomRoot rootResult)

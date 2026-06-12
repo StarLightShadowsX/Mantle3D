@@ -166,8 +166,8 @@ MonoBehaviour:
   <Velocity>k__BackingField:
     allowBackwards: 1
   <Ground>k__BackingField:
-    <groundCheckBuffer>k__BackingField: 0
-    <maxSlopeNormalAngle>k__BackingField: 0
+    <groundCheckBuffer>k__BackingField: 0.01
+    <maxSlopeNormalAngle>k__BackingField: 45
   maxPhysicsSteps: 6
   <RB>k__BackingField: {fileID: 7017826178951454911}
   <Collider>k__BackingField: {fileID: 2421466790729210382}
