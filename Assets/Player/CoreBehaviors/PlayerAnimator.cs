@@ -15,6 +15,7 @@ namespace PlayerCore
 
         private readonly int dirXHash = Animator.StringToHash("DirX");
         private readonly int dirYHash = Animator.StringToHash("DirY");
+        private readonly int speedHash = Animator.StringToHash("RunSpeed");
 
         //private void Update() => transform.position = Player.Position;
         //private void FixedUpdate() => transform.position = Player.Position;
@@ -34,6 +35,7 @@ namespace PlayerCore
             Animator.SetFloat(dirYHash, direction.z);
             //Change the current animation to the correct visual direction.
         }
+        public void SetSpeed(float speed) => Animator.SetFloat(speedHash, speed);
     }
 
 }

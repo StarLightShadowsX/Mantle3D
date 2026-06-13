@@ -163,21 +163,15 @@ namespace SLS.Physics3D
 
         #region LifeCycle and Components
 
-        [field: SerializeField] public Rigidbody RB { get; protected set; }
-        /// <summary>
-        /// The <see cref="CapsuleCollider"/> component attached to this <see cref="CharacterMovementBody"/>.
-        /// </summary>
-        [field: SerializeField] public Collider Collider { get; protected set; }
+        [field: SerializeField, HeaderItem(true)] public Rigidbody RB { get; internal set; }
+        [field: SerializeField, HeaderItem(true)] public Collider Collider { get; internal set; }
+        [field: SerializeField, HeaderItem(false)] public NavMeshAgent NavAgent { get; internal set; }
 
         /// <summary>
         /// Unity Reset callback used to initialize related components when the component
         /// is first added or when Reset is invoked in the editor.
         /// </summary>
-        protected virtual void Reset()
-        {
-            RB = GetComponent<Rigidbody>();
-            Collider = GetComponent<CapsuleCollider>();
-        }
+        protected virtual void Reset() => HeaderItemAttribute.Reset(this);
 
         /// <summary>
         /// Unity Awake lifecycle event. Ensures required components exist, initializes
@@ -187,6 +181,13 @@ namespace SLS.Physics3D
         {
             if (RB == null) RB = GetComponent<Rigidbody>();
             if (Collider == null) Collider = GetComponent<Collider>();
+            if (NavAgent == null) NavAgent = GetComponent<NavMeshAgent>();
+
+            if(NavAgent != null)
+            {
+                NavAgent.updateRotation = false;
+                NavAgent.enabled = false;
+            }
 
             Ground.Init(this);
 
@@ -281,13 +282,13 @@ namespace SLS.Physics3D
             get => BodyState == BodyStates.Enabled
                 ? Resolvers.Active is not NavMeshPhysResolver N
                     ? RB.position
-                    : N.NavAgent.nextPosition
+                    : NavAgent.nextPosition
                 : transform.position;
             set
             {
                 if (BodyState != BodyStates.Enabled) return;
 
-                if (Resolvers.Active is NavMeshPhysResolver N) N.NavAgent.nextPosition = value;
+                if (Resolvers.Active is NavMeshPhysResolver N) NavAgent.nextPosition = value;
                 else RB.MovePosition(value);
             }
         }

@@ -8,6 +8,7 @@ public class PlayerMovementBody : PhysicsBody
     {
         base.FixedUpdate();
         Player.Animator.UpdatePosition();
+        Player.Animator.SetSpeed(Velocity.f);
     }
 
     public void DoAwake() => Awake();

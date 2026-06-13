@@ -1,0 +1,400 @@
+fileFormatVersion: 2
+guid: 0b0f789a35ffdd34fa299090081dd1e8
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 135
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.52380955, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5899bde804f45e40b55e6aed0e41928
+      internalID: -116072969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 134
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.52380955, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f5aeb5cff943754f9ad1ad60d37141d
+      internalID: -506961148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_3
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 134
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.52380955, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 224d3686f1cb0ec46ad901ec108e742e
+      internalID: 1290628122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 91
+        width: 21
+        height: 39
+      alignment: 9
+      pivot: {x: 0.47619048, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb3b6b94ee3827644ae40aa3d919f5d8
+      internalID: 1949704193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_5
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 91
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.47619048, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1521258f1179154d872b58cf712e34d
+      internalID: -1878336746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_7
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 91
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.47619048, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 676d9314f5b358b40930a79f0ae6339a
+      internalID: -1371873479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 21
+        height: 39
+      alignment: 9
+      pivot: {x: 0.52380955, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf46f10873c7afe4fa5fc3fe9f444241
+      internalID: -765023831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_9
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 48
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.52380955, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09d866bcfc3c24348a91c709c6a4d234
+      internalID: 634014995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_11
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 48
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.52380955, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8e1dc1c3379e7643bb4aa62599cc05d
+      internalID: 246517343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.52380955, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdaf0a62baaea3b4d9d228b5addf5a38
+      internalID: -100323941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_13
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 2
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.52380955, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 776bea39957a3cd40aa8d0c0f5b8395f
+      internalID: -557130531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero WalkingSheet_15
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 2
+        width: 21
+        height: 38
+      alignment: 9
+      pivot: {x: 0.52380955, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf49112f44da8ae47b590fb202810d04
+      internalID: -1793322125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e74ed7ba66ead8f4b965de67d7a7a5ea
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":23.0,"y":43.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":1,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      BatHero WalkingSheet_0: -116072969
+      BatHero WalkingSheet_1: -506961148
+      BatHero WalkingSheet_10: 2010834376
+      BatHero WalkingSheet_11: 246517343
+      BatHero WalkingSheet_12: -100323941
+      BatHero WalkingSheet_13: -557130531
+      BatHero WalkingSheet_14: -557498681
+      BatHero WalkingSheet_15: -1793322125
+      BatHero WalkingSheet_16: 646341312
+      BatHero WalkingSheet_2: 1267602383
+      BatHero WalkingSheet_3: 1290628122
+      BatHero WalkingSheet_4: 1949704193
+      BatHero WalkingSheet_5: -1878336746
+      BatHero WalkingSheet_6: 1273040237
+      BatHero WalkingSheet_7: -1371873479
+      BatHero WalkingSheet_8: -765023831
+      BatHero WalkingSheet_9: 634014995
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

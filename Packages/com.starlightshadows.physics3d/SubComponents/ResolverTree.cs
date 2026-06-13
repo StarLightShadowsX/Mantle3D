@@ -23,7 +23,7 @@ namespace SLS.Physics3D
 
         public void Update()
         {
-            if (body.Ground) Update(groundedResolver);
+            if (Body.Ground) Update(groundedResolver);
             else Update(airborneResolver);
         }
         public void Update(PhysicsResolver resolver)

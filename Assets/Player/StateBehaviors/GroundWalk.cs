@@ -11,8 +11,8 @@ namespace PlayerBehaviors
 
         protected override void OnFixedUpdate()
         {
-            if (Input.Move.sqrMagnitude == 0) return;
-            Player.MovementBody.Direction.Set(Input.Move.ToXZ(), 180f);
+            //Debug.Log($"Move is {Input.Move}, Direction is {Player.MovementBody.Direction.value}");
+            Player.MovementBody.Direction.Set(Input.Move.ToXZ());
             Player.MovementBody.Velocity.f = Input.Move.magnitude * (Input.Run.IsPressed() ? runSpeed : walkSpeed);
         }
     }

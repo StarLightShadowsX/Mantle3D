@@ -100,9 +100,9 @@ namespace SLS.Physics3D
         public void PlaceJumpMarker(float targetHeight, float jumpHeight)
         {
             if (!DisplayJumpMarker) return;
-            JumpMarkerPos1 = body.Position;
-            JumpMarkerPos2 = body.Position + (Vector3.up * targetHeight);
-            JumpMarkerPos2 = body.Position + (Vector3.up * jumpHeight);
+            JumpMarkerPos1 = Body.Position;
+            JumpMarkerPos2 = Body.Position + (Vector3.up * targetHeight);
+            JumpMarkerPos2 = Body.Position + (Vector3.up * jumpHeight);
         }
 
         public bool DisplayClosestNavEdge;
@@ -116,8 +116,8 @@ namespace SLS.Physics3D
                 {
                     Color color = sweep.hit ? Color.green : Color.red;
                     Color colorE = color.Changed(a: .5f);
-                    body.Collider.DrawWireClone(color, sweep.origin);
-                    body.Collider.DrawWireClone(colorE, sweep.origin +
+                    Body.Collider.DrawWireClone(color, sweep.origin);
+                    Body.Collider.DrawWireClone(colorE, sweep.origin +
                         (sweep.hit ? sweep.direction.normalized * sweep.hitDistance : sweep.direction));
 
                     if (sweep.hit)
@@ -142,7 +142,7 @@ namespace SLS.Physics3D
                 Handles.DrawWireDisc(JumpMarkerPos3, Vector3.up, 0.5f);
             }
 
-            if (DisplayClosestNavEdge & NavMesh.FindClosestEdge(body.Position, out var hit, NavMesh.AllAreas))
+            if (DisplayClosestNavEdge & NavMesh.FindClosestEdge(Body.Position, out var hit, NavMesh.AllAreas))
                 UnityEngine.Debug.DrawRay(hit.position, hit.normal, Color.yellow);
         }
 #endif

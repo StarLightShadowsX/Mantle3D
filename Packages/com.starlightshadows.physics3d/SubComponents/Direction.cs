@@ -46,11 +46,11 @@ namespace SLS.Physics3D
         /// </summary>
         public Quaternion RotationQ
         {
-            get => body.RB.rotation;
+            get => Body.RB.rotation;
             set
             {
-                body.RB.rotation = value;
-                body.Velocity.CallThisPostRotation();
+                Body.RB.rotation = value;
+                Body.Velocity.CallThisPostRotation();
             }
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace SLS.Physics3D
             set
             {
                 transform.eulerAngles = value;
-                body.Velocity.CallThisPostRotation();
+                Body.Velocity.CallThisPostRotation();
             }
         }
         /// <summary>
@@ -94,7 +94,7 @@ namespace SLS.Physics3D
                 return;
             }
 
-            Coroutine.Begin(ref QuickTurnRoutine, Enum(), body, true);
+            Coroutine.Begin(ref QuickTurnRoutine, Enum(), Body, true);
             IEnumerator Enum()
             {
                 float deltaRad = Vector3.Angle(value, target) * Mathf.Deg2Rad;
@@ -119,7 +119,7 @@ namespace SLS.Physics3D
             target = target.XZ(); //Ensure no weird rotations
             if (maxDelta <= 0f) return;
 
-            Coroutine.Begin(ref QuickTurnRoutine, Enum(), body, true);
+            Coroutine.Begin(ref QuickTurnRoutine, Enum(), Body, true);
             IEnumerator Enum()
             {
                 float fullDelta = Vector3.Angle(value, target) * Mathf.Deg2Rad;
