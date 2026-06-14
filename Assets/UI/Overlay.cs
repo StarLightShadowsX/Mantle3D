@@ -51,18 +51,22 @@ public class Overlay : MonoBehaviour
     public IEnumerator FadeAlpha(float dest, float time = 1f, bool adjustByCloseness = true)
     {
         float rate = (adjustByCloseness ? Mathf.Sign(dest - Alpha) : (dest - Alpha)) / time;
-        while (Alpha != dest && (Alpha < 0 || Alpha > 1)) 
+        Alpha += rate * Time.unscaledDeltaTime;
+        yield return null;
+        while (Alpha != dest && Alpha > 0 && Alpha < 1)
         {
             Alpha += rate * Time.unscaledDeltaTime;
-            yield return null;
+            yield return null; 
         }
-        Alpha = dest;
+        Alpha = dest; 
     }
     public IEnumerator FadeColor(Color dest, float time = 1f)
     {
         Color baseColor = Color;
         float t = 0;
         float rate = 1 / time;
+        t += rate * Time.unscaledDeltaTime;
+        yield return null;
         while (t < 0)
         {
             t += rate * Time.unscaledDeltaTime;

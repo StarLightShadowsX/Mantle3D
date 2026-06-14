@@ -1017,6 +1017,52 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &141147774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 141147775}
+  - component: {fileID: 141147776}
+  m_Layer: 0
+  m_Name: Forest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &141147775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141147774}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 63, y: 0, z: -30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 261283139}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &141147776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141147774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c62c53057753f48bd0ca21675d565e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntranceHorizontal
+  root: {fileID: 2146082663}
+  targetPosition: {fileID: 141147775}
 --- !u!1 &181803612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,8 +1783,77 @@ Transform:
   - {fileID: 1011297792}
   - {fileID: 1299670516}
   - {fileID: 1475568821}
+  - {fileID: 141147775}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &283592145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 283592146}
+  - component: {fileID: 283592148}
+  - component: {fileID: 283592147}
+  m_Layer: 0
+  m_Name: Forest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &283592146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283592145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 63, y: 0, z: -32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 984595883}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &283592147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283592145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb8bcf9cda9a6d44b6f05d8abb2b4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExitHorizontal
+  targetRoom: {fileID: 11400000, guid: d17156246d98a274d8547ff22910bd56, type: 2}
+  targetEntrance: 0
+--- !u!65 &283592148
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283592145}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6, y: 3, z: 2}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!43 &293073410
 Mesh:
   m_ObjectHideFlags: 0
@@ -2969,37 +3084,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 111849116}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &411754332
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 411754333}
-  m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &411754333
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411754332}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1299670516}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &435305191
 Mesh:
@@ -10851,6 +10935,7 @@ Transform:
   m_Children:
   - {fileID: 1456174729}
   - {fileID: 1896303252}
+  - {fileID: 283592146}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &987303543
@@ -11319,37 +11404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntranceInstant
   root: {fileID: 2146082663}
---- !u!1 &1122225105
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1122225106}
-  m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1122225106
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122225105}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1475568821}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1153838974
 Mesh:
   m_ObjectHideFlags: 0
@@ -12940,8 +12994,7 @@ Transform:
   m_LocalPosition: {x: -17, y: 0, z: 36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 411754333}
+  m_Children: []
   m_Father: {fileID: 261283139}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1299670517
@@ -12957,7 +13010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntranceHorizontal
   root: {fileID: 2146082663}
-  targetPosition: {fileID: 411754333}
+  targetPosition: {fileID: 1299670516}
 --- !u!1 &1304204465
 GameObject:
   m_ObjectHideFlags: 0
@@ -15314,8 +15367,7 @@ Transform:
   m_LocalPosition: {x: 13, y: 0, z: 35.99999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1122225106}
+  m_Children: []
   m_Father: {fileID: 261283139}
   m_LocalEulerAnglesHint: {x: 0, y: -270, z: 0}
 --- !u!114 &1475568822
@@ -15331,7 +15383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntranceHorizontal
   root: {fileID: 2146082663}
-  targetPosition: {fileID: 1122225106}
+  targetPosition: {fileID: 1475568821}
 --- !u!1 &1492746659
 GameObject:
   m_ObjectHideFlags: 0
@@ -23449,33 +23501,22 @@ MonoBehaviour:
   <roomActors>k__BackingField:
     list:
     - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
-    - {fileID: 1011297793}
     - {fileID: 1299670517}
+    - {fileID: 1475568822}
+    - {fileID: 141147776}
     - {fileID: 1011297793}
     - {fileID: 1299670517}
     - {fileID: 1475568822}
+    - {fileID: 141147776}
     - {fileID: 1011297793}
     - {fileID: 1299670517}
     - {fileID: 1475568822}
+    - {fileID: 141147776}
   <entrances>k__BackingField:
   - {fileID: 1011297793}
+  - {fileID: 1299670517}
+  - {fileID: 1475568822}
+  - {fileID: 141147776}
 --- !u!4 &2146082664
 Transform:
   m_ObjectHideFlags: 0

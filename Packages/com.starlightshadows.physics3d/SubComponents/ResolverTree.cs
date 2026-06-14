@@ -8,8 +8,7 @@ namespace SLS.Physics3D
     public class ResolverTree : PhysicsSubComponent
     {
 
-        [field: SerializeField] public PhysicsResolver groundedResolver { get; private set; }
-        [field: SerializeField] public PhysicsResolver airborneResolver { get; private set; }
+        [field: SerializeField] public PhysicsResolver rootResolver { get; private set; }
 
         public PhysicsResolver Active { get; private set; }
 
@@ -18,20 +17,15 @@ namespace SLS.Physics3D
             base.Init(owner);
             PhysicsResolver[] resolvers = owner.GetComponents<PhysicsResolver>();
             for (int i = 0; i < resolvers.Length; i++) resolvers[i].OnStart();
-            Update();
         }
 
-        public void Update()
-        {
-            if (Body.Ground) Update(groundedResolver);
-            else Update(airborneResolver);
-        }
+        public void Update() => Update(rootResolver);
         public void Update(PhysicsResolver resolver)
         {
             if (resolver == Active) return;
             Active?.Exit();
             Active = resolver;
-            Active.Enter();
+            Active?.Enter();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace SLS.Physics3D
         [Tooltip("The distance within which the resolver will attempt to snap to the NavMesh if the agent becomes ungrounded. This should generally be set to a value slightly larger than the expected maximum step height of the character.")]
         [field: SerializeField] public float detectionRange { get; private set; } = .35f;
         [field: SerializeField] public PhysicsResolver nonNavResolver { get; private set; }
+        [field: SerializeField] public PhysicsResolver airborneResolver { get; private set; }
 
         NavMeshAgent NavAgent => Body.NavAgent;
 
@@ -57,19 +58,28 @@ namespace SLS.Physics3D
         {
 
             if (NavAgent == null
-                || !UnityEngine.AI.NavMesh.SamplePosition(Position, out NavMeshHit sampleHit, detectionRange, NavAgent.areaMask)
+                || !NavMesh.SamplePosition(Position, out NavMeshHit sampleHit, detectionRange, NavAgent.areaMask)
                 || Vector3.Dot(Body.Velocity.Global.normalized, (Position - sampleHit.position).normalized) < -.3f)
             {
-                if (nonNavResolver != null)
+                if (!nonNavResolver && !airborneResolver)
                 {
-                    ChooseNext(nonNavResolver);
-                    return;
+                    NavMesh.SamplePosition(Position, out sampleHit, float.PositiveInfinity, NavAgent.areaMask);
+                    lockToNavMesh = true;
                 }
                 else
                 {
-                    //No Fallback was setup, so force the body to only use this resolver.
-                    UnityEngine.AI.NavMesh.SamplePosition(Position, out sampleHit, float.PositiveInfinity, NavAgent.areaMask);
-                    lockToNavMesh = true;
+                    if (nonNavResolver && Ground.Check(out _, false)) ChooseNext(nonNavResolver);
+                    else
+                    {
+                        if (airborneResolver) ChooseNext(airborneResolver);
+                        else
+                        {
+                            if (nonNavResolver && Ground.InstantSnapToFloor(out _)) ChooseNext(nonNavResolver);
+                            else Body.enabled = false;
+                        }
+                    }
+
+                    return;
                 }
             }
             NavAgent.enabled = true;
@@ -78,7 +88,7 @@ namespace SLS.Physics3D
             NavAgent.Warp(sampleHit.position);
             NavAgent.nextPosition = sampleHit.position;
             // Place the RB at the same surface + baseOffset so visuals/physics line up
-            Body.PositionForce = sampleHit.position + Vector3.up * NavAgent.baseOffset;
+            Body.Position = sampleHit.position + Vector3.up * NavAgent.baseOffset;
 
             // We will manage character position ourselves (RB) and use NavAgent for pathfinding only.
             NavAgent.enabled = true;

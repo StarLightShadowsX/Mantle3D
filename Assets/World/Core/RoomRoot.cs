@@ -13,9 +13,9 @@ using Core;
 public class RoomRoot : MonoBehaviour
 {
     [field: SerializeField] public RoomAsset asset { get; private set; }
-    [field: SerializeField, HideInInspector] public List<GameObject> RootGameObjects { get; private set; } = new();
-    [field: SerializeField, HideInInspector] public IComponentList<IRoomActor> roomActors { get; private set; } = new();
-    [field: SerializeField, HideInInspector] public List<Entrance> entrances { get; private set; } = new();
+    [field: SerializeField] public List<GameObject> RootGameObjects { get; private set; } = new();
+    [field: SerializeField] public IComponentList<IRoomActor> roomActors { get; private set; } = new();
+    [field: SerializeField] public List<Entrance> entrances { get; private set; } = new();
 
     private void Awake()
     {

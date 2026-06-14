@@ -61,10 +61,7 @@ namespace PlayerCore
                 Visible = value != ActivityStates.Invisible;
                 StateMachine.enabled = value is ActivityStates.Active;
 
-                MovementBody.BodyState =
-                    value is ActivityStates.Active ? PhysicsBody.BodyStates.Enabled
-                    : value is ActivityStates.Dying ? PhysicsBody.BodyStates.Ragdoll
-                    : PhysicsBody.BodyStates.OFF;
+                MovementBody.enabled = value is ActivityStates.Active;
 
                 MovementBody.enabled = value is ActivityStates.Active or ActivityStates.Dying;
                 Controller.enabled = value is ActivityStates.Active;
@@ -191,17 +188,19 @@ namespace PlayerCore
 
         /// <param name="pos">The position to be compared.</param>
         /// <returns>The distance between the <see cref="Player"/> and and a given position, such as an enemy.</returns>
-        public static float DistanceFrom(Vector3 pos) => Exists ? Vector3.Distance(Position, pos) : 999999f;
+        public static float DistanceFrom(Vector3 pos) => Exists ? Vector3.Distance(Position, pos) : float.PositiveInfinity;
 
         /// <summary>
         /// Instantly moves the <see cref="Player"/> to a new position, optionally setting a new Y rotation. <br/>
         /// </summary>
         /// <param name="newPosition">The target position.</param>
         /// <param name="yRot">An optional parameter for setting the Y rotation.</param>
-        public static void Place(Vector3 newPosition, float? yRot = null)
+        public static void Place(Vector3 newPosition, Vector3? dir = null)
         {
-            MovementBody.Position = newPosition;
-            if(yRot.HasValue) MovementBody.Direction.RotationY = yRot.Value;
+            var prePos = MovementBody.Position;
+            MovementBody.Enable(newPosition, dir);
+            Cameras.CurrentVirtualCamera.PreviousStateIsValid = false;
+            Cameras.CurrentVirtualCamera.OnTargetObjectWarped(Transform, newPosition - prePos);
         }
 
         public static bool IsPlayer(Component C) => Exists && C != null && C.gameObject == GameObject;

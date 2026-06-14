@@ -16,9 +16,10 @@ public static class RoomManager
         PlayerCore.Player.ActivityState = PlayerCore.Player.ActivityStates.Paused;
         yield return CurrentRoom.UnloadRoutine();
         yield return nextRoom.LoadRoutine();
-        yield return null;
         CurrentRoom = nextRoom;
+        yield return null;
         yield return nextRoom.root.entrances[targetEntranceID].Routine();
+        PlayerCore.Player.ActivityState = PlayerCore.Player.ActivityStates.Active;
 
         yield return Overlay.BetweenUI.FadeAlpha(0);
     }

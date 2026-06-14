@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class EntranceHorizontal : Entrance
 {
-    public Transform targetPosition;
-
     public override Type type => Type.HorizontalPassage;
 
     public override IEnumerator Routine()
@@ -12,6 +10,6 @@ public class EntranceHorizontal : Entrance
         PlacePlayer();
         return null;
     }
-    public override void PlacePlayer() => PlayerCore.Player.Place(targetPosition.position, targetPosition.eulerAngles.y);
+    public override void PlacePlayer() => PlayerCore.Player.Place(transform.position, transform.forward);
 
 }

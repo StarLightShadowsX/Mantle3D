@@ -26,6 +26,8 @@ namespace Core
                 SceneManager.LoadScene(Scene, LoadSceneMode.Single);
                 var s = SceneManager.GetSceneByName(Scene);
                 rootObjects = s.GetRootGameObjects();
+                yield return null;
+                Player.ActivityState = Player.ActivityStates.Paused;
 
                 //FUN.RollSession();
                 //GlobalPool.poolParent = transform.Find("PooledObjects");
@@ -47,7 +49,9 @@ namespace Core
 
                 yield return loadTargetRoom.LoadRoutine();
                 RoomManager.CurrentRoom = loadTargetRoom;
-                Player.MovementBody.enabled = true;
+                Player.ActivityState = Player.ActivityStates.Active;
+                RoomManager.CurrentRoom.root.entrances[0].PlacePlayer();
+                Player.MovementBody.Ground.Land();
                 Overlay.OverALL.Alpha = 1f;
                 yield return null;
                 Overlay.OverALL.DoFadeAlpha(0);

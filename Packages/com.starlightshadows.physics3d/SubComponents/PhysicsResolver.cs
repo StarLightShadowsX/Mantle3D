@@ -32,7 +32,7 @@ namespace SLS.Physics3D
         protected GroundState Ground => Body.Ground;
         protected AnchorPoint anchor => Body.Ground.anchor;
         protected Direction direction => Body.Direction;
-        protected PhysicsResolver Next => Body.Resolvers.Active;
+        protected PhysicsResolver Next => Body.Resolver;
 
         #endregion
 
@@ -78,8 +78,10 @@ namespace SLS.Physics3D
         public bool ContinueCheck(float hitDistance) =>
             hitDistance == -1 || ++Body.Step >= Body.maxPhysicsSteps;
 
-        public void ChooseNext() => Body.Resolvers.Update();
-        public void ChooseNext(PhysicsResolver target) => Body.Resolvers.Update(target);
+        public void ChooseNext() => Body.UpdateResolver();
+        public void ChooseNext(PhysicsResolver target) => Body.UpdateResolver(target);
+
+        public static implicit operator bool(PhysicsResolver P) => P != null;
 
         protected void Print(Func<string> value)
         {
@@ -102,7 +104,7 @@ namespace SLS.Physics3D
         VisualElement root;
         Foldout foldout;
         Button GetButton;
-    
+
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             this.property = property;
@@ -148,11 +150,11 @@ namespace SLS.Physics3D
             for (int i = 0; i < existingResolvers.Length; i++)
             {
                 int t = i;
-                Menu.AddItem(new($"{i + 1} : {existingResolvers[t].GetType().Name.Replace("PhysResolver", "")}"), 
-                    property.objectReferenceValue == existingResolvers[t], 
+                Menu.AddItem(new($"{i + 1} : {existingResolvers[t].GetType().Name.Replace("PhysResolver", "")}"),
+                    property.objectReferenceValue == existingResolvers[t],
                     () => PostMenuE(existingResolvers[t]));
             }
-                
+
 
             Menu.AddSeparator("");
 
