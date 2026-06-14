@@ -1,8 +1,9 @@
-using Unity.Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using PlayerCore;
 using SLS.Singletons;
+using Unity.Cinemachine;
+using UnityEngine;
 
 [DefaultExecutionOrder(ExecutionOrders.GameplaySystems)]
 public class Cameras : MonoBehaviour
@@ -61,4 +62,11 @@ public class Cameras : MonoBehaviour
     public static Vector3 AdjustVector(Vector3 vector, bool yToo = false) => !yToo 
         ? vector.Rotated(CurrentRotation.y, Vector3.up) 
         : CurrentVirtualCamera.transform.TransformDirection(vector);
+
+
+    public static void LockPrimary(bool lockPosition = true, bool lockRotation = false)
+    {
+        NormalCamera.Follow = lockPosition ? null : Player.Transform;
+        NormalCamera.LookAt = lockRotation ? null : Player.Transform;
+    }
 }
