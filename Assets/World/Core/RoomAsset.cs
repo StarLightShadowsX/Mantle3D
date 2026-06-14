@@ -39,13 +39,6 @@ public class RoomAsset : SceneAsset
 #if UNITY_EDITOR
     private void OnEnable() => RoomRegistry.EnsureListed(this);
 #endif
-    public void EnterAtEntrance(int id) => EnterAtEntranceWait(id).Begin();
-    public IEnumerator EnterAtEntranceWait(int id)
-    {
-        Load();
-        yield return new WaitUntil(() => root != null);
-        root.entrances[id].PlacePlayer();
-    }
 
 
     public static implicit operator RoomAsset(RoomRoot room) => room.asset;

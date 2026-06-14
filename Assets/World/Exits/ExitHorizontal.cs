@@ -13,5 +13,6 @@ public class ExitHorizontal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (Player.Controller != other) return;
+        RoomManager.Transition(destination.roomDestination, destination.targetEntrance);
     }
 }

@@ -50,9 +50,10 @@ namespace SLS.Singletons
         /// <param name="parent">The transform to set as the parent of the instantiated object. If null, the object is instantiated at the
         /// root level.</param>
         /// <returns>The instantiated GameObject if a prefab is registered for the specified type; otherwise, null.</returns>
-        public static GameObject Instantiate<T>(Transform parent = null)
+        public static T Instantiate<T>(Transform parent = null) where T : MonoBehaviour
         {
-            if (typedPrefabs.TryGetValue(typeof(T), out Prefab prefab)) return prefab.Instantiate(parent);
+            if (typedPrefabs.TryGetValue(typeof(T), out Prefab prefab)) 
+                return prefab.Instantiate(parent).GetComponent<T>();
             Debug.LogWarning($"No prefab registered for type {typeof(T)}");
             return null;
         }

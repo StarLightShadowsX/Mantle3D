@@ -9,7 +9,7 @@ namespace SLS.Singletons
     /// Inherit from `GlobalAsset&lt;YourType&gt;` to gain automatic registration and availability.
     /// </summary>
     /// <remarks>
-    /// <see cref="GlobalAsset{T}"/>s are automatically registered with the <see cref="GlobalAssetRegistry"/>, which is itself automatically registered with Preloaded Assets. 
+    /// <see cref="GlobalAsset{T}"/>s are automatically registered with the <see cref="GlobalRegistry"/>, which is itself automatically registered with Preloaded Assets. 
     /// </remarks>
     /// <typeparam name="T">The concrete type inheriting this base class (the singleton type).</typeparam>
     [DefaultExecutionOrder(-155)]

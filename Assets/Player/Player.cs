@@ -5,6 +5,7 @@ using UnityEngine;
 using SaveSystem;
 using SLS.StateMachineH;
 using PlayerCore;
+using SLS.Physics3D;
 
 namespace PlayerCore
 {
@@ -60,12 +61,12 @@ namespace PlayerCore
                 Visible = value != ActivityStates.Invisible;
                 StateMachine.enabled = value is ActivityStates.Active;
 
-                //MovementBody.RBState =
-                //    value is ActivityStates.Active ? CharacterMovementBody.BodyState.Enabled
-                //    : value is ActivityStates.Dying ? CharacterMovementBody.BodyState.Ragdoll
-                //    : CharacterMovementBody.BodyState.OFF;
+                MovementBody.BodyState =
+                    value is ActivityStates.Active ? PhysicsBody.BodyStates.Enabled
+                    : value is ActivityStates.Dying ? PhysicsBody.BodyStates.Ragdoll
+                    : PhysicsBody.BodyStates.OFF;
 
-                //MovementBody.enabled = value is ActivityStates.Active or ActivityStates.Dying;
+                MovementBody.enabled = value is ActivityStates.Active or ActivityStates.Dying;
                 Controller.enabled = value is ActivityStates.Active;
                 Animator.enabled = value is ActivityStates.Active or ActivityStates.Cutscene;
             }

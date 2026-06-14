@@ -1,25 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SLS.Singletons;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Overlay : MonoBehaviour
+public class Overlay : MonoBehaviour, IGlobalPrefab
 {
     public enum OverlayLayer
     {
-        OverGameplay,
+        OverScene,
         OverHUD,
         OverMenus
     }
     public static Dictionary<OverlayLayer, Overlay> ActiveOverlays = new();
 
-    public static Overlay OverGameplay => ActiveOverlays[OverlayLayer.OverGameplay];
+    public static Overlay OverGameplay => ActiveOverlays[OverlayLayer.OverScene];
     public static Overlay OverHUD => ActiveOverlays[OverlayLayer.OverHUD];
     public static Overlay OverMenus => ActiveOverlays[OverlayLayer.OverMenus];
 
     public OverlayLayer intendedLayer;
-
 
     public float BasicBlackout
     {
@@ -38,6 +38,7 @@ public class Overlay : MonoBehaviour
     }
     private float _blackoutRate = 0f;
 
+    [SerializeField] protected Canvas canvas;
     [SerializeField] protected Image blackout;
     [SerializeField] protected Animator animator;
 
@@ -50,10 +51,10 @@ public class Overlay : MonoBehaviour
 
     private void Update()
     {
-        if(blackoutRate > 0)
+        if (blackoutRate > 0)
         {
             BasicBlackout += blackoutRate * Time.unscaledDeltaTime;
-            if(BasicBlackout >= 1f)
+            if (BasicBlackout >= 1f)
             {
                 BasicBlackout = 1f;
                 blackoutRate = 0f;
@@ -76,7 +77,7 @@ public class Overlay : MonoBehaviour
     public IEnumerator BasicFadeOutWait(float duration = 1f)
     {
         blackoutRate = 1f / duration;
-        yield return new WaitUntil(()=> BasicBlackout == 1);
+        yield return new WaitUntil(() => BasicBlackout == 1);
     }
     public IEnumerator BasicFadeInWait(float duration = 1f)
     {

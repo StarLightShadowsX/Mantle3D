@@ -60,16 +60,5 @@ namespace Core
 
         private static RoomAsset loadTargetRoom;
         private static int loadTargetEntranceID;
-
-        public void EnterRoom(RoomAsset room, int entranceID)
-        {
-            Enum().Begin();
-            IEnumerator Enum()
-            {
-                yield return Overlay.OverHUD.BasicFadeOutWait();
-                yield return room.EnterAtEntranceWait(entranceID);
-                yield return Overlay.OverHUD.BasicFadeInWait();
-            }
-        }
     }
 }

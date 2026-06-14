@@ -13,7 +13,7 @@ namespace SLS.Singletons
     /// An instance of this, and all <see cref="GlobalAsset{t}"/>s are automatically created and registered if they don't already exist. <see cref="GlobalAsset{t}"/>s are registered to this, which is in turn registered to PlayerSettings preloaded assets, ensuring they are always loaded and accessible at runtime and in the editor.
     /// </remarks>
     [DefaultExecutionOrder(-165)]
-    public class GlobalAssetRegistry : GlobalAsset<GlobalAssetRegistry>
+    public class GlobalRegistry : GlobalAsset<GlobalRegistry>
     {
         public List<_GlobalAssetBase> assets = new();
 
@@ -28,8 +28,8 @@ namespace SLS.Singletons
         { 
             private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
             { 
-                if (!TryGet(out GlobalAssetRegistry registry))
-                    registry = GetOrCreate(typeof(GlobalAssetRegistry)) as GlobalAssetRegistry;
+                if (!TryGet(out GlobalRegistry registry))
+                    registry = GetOrCreate(typeof(GlobalRegistry)) as GlobalRegistry;
 
                 registry.OnEnable();
 
@@ -42,7 +42,7 @@ namespace SLS.Singletons
 
                 foreach (Type type in globalAssetTypes)
                 {
-                    if (type == typeof(GlobalAssetRegistry)) continue;
+                    if (type == typeof(GlobalRegistry)) continue;
 
 
                     // If no existing in-memory instance is found, ensure an asset exists on disk

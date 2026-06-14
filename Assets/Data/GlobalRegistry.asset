@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e0619cad2ae77241a0ccba264e47d39, type: 3}
-  m_Name: GlobalAssetRegistry
+  m_Name: GlobalRegistry
   m_EditorClassIdentifier: Utilities::GlobalAssetRegistry
   assets:
   - {fileID: 11400000, guid: 374d061ea358ad94581407adfdf45942, type: 2}
-  - {fileID: 11400000, guid: 37476eb7ce16d164f9e65396da280bd7, type: 2}
   - {fileID: 11400000, guid: 7fb2eb7bf0ab61741bdedca7fde3f600, type: 2}
+  - {fileID: 11400000, guid: 37476eb7ce16d164f9e65396da280bd7, type: 2}
+  - {fileID: 11400000, guid: a13bfd26510936442a4fd26f34a38aae, type: 2}
   - {fileID: 11400000, guid: af1c4532433c8f44ebd08ffeccd7e99d, type: 2}
   - {fileID: 11400000, guid: d8635e8ccd607334b800382868ee75a0, type: 2}

@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using Utilities.Xtensions;
+using System.Collections;
+
 
 
 #if UNITY_EDITOR
@@ -92,6 +94,7 @@ public abstract class Entrance : MonoBehaviour, IRoomActor
         root.entrances.Remove(this);
     }
 
+    public abstract IEnumerator Routine();
     public abstract void PlacePlayer();
 }
 

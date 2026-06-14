@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 015e3cfb16a36514da36e3e20078e1c1, type: 3}
-  m_Name: GlobalPrefabRegistry
+  m_Name: PrefabRegistry
   m_EditorClassIdentifier: SLS.AssetUtilties::GlobalPrefabRegistry
   typedPrefabs: []
   namedPrefabs:

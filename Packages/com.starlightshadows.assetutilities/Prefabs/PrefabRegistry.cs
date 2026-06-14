@@ -5,7 +5,7 @@ using SLS.Singletons;
 using UnityEngine;
 
 [DefaultExecutionOrder(-160)]
-public class GlobalPrefabRegistry : SLS.Singletons.GlobalAsset<GlobalPrefabRegistry>
+public class PrefabRegistry : SLS.Singletons.GlobalAsset<PrefabRegistry>
 {
     [SerializeField] private List<GameObject> typedPrefabs = new();
     [SerializeField] private DictionaryS<string, GameObject> namedPrefabs = new();

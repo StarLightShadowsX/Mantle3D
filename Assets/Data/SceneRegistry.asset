@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf62306fceb94df45949ada73987d9a4, type: 3}
-  m_Name: GlobalSceneRegistry
+  m_Name: SceneRegistry
   m_EditorClassIdentifier: SLS.AssetUtilties::GlobalSceneRegistry
   NamedScenes:
     serializedKeys: []
