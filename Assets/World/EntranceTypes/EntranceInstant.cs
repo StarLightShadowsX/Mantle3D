@@ -12,5 +12,5 @@ public class EntranceInstant : Entrance, IRoomActor
         return null;
     }
 
-    public override void PlacePlayer() => PlayerCore.Player.MovementBody.PositionForce = transform.position;
+    public override void PlacePlayer() => PlayerCore.Player.Place(transform.position);
 }

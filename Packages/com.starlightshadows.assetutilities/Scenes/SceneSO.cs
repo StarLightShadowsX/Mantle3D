@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "SceneAsset", menuName = "Scriptable Objects/SceneAsset")]
-public class SceneAsset : ScriptableObject
+public class SceneSO : ScriptableObject
 {
     [field: SerializeField] public SceneReference Scene { get; protected set; }
     [field: SerializeField] public bool Additive { get; protected set; } = true;
@@ -132,9 +132,9 @@ public class SceneAsset : ScriptableObject
     public Action OnLoad;
     public Action OnUnLoad;
 
-    public static SceneAsset CreateRuntime(SceneReference input)
+    public static SceneSO CreateRuntime(SceneReference input)
     {
-        SceneAsset result = ScriptableObject.CreateInstance<SceneAsset>();
+        SceneSO result = ScriptableObject.CreateInstance<SceneSO>();
         result.Scene = input;
         return result;
     }

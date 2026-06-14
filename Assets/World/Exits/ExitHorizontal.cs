@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 using PlayerCore;
 using UnityEngine;
 
-public class ExitHorizontal : MonoBehaviour
+public class ExitHorizontal : Exit
 {
-    public Destination destination;
-
     private void OnTriggerEnter(Collider other)
     {
-        if (Player.Controller != other) return;
-        RoomManager.Transition(destination.roomDestination, destination.targetEntrance);
+        if (Player.Collider != other) return;
+        RoomManager.Transition(targetRoom, targetEntrance).Begin();
     }
 }

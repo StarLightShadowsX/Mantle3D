@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: GlobalRegistry
   m_EditorClassIdentifier: Utilities::GlobalAssetRegistry
   assets:
-  - {fileID: 11400000, guid: 374d061ea358ad94581407adfdf45942, type: 2}
-  - {fileID: 11400000, guid: 7fb2eb7bf0ab61741bdedca7fde3f600, type: 2}
+  - {fileID: 11400000, guid: eef98345e9f660e48a19a0a86808ef89, type: 2}
   - {fileID: 11400000, guid: 37476eb7ce16d164f9e65396da280bd7, type: 2}
   - {fileID: 11400000, guid: a13bfd26510936442a4fd26f34a38aae, type: 2}
   - {fileID: 11400000, guid: af1c4532433c8f44ebd08ffeccd7e99d, type: 2}

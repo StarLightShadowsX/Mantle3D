@@ -12,7 +12,7 @@ using UnityEditor.UIElements;
 #endif
 
 [CreateAssetMenu(fileName = "RoomAsset", menuName = "Scriptable Objects/Room")]
-public class RoomAsset : SceneAsset
+public class RoomAsset : SceneSO
 {
     // Serialized Data
     public string displayName;

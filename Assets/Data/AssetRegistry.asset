@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a2f68ea15445c4db4767790b4c87e5, type: 3}
+  m_Name: AssetRegistry
+  m_EditorClassIdentifier: SLS.AssetUtilties::AssetRegistry
+  namedPrefabs:
+    serializedKeys:
+    - Overlays
+    serializedValues:
+    - <readOnlyObject>k__BackingField: {fileID: 1233495068656694117, guid: 0d481a22aa980f14490bfd0ae4bd83b3, type: 3}
+      <path>k__BackingField: Assets/UI/Overlays.prefab
+      <assetGuid>k__BackingField: 0d481a22aa980f14490bfd0ae4bd83b3
+      <addressableKey>k__BackingField: 
+  namedSceneAssets:
+    serializedKeys: []
+    serializedValues: []
+  namedScenes:
+    serializedKeys:
+    - Gameplay
+    serializedValues:
+    - GAME_SESSION
+  namedSOs:
+    serializedKeys: []
+    serializedValues: []

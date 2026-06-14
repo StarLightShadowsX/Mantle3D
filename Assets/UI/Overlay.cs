@@ -5,104 +5,97 @@ using SLS.Singletons;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Overlay : MonoBehaviour, IGlobalPrefab
+public class Overlay : MonoBehaviour
 {
-    public enum OverlayLayer
+    public static Overlay UnderHUD { get; private set; }
+    public static Overlay BetweenUI { get; private set; }
+    public static Overlay OverALL { get; private set; }
+
+    public UILayer uiLayer;
+
+    public static void Instantiate()
     {
-        OverScene,
-        OverHUD,
-        OverMenus
+        GameObject root = AssetRegistry.Prefab("Overlays").Instantiate();
+        DontDestroyOnLoad(root);
+        Overlay[] overlays = root.GetComponentsInChildren<Overlay>();
+        for (int i = 0; i < overlays.Length; i++) overlays[i].Awake();
     }
-    public static Dictionary<OverlayLayer, Overlay> ActiveOverlays = new();
-
-    public static Overlay OverGameplay => ActiveOverlays[OverlayLayer.OverScene];
-    public static Overlay OverHUD => ActiveOverlays[OverlayLayer.OverHUD];
-    public static Overlay OverMenus => ActiveOverlays[OverlayLayer.OverMenus];
-
-    public OverlayLayer intendedLayer;
-
-    public float BasicBlackout
-    {
-        get => blackout.color.a;
-        set
-        {
-            blackout.color = new(blackout.color.r, blackout.color.g, blackout.color.b, value);
-            blackout.raycastTarget = value > 0;
-        }
-    }
-
-    private float blackoutRate
-    {
-        set => _blackoutRate = value;
-        get => _blackoutRate;
-    }
-    private float _blackoutRate = 0f;
 
     [SerializeField] protected Canvas canvas;
-    [SerializeField] protected Image blackout;
+    [SerializeField] protected Image image;
     [SerializeField] protected Animator animator;
 
     protected virtual void Awake()
     {
-        ActiveOverlays.Add(intendedLayer, this);
+        if (uiLayer is UILayer.OverEVERYTHING) OverALL = this;
+        else if (uiLayer is UILayer.OverHUD) BetweenUI = this;
+        else if (uiLayer is UILayer.UnderHUD) UnderHUD = this;
+        else Destroy(this.gameObject);
+
         if (animator == null) animator = GetComponent<Animator>();
-        if (blackout == null) blackout = transform.Find("Basic Fade").GetComponent<Image>();
+        if (image == null) image = GetComponent<Image>();
     }
 
-    private void Update()
+    public float Alpha
     {
-        if (blackoutRate > 0)
+        get => image.color.a; set => image.color = new(image.color.r, image.color.g, image.color.b, value);
+    }
+    public Color Color
+    {
+        get => image.color;
+        set => image.color = value;
+    }
+
+    Coroutine activeRoutine; public Coroutine ActiveRoutine => activeRoutine;
+
+    public IEnumerator FadeAlpha(float dest, float time = 1f, bool adjustByCloseness = true)
+    {
+        float rate = (adjustByCloseness ? Mathf.Sign(dest - Alpha) : (dest - Alpha)) / time;
+        while (Alpha != dest && (Alpha < 0 || Alpha > 1)) 
         {
-            BasicBlackout += blackoutRate * Time.unscaledDeltaTime;
-            if (BasicBlackout >= 1f)
-            {
-                BasicBlackout = 1f;
-                blackoutRate = 0f;
-            }
+            Alpha += rate * Time.unscaledDeltaTime;
+            yield return null;
         }
-        else if (blackoutRate < 0)
+        Alpha = dest;
+    }
+    public IEnumerator FadeColor(Color dest, float time = 1f)
+    {
+        Color baseColor = Color;
+        float t = 0;
+        float rate = 1 / time;
+        while (t < 0)
         {
-            BasicBlackout += blackoutRate * Time.unscaledDeltaTime;
-            if (BasicBlackout <= 0f)
-            {
-                BasicBlackout = 0f;
-                blackoutRate = 0f;
-            }
+            t += rate * Time.unscaledDeltaTime;
+            Color = Color.Lerp(baseColor, dest, t);
+            yield return null;
         }
     }
 
-    public void BasicFadeOut(float duration = 1f) => blackoutRate = 1f / duration;
-    public void BasicFadeIn(float duration = 1f) => blackoutRate = -1f / duration;
-
-    public IEnumerator BasicFadeOutWait(float duration = 1f)
-    {
-        blackoutRate = 1f / duration;
-        yield return new WaitUntil(() => BasicBlackout == 1);
-    }
-    public IEnumerator BasicFadeInWait(float duration = 1f)
-    {
-        blackoutRate = -1f / duration;
-        yield return new WaitUntil(() => BasicBlackout == 0);
-    }
+    public void DoFadeAlpha(float dest, float time = 1f, bool adjustByCloseness = true) =>
+        Coroutine.Begin(ref activeRoutine, FadeAlpha(dest, time, adjustByCloseness), true);
+    public void DoFadeColor(Color dest, float time = 1f) =>
+        Coroutine.Begin(ref activeRoutine, FadeColor(dest, time), true);
 
 
 
 
 
-    public IEnumerator GameOverAnim(float duration = 1f)
-    {
-        SetAnimated(true);
-        animator.Play("GameOverAnim", -1, 0f);
-        animator.SetFloat("DurationSpeed", 1 / duration);
-        yield return new WaitForSecondsRealtime(duration);
-    }
+
+
+    //public IEnumerator GameOverAnim(float duration = 1f)
+    //{
+    //    SetAnimated(true);
+    //    animator.Play("GameOverAnim", -1, 0f);
+    //    animator.SetFloat("DurationSpeed", 1 / duration);
+    //    yield return new WaitForSecondsRealtime(duration);
+    //}
 
     public void SetAnimated(bool value) => animator.enabled = value;
 
-    public void Reset()
+    public void ResetState()
     {
         animator.Play("Null");
-        BasicBlackout = 0f;
-        blackoutRate = 0f;
+        Alpha = 0f;
+        Coroutine.Stop(ref activeRoutine);
     }
 }

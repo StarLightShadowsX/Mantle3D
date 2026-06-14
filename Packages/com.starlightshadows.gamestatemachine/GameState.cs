@@ -79,7 +79,7 @@ namespace SLS.GameStateMachine
         protected virtual void TransitionLogic(Action SetCurrent, Action PostAction)
         {
             SetCurrent();
-            if (Scene != null)
+            if (Scene)
             {
                 if (FreezeTillSceneLoad)
                 {

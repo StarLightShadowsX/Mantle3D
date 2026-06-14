@@ -46,7 +46,11 @@ namespace Core
                 PostAction();
 
                 yield return loadTargetRoom.LoadRoutine();
+                RoomManager.CurrentRoom = loadTargetRoom;
                 Player.MovementBody.enabled = true;
+                Overlay.OverALL.Alpha = 1f;
+                yield return null;
+                Overlay.OverALL.DoFadeAlpha(0);
             }
         }
 

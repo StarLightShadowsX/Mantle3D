@@ -23,9 +23,10 @@ namespace SLS.GameStateMachine
             for (int i = 0; i < AllStates.Count; i++) AllStates[i].OnEnable();
 
             Setup?.Invoke();
-
-            if(Application.isPlaying) GameState.TransitionPrimaryState(AllStates[0]);
         }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        private static void Boot() => Get.AllStates[0].Enter();
 
 #if UNITY_EDITOR
 

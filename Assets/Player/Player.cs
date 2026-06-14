@@ -198,10 +198,10 @@ namespace PlayerCore
         /// </summary>
         /// <param name="newPosition">The target position.</param>
         /// <param name="yRot">An optional parameter for setting the Y rotation.</param>
-        [System.Obsolete("UNIMPLEMENTED")]
-        public static void InstantMove(Vector3 newPosition, float? yRot = null)
+        public static void Place(Vector3 newPosition, float? yRot = null)
         {
-
+            MovementBody.Position = newPosition;
+            if(yRot.HasValue) MovementBody.Direction.RotationY = yRot.Value;
         }
 
         public static bool IsPlayer(Component C) => Exists && C != null && C.gameObject == GameObject;

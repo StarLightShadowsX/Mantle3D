@@ -11,7 +11,7 @@ public static class RoomManager
 
     public static IEnumerator Transition(RoomAsset nextRoom, int targetEntranceID = 0)
     {
-        if (Overlay.OverHUD.BasicBlackout < 1) yield return Overlay.OverHUD.BasicFadeOutWait();
+        if (Overlay.BetweenUI.Alpha < 1) yield return Overlay.BetweenUI.FadeAlpha(1);
 
         PlayerCore.Player.ActivityState = PlayerCore.Player.ActivityStates.Paused;
         yield return CurrentRoom.UnloadRoutine();
@@ -20,6 +20,6 @@ public static class RoomManager
         CurrentRoom = nextRoom;
         yield return nextRoom.root.entrances[targetEntranceID].Routine();
 
-        yield return Overlay.OverHUD.BasicFadeInWait();
+        yield return Overlay.BetweenUI.FadeAlpha(0);
     }
 }
