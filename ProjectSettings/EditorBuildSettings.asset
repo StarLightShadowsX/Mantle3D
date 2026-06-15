@@ -9,17 +9,23 @@ EditorBuildSettings:
     path: Assets/Core/Data/GAME_SESSION.unity
     guid: 71ba562c511532a4c847401a9cb1d699
   - enabled: 1
-    path: Assets/Content/Rooms/TheShelter.unity
-    guid: 7af931555368a1643bafa2bb7c995357
+    path: Assets/Content/Rooms/SeaportCityWest.unity
+    guid: 5dbde7975d1d31443a044cbe6a61238c
   - enabled: 1
-    path: Assets/Content/Rooms/HometownForest3.unity
-    guid: 67e290acb6b87d643ae2e077fe4c75c4
+    path: Assets/Content/Rooms/GoldenHighway.unity
+    guid: 5ec58a878cb9ff84f99a9a9169b23950
+  - enabled: 1
+    path: Assets/Content/Rooms/HometownForest1A.unity
+    guid: a98bed989334eca42868aa067d72911a
   - enabled: 1
     path: Assets/Content/Rooms/HometownForest2.unity
     guid: 6ff8173b64c59514f97731a1d0ff00d7
   - enabled: 1
-    path: Assets/Content/Rooms/HometownForest1A.unity
-    guid: a98bed989334eca42868aa067d72911a
+    path: Assets/Content/Rooms/HometownForest3.unity
+    guid: 67e290acb6b87d643ae2e077fe4c75c4
+  - enabled: 1
+    path: Assets/Content/Rooms/TheShelter.unity
+    guid: 7af931555368a1643bafa2bb7c995357
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

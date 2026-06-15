@@ -50,7 +50,7 @@ public abstract class Exit : MonoBehaviour
 
             void Changed(int v)
             {
-                spawnProp.intValue = 0;
+                spawnProp.intValue = v;
                 serializedObject.ApplyModifiedProperties();
             }
 

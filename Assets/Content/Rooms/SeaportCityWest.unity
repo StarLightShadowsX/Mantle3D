@@ -1062,7 +1062,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntranceHorizontal
   root: {fileID: 2146082663}
-  targetPosition: {fileID: 141147775}
 --- !u!1 &181803612
 GameObject:
   m_ObjectHideFlags: 0
@@ -5358,6 +5357,37 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &491935596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 491935597}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &491935597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491935596}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.48978, y: 10, z: 33.94008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &515793079
 Mesh:
   m_ObjectHideFlags: 0
@@ -13010,7 +13040,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntranceHorizontal
   root: {fileID: 2146082663}
-  targetPosition: {fileID: 1299670516}
 --- !u!1 &1304204465
 GameObject:
   m_ObjectHideFlags: 0
@@ -15336,7 +15365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb8bcf9cda9a6d44b6f05d8abb2b4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitHorizontal
-  targetRoom: {fileID: 11400000, guid: 21dcd9b032a62b44ba1da4646c0ac00c, type: 2}
+  targetRoom: {fileID: 11400000, guid: e71a0dae94530e64294d32dcf364427c, type: 2}
   targetEntrance: 0
 --- !u!1 &1475568820
 GameObject:
@@ -15383,7 +15412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntranceHorizontal
   root: {fileID: 2146082663}
-  targetPosition: {fileID: 1475568821}
 --- !u!1 &1492746659
 GameObject:
   m_ObjectHideFlags: 0
@@ -20678,8 +20706,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb8bcf9cda9a6d44b6f05d8abb2b4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitHorizontal
-  targetRoom: {fileID: 11400000, guid: 21dcd9b032a62b44ba1da4646c0ac00c, type: 2}
-  targetEntrance: 0
+  targetRoom: {fileID: 11400000, guid: e71a0dae94530e64294d32dcf364427c, type: 2}
+  targetEntrance: 1
 --- !u!65 &1896303254
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23498,8 +23526,21 @@ MonoBehaviour:
   - {fileID: 261283137}
   - {fileID: 984595881}
   - {fileID: 1338946350}
+  - {fileID: 491935596}
   <roomActors>k__BackingField:
     list:
+    - {fileID: 1011297793}
+    - {fileID: 1299670517}
+    - {fileID: 1475568822}
+    - {fileID: 141147776}
+    - {fileID: 1011297793}
+    - {fileID: 1299670517}
+    - {fileID: 1475568822}
+    - {fileID: 141147776}
+    - {fileID: 1011297793}
+    - {fileID: 1299670517}
+    - {fileID: 1475568822}
+    - {fileID: 141147776}
     - {fileID: 1011297793}
     - {fileID: 1299670517}
     - {fileID: 1475568822}
@@ -23541,3 +23582,4 @@ SceneRoots:
   - {fileID: 261283139}
   - {fileID: 984595883}
   - {fileID: 1338946352}
+  - {fileID: 491935597}
