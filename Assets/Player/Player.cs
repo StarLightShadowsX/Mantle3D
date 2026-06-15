@@ -66,6 +66,8 @@ namespace PlayerCore
                 MovementBody.enabled = value is ActivityStates.Active or ActivityStates.Dying;
                 Controller.enabled = value is ActivityStates.Active;
                 Animator.enabled = value is ActivityStates.Active or ActivityStates.Cutscene;
+
+                if (value is ActivityStates.Paused) Player.Animator.SetSpeed(0);
             }
         }
 
