@@ -63,8 +63,12 @@ namespace SLS.Physics3D
             {
                 if (!nonNavResolver && !airborneResolver)
                 {
-                    NavMesh.SamplePosition(Position, out sampleHit, float.PositiveInfinity, NavAgent.areaMask);
                     lockToNavMesh = true;
+                    if(!NavMesh.SamplePosition(Position, out sampleHit, float.PositiveInfinity, NavAgent.areaMask))
+                    {
+                        Body.enabled = false;
+                        return;
+                    }
                 }
                 else
                 {

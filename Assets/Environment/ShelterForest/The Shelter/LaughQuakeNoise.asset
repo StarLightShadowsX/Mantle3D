@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f59e54f2bfd184b9dd451a678d089b, type: 3}
+  m_Name: LaughQuakeNoise
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.NoiseSettings
+  PositionNoise:
+  - X:
+      Frequency: 14.2
+      Amplitude: 24.1
+      Constant: 0
+    Y:
+      Frequency: 5.12
+      Amplitude: 13.95
+      Constant: 0
+    Z:
+      Frequency: 7.5
+      Amplitude: 22.19
+      Constant: 0
+  - X:
+      Frequency: 78
+      Amplitude: 2.67
+      Constant: 0
+    Y:
+      Frequency: 77
+      Amplitude: 4
+      Constant: 0
+    Z:
+      Frequency: 56
+      Amplitude: 2
+      Constant: 0
+  OrientationNoise: []

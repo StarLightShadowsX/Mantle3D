@@ -15,7 +15,9 @@ public class ShelterCutsceneManager : MonoBehaviour
     [SerializeField] private DictionaryS<string, AudioClip> SFX;
     [SerializeField] Animator animator;
     [SerializeField] AudioSource audioSourceSFX;
-    [SerializeField] AudioSource audioSourceBack;
+    [SerializeField] CinemachineImpulseSource impulse;
+    [SerializeField] CinemachineImpulseDefinition slamImpulse;
+    [SerializeField] CinemachineImpulseDefinition laughImpulse;
     [SerializeField] UltEvents.UltEvent activateEndless;
 
     public void StartCutscene()
@@ -198,16 +200,16 @@ public class ShelterCutsceneManager : MonoBehaviour
 
     public void PlaySFX(string name) => audioSourceSFX.PlayOneShot(SFX[name]);
 
-    public void SetBackgroundAudio(int i)
+    public void DoShake(int i)
     {
-        //Based on Int, change the background music accordingly.
-        //By default, should be bird noises
-        //If 0 called, stop bird noises (should be in time with the shelter opening)
-        if (i == 0) audioSourceBack.Stop();
-        //If 1 called, play The Chase but it gets faster over time.
-        audioSourceBack.clip = SFX["The Chase"];
-        audioSourceBack.Play();
+        impulse.ImpulseDefinition = i switch
+        {
+            0 => slamImpulse,
+            1 => laughImpulse
+        };
+        impulse.GenerateImpulse();
     }
+
     public void EndCutscene()
     {
         animator.Play("After");
@@ -238,5 +240,9 @@ public class ShelterCutsceneManager : MonoBehaviour
     public void DecemberIsDead()
     {
         Overlay.OverALL.Color = Color.red;
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

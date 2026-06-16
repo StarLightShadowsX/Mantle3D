@@ -693,6 +693,10 @@ PrefabInstance:
       propertyPath: in_PAnim
       value: 
       objectReference: {fileID: 1434188083}
+    - target: {fileID: 2536113610115638332, guid: e5b10730fdf893d4795b9ab5b9132548, type: 3}
+      propertyPath: <nonNavResolver>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6213286693002979790, guid: e5b10730fdf893d4795b9ab5b9132548, type: 3}
       propertyPath: m_Name
       value: DECEMBER
