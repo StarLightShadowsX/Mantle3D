@@ -67,6 +67,6 @@ public class Cameras : MonoBehaviour
     public static void LockPrimary(bool lockPosition = true, bool lockRotation = false)
     {
         NormalCamera.Follow = lockPosition ? null : Player.Transform;
-        NormalCamera.LookAt = lockRotation ? null : Player.Transform;
+        //NormalCamera.LookAt = lockRotation ? null : Player.Transform;
     }
 }

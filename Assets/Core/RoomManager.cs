@@ -19,6 +19,7 @@ public static class RoomManager
         CurrentRoom = nextRoom;
         yield return null;
         yield return nextRoom.root.entrances[targetEntranceID].Routine();
+        Cameras.LockPrimary(false);
         PlayerCore.Player.ActivityState = PlayerCore.Player.ActivityStates.Active;
 
         yield return Overlay.BetweenUI.FadeAlpha(0);

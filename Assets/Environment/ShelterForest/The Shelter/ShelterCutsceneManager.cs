@@ -8,7 +8,9 @@ using SLS.ListUtilities;
 public class ShelterCutsceneManager : MonoBehaviour
 {
     [SerializeField] private CinemachineCamera lookingAtShelterCamera;
-    [SerializeField] private GameObject TheHand;
+    [SerializeField] private Transform TheHand;
+    [SerializeField] private Transform HandStretchyStart;
+    [SerializeField] private Transform HandStretchyEnd;
     [SerializeField] private float handChaseSpeed = 15.0f;
     [SerializeField] private DictionaryS<string, AudioClip> SFX;
     [SerializeField] Animator animator;
@@ -221,8 +223,13 @@ public class ShelterCutsceneManager : MonoBehaviour
             while (failsafe > 0)
             {
                 failsafe -= Time.unscaledDeltaTime;
-                TheHand.transform.position += Vector3.back * handChaseSpeed * Time.unscaledDeltaTime;
-                TheHand.transform.position += Vector3.right * (Player.Position.x - TheHand.transform.position.x);
+                TheHand.position += Vector3.back * handChaseSpeed * Time.unscaledDeltaTime;
+                TheHand.position += Vector3.right * (Player.Position.x - TheHand.position.x);
+
+                float d = Vector3.Distance(HandStretchyEnd.position, HandStretchyStart.position);
+                HandStretchyStart.rotation = Quaternion.LookRotation(HandStretchyStart.position - HandStretchyEnd.position);
+                HandStretchyStart.localScale = new(HandStretchyStart.localScale.x, HandStretchyStart.localScale.y, d * .5f);
+                
                 yield return null;
             }
         }
