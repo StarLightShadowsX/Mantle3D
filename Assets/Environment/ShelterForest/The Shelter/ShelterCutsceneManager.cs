@@ -231,7 +231,7 @@ public class ShelterCutsceneManager : MonoBehaviour
                 float d = Vector3.Distance(HandStretchyEnd.position, HandStretchyStart.position);
                 HandStretchyStart.rotation = Quaternion.LookRotation(HandStretchyStart.position - HandStretchyEnd.position);
                 HandStretchyStart.localScale = new(HandStretchyStart.localScale.x, HandStretchyStart.localScale.y, d * .5f);
-                
+
                 yield return null;
             }
         }
@@ -239,7 +239,8 @@ public class ShelterCutsceneManager : MonoBehaviour
 
     public void DecemberIsDead()
     {
-        Overlay.OverALL.Color = Color.red;
+        Overlay.UnderHUD.Color = Color.red;
+        IntroSceneManager.Win();
         Application.Quit();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

@@ -11,6 +11,8 @@ public class Boot : GameStateSingle<Boot>
     {
         DontDestroyOnLoad(Coroutine.Runner); //Create the Coroutine Runner.
         Overlay.Instantiate();
-        Overlay.OverALL.Alpha = 1f;
+        Overlay.UnderHUD.Alpha = 1f;
+        DialogueManagerSimple.Instantiate();
+        IntroSceneManager.InitSaveData();
     }
 }

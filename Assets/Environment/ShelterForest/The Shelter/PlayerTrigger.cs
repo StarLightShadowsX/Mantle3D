@@ -8,7 +8,7 @@ public class PlayerTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!Player.IsPlayer(other)) return;
+        if (!Player.IsPlayer(other) || !this.enabled) return;
         Event?.Invoke();
     }
 }

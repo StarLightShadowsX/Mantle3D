@@ -429,6 +429,123 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2959101969216018274, guid: 67aca098a59312948b59487008145be7, type: 3}
   m_PrefabInstance: {fileID: 27335765}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &38770590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 38770594}
+  - component: {fileID: 38770591}
+  - component: {fileID: 38770597}
+  - component: {fileID: 38770596}
+  m_Layer: 0
+  m_Name: w
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &38770591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38770590}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &38770594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38770590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -29.45153, y: 0, z: 4.70627}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1147588578}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &38770596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38770590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fb612afce71d24c9c9baa4dd956516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Conversation
+  texts:
+  - Hello, this is test convo 1
+  - Did you know that according to all knows laws
+  - Your mother gets no bitches?
+  post:
+    _PersistentCalls:
+    - _Target: {fileID: 1147588579}
+      _MemberName: Begin
+      _PersistentArguments: []
+  top: 0
+--- !u!114 &38770597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38770590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2dc44d0b69de1c4a90cc3a5558c500b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrigger
+  Event:
+    _PersistentCalls:
+    - _Target: {fileID: 38770591}
+      _MemberName: set_enabled
+      _PersistentArguments:
+      - _Type: 1
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 38770591}
+      _MemberName: set_enabled
+      _PersistentArguments:
+      - _Type: 1
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 38770596}
+      _MemberName: Begin
+      _PersistentArguments: []
 --- !u!1001 &50620844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14961,6 +15078,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7803881461316472291, guid: 4a6f3c86bddc1934487e39811d09d94b, type: 3}
   m_PrefabInstance: {fileID: 1135063250}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1147588577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1147588578}
+  - component: {fileID: 1147588579}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1147588578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147588577}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 38770594}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1147588579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147588577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fb612afce71d24c9c9baa4dd956516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Conversation
+  texts:
+  - This is test convo 2.
+  - It sure is high up here.
+  - Just like Dess when she was kidnapped.
+  post:
+    _PersistentCalls: []
+  top: 1
 --- !u!43 &1157765704
 Mesh:
   m_ObjectHideFlags: 0
@@ -31042,8 +31210,25 @@ MonoBehaviour:
   - {fileID: 971300892}
   - {fileID: 1552914389}
   - {fileID: 1754482596}
+  - {fileID: 38770590}
   <roomActors>k__BackingField:
     list:
+    - {fileID: 1011297793}
+    - {fileID: 1299670517}
+    - {fileID: 1475568822}
+    - {fileID: 141147776}
+    - {fileID: 1011297793}
+    - {fileID: 1299670517}
+    - {fileID: 1475568822}
+    - {fileID: 141147776}
+    - {fileID: 1011297793}
+    - {fileID: 1299670517}
+    - {fileID: 1475568822}
+    - {fileID: 141147776}
+    - {fileID: 1011297793}
+    - {fileID: 1299670517}
+    - {fileID: 1475568822}
+    - {fileID: 141147776}
     - {fileID: 1011297793}
     - {fileID: 1299670517}
     - {fileID: 1475568822}
@@ -31142,3 +31327,4 @@ SceneRoots:
   - {fileID: 971300894}
   - {fileID: 1552914391}
   - {fileID: 1754482598}
+  - {fileID: 38770594}

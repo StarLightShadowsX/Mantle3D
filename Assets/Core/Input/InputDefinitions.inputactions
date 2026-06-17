@@ -247,6 +247,17 @@
                 },
                 {
                     "name": "",
+                    "id": "19987ef2-bea7-4bdb-bc2c-22005bf4a370",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "72b27e03-5e95-4d84-8c57-58da9b706e08",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
@@ -263,6 +274,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad1e4f4c-a9e3-4347-9b1a-c0963735eb34",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -291,6 +313,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b1b34e96-437e-40b1-94d9-57e5843ab485",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilityA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "58874a39-28eb-404e-8254-951eda85e9a3",
                     "path": "<Keyboard>/2",
                     "interactions": "",
@@ -313,6 +346,17 @@
                 },
                 {
                     "name": "",
+                    "id": "77f32b12-82a7-41c4-a871-c6386640d9c7",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilityB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "65558c21-f16a-4fcf-bf59-e696f092d959",
                     "path": "<Keyboard>/3",
                     "interactions": "",
@@ -329,6 +373,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "AbilityC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dda1a1e7-f416-4d33-b1d6-d025961b0275",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "AbilityC",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -407,7 +462,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "7607c7b6-cd76-4816-beef-bd0341cfe950",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -416,7 +471,7 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "15cef263-9014-4fd5-94d9-4e4a6234a6ef",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -745,11 +800,33 @@
                 },
                 {
                     "name": "",
+                    "id": "46ee6d5c-5a1c-4c0f-9b8f-4b09d50bd506",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "82627dcc-3b13-4ba9-841d-e4b746d6553e",
                     "path": "*/{Cancel}",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "11bd1652-19e0-47ee-9f89-b914c5569fac",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -772,6 +849,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36629d66-e7a3-4190-b02d-e440061ed79d",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false

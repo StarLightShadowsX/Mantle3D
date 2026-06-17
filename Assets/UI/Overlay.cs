@@ -38,7 +38,12 @@ public class Overlay : MonoBehaviour
 
     public float Alpha
     {
-        get => image.color.a; set => image.color = new(image.color.r, image.color.g, image.color.b, value);
+        get => image.color.a; 
+        set
+        {
+            image.color = new(image.color.r, image.color.g, image.color.b, value);
+            image.raycastTarget = image.color.a == 1f;
+        }
     }
     public Color Color
     {

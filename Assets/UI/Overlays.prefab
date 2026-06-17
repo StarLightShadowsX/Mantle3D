@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Overlay
   uiLayer: 5
   canvas: {fileID: 5478548927889284371}
-  blackout: {fileID: 3766710310448899442}
+  image: {fileID: 0}
   animator: {fileID: 0}
 --- !u!222 &4545541382561026267
 CanvasRenderer:
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Overlay
   uiLayer: 50
   canvas: {fileID: 6392094739017629950}
-  blackout: {fileID: 924493585972796039}
+  image: {fileID: 0}
   animator: {fileID: 0}
 --- !u!222 &5706294139811345830
 CanvasRenderer:
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Overlay
   uiLayer: 25
   canvas: {fileID: 6937357772153759837}
-  blackout: {fileID: 4553037533759733272}
+  image: {fileID: 0}
   animator: {fileID: 0}
 --- !u!222 &486799559886394667
 CanvasRenderer:
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

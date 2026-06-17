@@ -47,14 +47,16 @@ namespace Core
 
                 PostAction();
 
+                loadTargetRoom ??= RoomRegistry.Get.allRooms[0];
+
                 yield return loadTargetRoom.LoadRoutine();
                 RoomManager.CurrentRoom = loadTargetRoom;
                 Player.ActivityState = Player.ActivityStates.Active;
                 RoomManager.CurrentRoom.root.entrances[0].PlacePlayer();
                 Player.MovementBody.Ground.Land();
-                Overlay.OverALL.Alpha = 1f;
+                Overlay.UnderHUD.Alpha = 1f;
                 yield return null;
-                Overlay.OverALL.DoFadeAlpha(0);
+                Overlay.UnderHUD.DoFadeAlpha(0);
             }
         }
 

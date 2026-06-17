@@ -15,10 +15,15 @@ MonoBehaviour:
   namedPrefabs:
     serializedKeys:
     - Overlays
+    - TextCanvas
     serializedValues:
     - <readOnlyObject>k__BackingField: {fileID: 1233495068656694117, guid: 0d481a22aa980f14490bfd0ae4bd83b3, type: 3}
       <path>k__BackingField: Assets/UI/Overlays.prefab
       <assetGuid>k__BackingField: 0d481a22aa980f14490bfd0ae4bd83b3
+      <addressableKey>k__BackingField: 
+    - <readOnlyObject>k__BackingField: {fileID: 7256933472557284939, guid: 199a8cfcb7b4aae4b922b42bc49f5648, type: 3}
+      <path>k__BackingField: Assets/UI/TextCanvas.prefab
+      <assetGuid>k__BackingField: 199a8cfcb7b4aae4b922b42bc49f5648
       <addressableKey>k__BackingField: 
   namedSceneAssets:
     serializedKeys: []

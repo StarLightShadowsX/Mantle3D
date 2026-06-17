@@ -12,7 +12,6 @@ namespace Utilities.JSON
         public JsonStream(int fileID)
         {
             this.fileID = fileID;
-            saveRootPath = Path.Combine(UnityEngine.Application.persistentDataPath, "Saves");
             InitFiles();
         }
         public virtual void InitFiles()
@@ -23,7 +22,7 @@ namespace Utilities.JSON
         protected JsonFile[] SecondaryFiles;
         protected JsonFile RootFile;
 
-        public readonly string saveRootPath;
+        public virtual string saveRootPath => Path.Combine(UnityEngine.Application.persistentDataPath, "Saves");
         public int fileID = -1;
         public bool filesDoExist
         {
@@ -58,7 +57,7 @@ namespace Utilities.JSON
 
             ResultingData = new();
 
-            return ReadToData(RootFile.Data as JObject, ResultingData);
+            return Read(RootFile.Data as JObject, ResultingData);
         }
 
         public virtual JsonFile.LoadResult FileVersionBehavior()
@@ -70,14 +69,14 @@ namespace Utilities.JSON
             return JsonFile.LoadResult.Success;
         }
 
-        protected abstract JsonFile.LoadResult ReadToData(JObject RootFileData, T ResultingData);
+        protected abstract JsonFile.LoadResult Read(JObject RootFileData, T ResultingData);
 
 
         public JsonFile.FileState SaveToFile(T sourceData)
         {
             if (fileID == -1) throw new Exception("No file target set. Use SetFileTarget before loading or saving.");
 
-            JsonFile.FileState writeResult = WriteFromData(sourceData);
+            JsonFile.FileState writeResult = Write(sourceData);
             if (writeResult != JsonFile.FileState.Valid) return writeResult;
 
             JsonFile.FileState resultState;
@@ -93,7 +92,7 @@ namespace Utilities.JSON
             return resultState;
         }
 
-        protected abstract JsonFile.FileState WriteFromData(T sourceData);
+        protected abstract JsonFile.FileState Write(T sourceData);
 
         public JsonFile.FileState DeleteFile()
         {
