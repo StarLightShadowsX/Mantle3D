@@ -50,6 +50,7 @@ namespace Core
                 loadTargetRoom ??= RoomRegistry.Get.allRooms[0];
 
                 yield return loadTargetRoom.LoadRoutine();
+                yield return null;
                 RoomManager.CurrentRoom = loadTargetRoom;
                 Player.ActivityState = Player.ActivityStates.Active;
                 RoomManager.CurrentRoom.root.entrances[0].PlacePlayer();

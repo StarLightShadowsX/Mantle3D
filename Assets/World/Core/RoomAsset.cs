@@ -36,15 +36,25 @@ public class RoomAsset : SceneSO
     public static RoomAsset Find(GameObject G) => Find(G.scene);
     public static RoomAsset Find(Component C) => Find(C.gameObject.scene);
 
-#if UNITY_EDITOR
-    private void OnEnable() => RoomRegistry.EnsureListed(this);
-#endif
-
-
     public static implicit operator RoomAsset(RoomRoot room) => room.asset;
     public static implicit operator RoomRoot(RoomAsset room) => room.root;
 
+    public override IEnumerator LoadRoutine()
+    {
+        yield return base.LoadRoutine();
+        yield return new WaitUntil(() => root != null);
+    }
+    public override IEnumerator UnloadRoutine()
+    {
+        yield return base.UnloadRoutine();
+        yield return new WaitUntil(() => root == null);
+    }
+
+
 #if UNITY_EDITOR
+
+    private void OnEnable() => RoomRegistry.EnsureListed(this);
+
     [UnityEditor.Callbacks.OnOpenAsset()]
     private static bool DoubleClick(int instanceID, int line)
     {

@@ -7,8 +7,8 @@ public class EntranceHorizontal : Entrance
 
     public override IEnumerator Routine()
     {
+        yield return null;
         PlacePlayer();
-        return null;
     }
     public override void PlacePlayer() => PlayerCore.Player.Place(transform.position, transform.forward);
 

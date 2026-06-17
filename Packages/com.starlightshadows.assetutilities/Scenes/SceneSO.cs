@@ -45,7 +45,7 @@ public class SceneSO : ScriptableObject
     }
 
     // Routine variants: return IEnumerator to be used as coroutines.
-    public IEnumerator LoadRoutine()
+    public virtual IEnumerator LoadRoutine()
     {
         if (CurrentState is SceneState.Loaded or SceneState.Loading) yield break;
         DesiredState = SceneState.Loaded;
@@ -58,7 +58,7 @@ public class SceneSO : ScriptableObject
         }
     }
 
-    public IEnumerator UnloadRoutine()
+    public virtual IEnumerator UnloadRoutine()
     {
         if (!Additive) yield break;
         if (CurrentState is SceneState.Unloaded or SceneState.Unloading) yield break;

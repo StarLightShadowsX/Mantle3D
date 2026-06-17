@@ -16,12 +16,13 @@ public class ObjectFollower : MonoBehaviour
         Update,
         FixedUpdate,
         LateUpdate,
+        Attach,
     }
     public Rate rate;
 
     public Transform targetCustom;
     private Transform target;
-    private void Awake()
+    private void Start()
     {
         target = targetType switch
         {
@@ -33,17 +34,29 @@ public class ObjectFollower : MonoBehaviour
             _ => null
         };
         if (target == null) Destroy(this);
+        if (rate is Rate.Attach)
+        {
+            RoomAsset room = RoomAsset.Find(gameObject.scene);
+            room.OnUnLoad += Unload;
+            void Unload()
+            {
+                room.OnUnLoad -= Unload;
+                Destroy(this.gameObject);
+            }
+            transform.parent = target;
+        }
     }
     private void Update()
     {
-        if(rate is Rate.Update) transform.position = target.position;
+        if (rate is Rate.Update) transform.position = target.position;
     }
     private void FixedUpdate()
     {
-        if(rate is Rate.FixedUpdate) transform.position = target.position;
+        if (rate is Rate.FixedUpdate) transform.position = target.position;
     }
     private void LateUpdate()
     {
-        if(rate is Rate.LateUpdate) transform.position = target.position;
+        if (rate is Rate.LateUpdate) transform.position = target.position;
     }
+
 }

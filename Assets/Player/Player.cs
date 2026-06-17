@@ -199,10 +199,10 @@ namespace PlayerCore
         /// <param name="yRot">An optional parameter for setting the Y rotation.</param>
         public static void Place(Vector3 newPosition, Vector3? dir = null)
         {
-            var prePos = MovementBody.Position;
-            MovementBody.Enable(newPosition, dir);
-            Cameras.CurrentVirtualCamera.PreviousStateIsValid = false;
-            Cameras.CurrentVirtualCamera.OnTargetObjectWarped(Transform, newPosition - prePos);
+            Cameras.Teleport(newPosition - MovementBody.Position);
+            MovementBody.Position = newPosition;
+            Player.Animator.transform.position = newPosition; 
+            if (dir.HasValue) MovementBody.Direction.Set(dir.Value);
         }
 
         public static bool IsPlayer(Component C) => Exists && C != null && C.gameObject == GameObject;

@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFollower
   targetType: 2
-  rate: 2
+  rate: 3
   targetCustom: {fileID: 0}
 --- !u!1 &261283137
 GameObject:
@@ -1126,8 +1126,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 3, z: 4}
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Size: {x: 0.5, y: 3, z: 4}
+  m_Center: {x: 0.75, y: 1.5, z: 0}
 --- !u!1 &757933923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,7 +1322,7 @@ Transform:
   m_GameObject: {fileID: 1392018825}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: -0.7, z: 31.36}
+  m_LocalPosition: {x: 0, y: 2.5371122, z: 63.39936}
   m_LocalScale: {x: 5.83, y: 5.83, z: 5.83}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1454,8 +1454,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 3, z: 4}
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Size: {x: 0.5, y: 3, z: 4}
+  m_Center: {x: -0.75, y: 1.5, z: 0}
 --- !u!1 &1959276423
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,6 +2020,12 @@ MonoBehaviour:
   <roomActors>k__BackingField:
     list:
     - {fileID: 757933925}
+    - {fileID: 757933925}
+    - {fileID: 1959276425}
+    - {fileID: 757933925}
+    - {fileID: 1959276425}
+    - {fileID: 757933925}
+    - {fileID: 1959276425}
     - {fileID: 757933925}
     - {fileID: 1959276425}
     - {fileID: 757933925}

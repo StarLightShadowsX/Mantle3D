@@ -4,6 +4,7 @@ using PlayerCore;
 using SLS.Singletons;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Splines;
 
 [DefaultExecutionOrder(ExecutionOrders.GameplaySystems)]
 public class Cameras : MonoBehaviour
@@ -48,8 +49,8 @@ public class Cameras : MonoBehaviour
 
     public static void SetTargetVirtualCamera(CinemachineCamera newTarget)
     {
-        if(CurrentVirtualCamera != null) CurrentVirtualCamera.Priority = 0;
-        if(CurrentVirtualCamera != null) CurrentVirtualCamera.gameObject.SetActive(false);
+        if (CurrentVirtualCamera != null) CurrentVirtualCamera.Priority = 0;
+        if (CurrentVirtualCamera != null) CurrentVirtualCamera.gameObject.SetActive(false);
         CurrentVirtualCamera = newTarget;
         CurrentVirtualCamera.Priority = 10;
         CurrentVirtualCamera.gameObject.SetActive(true);
@@ -59,11 +60,17 @@ public class Cameras : MonoBehaviour
     public static Quaternion CurrentRotationQ => CurrentVirtualCamera.State.GetFinalOrientation();
     public static Vector3 CurrentRotation => CurrentVirtualCamera.State.GetFinalOrientation().eulerAngles;
 
-    public static Vector3 AdjustVector(Vector3 vector, bool yToo = false) => !yToo 
-        ? vector.Rotated(CurrentRotation.y, Vector3.up) 
+    public static Vector3 AdjustVector(Vector3 vector, bool yToo = false) => !yToo
+        ? vector.Rotated(CurrentRotation.y, Vector3.up)
         : CurrentVirtualCamera.transform.TransformDirection(vector);
 
+    public static void Teleport(Vector3 offset)
+    {
+        CurrentVirtualCamera.PreviousStateIsValid = false;
+        //CurrentVirtualCamera.OnTargetObjectWarped(Player.Transform, offset);
 
+        CurrentVirtualCamera.ForceCameraPosition(CurrentVirtualCamera.State.RawPosition + offset, CurrentVirtualCamera.State.RawOrientation);
+    }
     public static void LockPrimary(bool lockPosition = true, bool lockRotation = false)
     {
         NormalCamera.Follow = lockPosition ? null : Player.Transform;

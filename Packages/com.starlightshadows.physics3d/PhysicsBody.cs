@@ -220,6 +220,7 @@ namespace SLS.Physics3D
             RB.detectCollisions = false;
             RB.useGravity = false;
             Collider.enabled = false;
+            NavAgent.enabled = false;
             UpdateResolver(null);
         }
 
@@ -249,7 +250,7 @@ namespace SLS.Physics3D
             {
                 if (enabled)
                 {
-                    if (Resolver is NavMeshPhysResolver) NavAgent.Warp(value);
+                    if (NavAgent.enabled) NavAgent.Warp(value);
                     else RB.MovePosition(value);
                 }
                 else
