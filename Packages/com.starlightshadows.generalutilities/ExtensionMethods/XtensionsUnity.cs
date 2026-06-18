@@ -110,8 +110,8 @@ public static class Xtensions_Unity_Core
         if (com != null) return com;
         C.TryGetComponent(out com);
 
-        if (com == null)
 #if UNITY_EDITOR
+        if (com == null)
             Debug.LogError($"MonoBehaviour {C.name} Missing Necessary Component of type {typeof(T)}");
 #endif
         return com;
@@ -391,10 +391,6 @@ public static class Xtensions_UnityColliders
             Gizmos.color = prevColor;
             Gizmos.matrix = prevMatrix;
         }
-    }
 #endif
-}
-public static class Xtensions_Unity_ScriptableObjects
-{
-
+    }
 }

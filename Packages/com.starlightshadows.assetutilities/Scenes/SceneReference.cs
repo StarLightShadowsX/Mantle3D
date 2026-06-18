@@ -58,7 +58,12 @@ public class SceneReference : ISerializationCallbackReceiver
     public SceneReference(string sceneName) => this.sceneName = sceneName;
 
 
-    public void OnBeforeSerialize() => ValidateSerialized();
+    public void OnBeforeSerialize() 
+    {
+#if UNITY_EDITOR
+        ValidateSerialized();
+#endif
+    }
     public void OnAfterDeserialize() { }
 
 

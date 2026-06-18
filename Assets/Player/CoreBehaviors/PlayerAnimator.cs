@@ -27,7 +27,7 @@ namespace PlayerCore
 
         public void Play(string name) => Animator.Play(name);
 
-
+        public void FixedUpdate() => UpdatePosition();
         public void SetDirection() => SetDirection(Cameras.AdjustVector(Player.Forward));
         public void SetDirection(Vector3 direction)
         {

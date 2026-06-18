@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using AYellowpaper;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using Utilities.Xtensions;
 using Core;
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.UIElements;
+#endif
 
 public class RoomRoot : MonoBehaviour
 {

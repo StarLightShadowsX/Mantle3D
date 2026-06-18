@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using SLS.EditorUtilities.ComponentHeaders;
-using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.UIElements;
+#endif
 
 namespace SLS.Physics3D
 {
@@ -26,12 +28,14 @@ namespace SLS.Physics3D
         {
             if (DISABLE_PHYSICS_BODIES) return;
 
+#if UNITY_EDITOR
             if (Debug.DisplayDebugString)
             {
                 Debug.ResetDebugString();
                 //DebugRR.DebugTextOverlay.ClearText();
             }
             if (Debug.DisplaySweeps) Debug.ClearSweeps();
+#endif
 
             RB.linearVelocity = Vector3.zero;
             RB.angularVelocity = Vector3.zero;
@@ -153,6 +157,7 @@ namespace SLS.Physics3D
             hit.distance = (hit.distance - buffer).Min(0);
 
 
+#if UNITY_EDITOR
             if (Debug.DisplaySweeps)
             {
                 var display = new PhysicsBodyDebug.SweepTestDisplay()
@@ -165,6 +170,7 @@ namespace SLS.Physics3D
                 };
                 Debug.Add(display);
             }
+#endif
 
             return result;
         }

@@ -7,7 +7,7 @@ public class PlayerMovementBody : PhysicsBody
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        Player.Animator.UpdatePosition();
+        //Player.Animator.UpdatePosition();
         Player.Animator.SetSpeed(Velocity.f);
     }
 

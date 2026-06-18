@@ -282,7 +282,7 @@ MonoBehaviour:
   <Body>k__BackingField: {fileID: 8938862998843422425}
   lockToNavMesh: 1
   <detectionRange>k__BackingField: 0.35
-  <nonNavResolver>k__BackingField: {fileID: 8896784635880528002}
+  <nonNavResolver>k__BackingField: {fileID: 0}
   <airborneResolver>k__BackingField: {fileID: 0}
 --- !u!114 &8896784635880528002
 MonoBehaviour:

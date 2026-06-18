@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SLS.EditorUtilities.Editor;
 using UnityEngine;
 using UnityEngine.UIElements;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.UIElements;
+using SLS.EditorUtilities.Editor;
 #endif
 
 public abstract class Exit : MonoBehaviour

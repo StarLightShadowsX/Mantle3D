@@ -124,7 +124,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Fresnel: 3.3
+    - _Fresnel: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -151,7 +151,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FrontThreshold: {r: 5, g: 3, b: 0, a: 0}
-    - _HeightMin: {r: 4.5, g: 4, b: 0, a: 0}
+    - _HeightMin: {r: 4, g: 4.5, b: 0, a: 0}
+    - _IntensifyFresnel: {r: 0.25, g: 1, b: 0, a: 0}
     - _SideDisappear: {r: 1, g: 0, b: 0, a: 0}
     - _SideFrontBackThreshold: {r: 3.97, g: 5.29, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

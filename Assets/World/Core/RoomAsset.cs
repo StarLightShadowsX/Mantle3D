@@ -3,8 +3,9 @@ using UnityEngine;
 using Scene = UnityEngine.SceneManagement.Scene;
 using UnityEngine.UIElements;
 using System.Collections;
+#if UNITY_EDITOR
 using UnityEditor.SceneManagement;
-
+#endif
 
 #if UNITY_EDITOR
 using UnityEditor;
