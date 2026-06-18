@@ -118,6 +118,14 @@ public static class Xtensions_Unity_Core
     }
 
     public static Vector2 GetUp(this PlatformEffector2D P) => P.transform.up.Rotated(P.rotationalOffset, Direction.back);
+
+    public static void EndGame(this UnityEngine.Object o)
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
 }
 
 public static class Xtensions_Unity_Math

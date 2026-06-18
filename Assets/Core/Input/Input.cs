@@ -34,6 +34,10 @@ public class Input : GlobalAsset<Input>
     public static InputActionReference RunRef;
     public static InputAction Run => RunRef.action;
 
+    public InputActionReference in_runToggle;
+    public static InputActionReference RunToggleRef;
+    public static InputAction RunToggle => RunToggleRef.action;
+
     public InputActionReference in_abilityA;
     public InputActionReference in_abilityB;
     public InputActionReference in_abilityC;
@@ -72,6 +76,8 @@ public class Input : GlobalAsset<Input>
         public static InputAction Console => ConsoleRef.action;
     }
 
+    public InputActionReference in_Escape;
+
     public DictionaryS<string, Sprite> buttonIcons = new();
     public static DictionaryS<string, Sprite> ButtonIcons;
 
@@ -88,6 +94,7 @@ public class Input : GlobalAsset<Input>
         Pan.Ref = in_pan;
         InteractRef = in_interact;
         RunRef = in_run;
+        RunToggleRef = in_runToggle;
         Ability.ARef = in_abilityA;
         Ability.BRef = in_abilityB;
         Ability.CRef = in_abilityC;
@@ -96,5 +103,6 @@ public class Input : GlobalAsset<Input>
         UI.CancelRef = in_UI.in_ui_cancel;
         Debug.ConsoleRef = in_Debug.in_debug_console;
         ButtonIcons = buttonIcons;
+        in_Escape.action.performed += _ => this.EndGame();
     }
 }

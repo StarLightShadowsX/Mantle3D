@@ -425,11 +425,12 @@ MonoBehaviour:
   - . . .
   - . . .
   - "Aren\u2019t you forgetting something?"
-  - 'This is just the demo, there is no more for you.
-
-'
-  - Unless... you wish to play again?
-  - If not, I will bid you Aideu...
+  - "This is just the demo, there\u2019s nothing else."
+  - "...And don\u2019t think that means you can escape my FRIEND eventually!"
+  - "I can see in the dark... and you\u2019re not getting away."
+  - But, hmm... do you think you missed something?
+  - "...Well, I\u2019m not telling!\r\n"
+  - "It\u2019s your pain... and my entertainment."
   pre:
     _PersistentCalls:
     - _Target: {fileID: 299661895}
@@ -459,7 +460,7 @@ MonoBehaviour:
     - _Target: {fileID: 1167341007}
       _MemberName: ShowPostMenu
       _PersistentArguments: []
-  top: 0
+  position: 1
 --- !u!1 &504129639
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +817,7 @@ MonoBehaviour:
     - _Target: {fileID: 1167341007}
       _MemberName: ShowPostMenu
       _PersistentArguments: []
-  top: 1
+  position: 2
 --- !u!1 &759946632
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,30 +863,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Conversation
   texts:
-  - 'Long ago... Well, in reality, fairly recently, the Earth has resumed being ruled
-    by two races:
-
-'
-  - '<color=orange>HUMANS</color> and <color=purple>MONSTERS.</color>
-
-'
-  - "After the appearance of the ANGEL... and a swift defeat... \r\n"
-  - the magic spell trapping all monsters was broken...
-  - 'The monsters have returned to the surface... Making peace with Mankind once
-    again.
-
-'
-  - 'With the balance being restored... a new shift has occured elsewhere.
-
-'
-  - 'The sea and the sky''s boundaries shifted... a <color=cyan>MYSTERIOUS ISLAND</color>
-    appearing on the horizon.
-
-'
+  - 'In recent years... the earth has resumed being ruled by two races: <color=orange>HUMANS</color>
+    and <color=purple>MONSTERS.</color>'
+  - "After the appearance of the ANGEL... \nand a swift defeat... \r\n"
+  - The magic spell trapping all monsters was broken...
+  - "The monsters have returned to the surface... \nMaking peace with Mankind once
+    again.\n"
+  - "With the balance being restored... \na new shift has occured elsewhere.\n"
+  - "The sea and the sky's boundaries shifted... \na <color=#00FFFF>MYSTERIOUS ISLAND</color>
+    appearing on the horizon.\n"
   - None have dared venture there... until now.
   - A YOUNG <color=orange>HUMAN,</color> seeking to make a name for herself, ventured
     to the north-western sea...
-  - Welcome to the <color=cyan>GLACIER ISLES.</color>
+  - Welcome to the <color=#00FFFF>GLACIER ISLES.</color>
   pre:
     _PersistentCalls:
     - _Target: {fileID: 299661895}
@@ -915,7 +905,7 @@ MonoBehaviour:
     - _Target: {fileID: 1167341007}
       _MemberName: BeginGame
       _PersistentArguments: []
-  top: 0
+  position: 1
 --- !u!1 &1089809392
 GameObject:
   m_ObjectHideFlags: 0

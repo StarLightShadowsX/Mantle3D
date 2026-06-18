@@ -885,9 +885,11 @@ MonoBehaviour:
     serializedKeys:
     - BatSwing
     - BatBash
+    - footstep
     serializedValues:
     - {fileID: 8300000, guid: bb11cf65a916ccf4e83c0da159431468, type: 3}
     - {fileID: 8300000, guid: 383c43f7cf1398e4d96f4aba37519cca, type: 3}
+    - {fileID: 8300000, guid: ce5b889582803c4448eef704e82a7367, type: 3}
 --- !u!1 &1530660146
 GameObject:
   m_ObjectHideFlags: 0

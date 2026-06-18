@@ -33,10 +33,7 @@ public class IntroSceneManager : MonoBehaviour
     public void EndGame()
     {
         Overlay.UnderHUD.Color = Color.red;
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        this.EndGame();
     }
 
     public static bool finished = false;

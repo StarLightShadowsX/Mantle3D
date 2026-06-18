@@ -26,10 +26,7 @@ public class DialogueManagerSimple : Singleton.MonoBehaviour<DialogueManagerSimp
             if (PlayerCore.Player.ActivityState == PlayerCore.Player.ActivityStates.Active)
                 PlayerCore.Player.ActivityState = PlayerCore.Player.ActivityStates.Paused;
 
-            transform.anchorMin = new(.5f, convo.top ? 1 : 0);
-            transform.anchorMax = new(.5f, convo.top ? 1 : 0);
-            transform.pivot = new(.5f, convo.top ? 1 : 0);
-            //transform.position = Vector3.zero;
+            SetTextBoxPosition(convo.position);
 
             textDisplay.text = "";
             textDisplay2.text = "";
@@ -73,6 +70,28 @@ public class DialogueManagerSimple : Singleton.MonoBehaviour<DialogueManagerSimp
             if (PlayerCore.Player.ActivityState == PlayerCore.Player.ActivityStates.Paused)
                 PlayerCore.Player.ActivityState = PlayerCore.Player.ActivityStates.Active;
             convo.post?.Invoke();
+        }
+    }
+
+    void SetTextBoxPosition(int i)
+    {
+        if(i == 0) // 0 = Bottom
+        {
+            transform.anchorMin = new(.5f, 0);
+            transform.anchorMax = new(.5f, 0);
+            transform.pivot = new(.5f, 0);
+        }
+        else if(i == 1) // 1 = Middle
+        {
+            transform.anchorMin = new(.5f, .5f);
+            transform.anchorMax = new(.5f, .5f);
+            transform.pivot = new(.5f, .5f);
+        }
+        else if(i == 2)    // 2 = Top
+        {
+            transform.anchorMin = new(.5f, 1);
+            transform.anchorMax = new(.5f, 1);
+            transform.pivot = new(.5f, 1);
         }
     }
 

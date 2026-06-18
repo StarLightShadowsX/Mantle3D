@@ -241,9 +241,6 @@ public class ShelterCutsceneManager : MonoBehaviour
     {
         Overlay.UnderHUD.Color = Color.red;
         IntroSceneManager.Win();
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        this.EndGame();
     }
 }

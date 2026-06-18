@@ -7,7 +7,7 @@ public class Conversation : MonoBehaviour
     public List<string> texts;
     public UltEvents.UltEvent pre;
     public UltEvents.UltEvent post;
-    public bool top;
+    public int position;
 
     public void Begin()
     {

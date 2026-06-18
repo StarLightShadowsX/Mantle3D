@@ -26,6 +26,7 @@ MonoBehaviour:
     in_ui_cancel: {fileID: 7727032971491509709, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
   in_Debug:
     in_debug_console: {fileID: 2888373490435602927, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
+  in_Escape: {fileID: 2054797056128991737, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
   buttonIcons:
     serializedKeys: []
     serializedValues: []
