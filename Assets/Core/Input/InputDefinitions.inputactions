@@ -84,7 +84,7 @@
                     "id": "1290573f-74c7-4e5e-9881-13d25bce6bec",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "MultiTap",
                     "initialStateCheck": false
                 }
             ],
@@ -368,7 +368,7 @@
                     "name": "",
                     "id": "cfec5da9-9868-47a1-9554-7147a5a723cb",
                     "path": "<Keyboard>/x",
-                    "interactions": "MultiTap",
+                    "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "DoubleTapRun",
@@ -379,9 +379,20 @@
                     "name": "",
                     "id": "7117dd52-0688-44c9-bcd2-a6b053ab0f43",
                     "path": "<Gamepad>/leftTrigger",
-                    "interactions": "MultiTap",
+                    "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "DoubleTapRun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eff37d25-d52c-49d8-8a16-622835cc2a33",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "DoubleTapRun",
                     "isComposite": false,
                     "isPartOfComposite": false

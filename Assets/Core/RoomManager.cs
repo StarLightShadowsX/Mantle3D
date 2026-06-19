@@ -21,9 +21,9 @@ public static class RoomManager
         CurrentRoom = nextRoom;
         yield return new WaitUntil(() => Cameras.Brain.IsValid);
         yield return nextRoom.root.entrances[targetEntranceID].Routine();
-        Cameras.LockPrimary(false);
-        PlayerCore.Player.ActivityState = PlayerCore.Player.ActivityStates.Active;
 
         yield return Overlay.BetweenUI.FadeAlpha(0, .4f);
+        Cameras.LockPrimary(false);
+        PlayerCore.Player.ActivityState = PlayerCore.Player.ActivityStates.Active;
     }
 }

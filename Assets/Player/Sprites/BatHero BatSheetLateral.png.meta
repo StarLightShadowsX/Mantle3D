@@ -1,0 +1,489 @@
+fileFormatVersion: 2
+guid: 769bfe03d9439694590dc0a4bae905f6
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 44
+        width: 31
+        height: 37
+      alignment: 9
+      pivot: {x: 0.6774193, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e2378186376d94697cc773b6bdb58d
+      internalID: -860912084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 44
+        width: 47
+        height: 37
+      alignment: 9
+      pivot: {x: 0.31914893, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c39e5f621abe4824f8b939fab8b54835
+      internalID: -1833603451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 44
+        width: 47
+        height: 37
+      alignment: 9
+      pivot: {x: 0.31914893, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64ed919817e0db4eb36a659bd2fee72
+      internalID: 1768165852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_3
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 44
+        width: 47
+        height: 38
+      alignment: 9
+      pivot: {x: 0.31914893, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf8a8611d0118d4289fcfad64f155e7
+      internalID: -1059837908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_4
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 44
+        width: 47
+        height: 38
+      alignment: 9
+      pivot: {x: 0.31914893, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e84a14db204dfdd4ca6058d1d17d878a
+      internalID: 837767541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_5
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 44
+        width: 44
+        height: 37
+      alignment: 9
+      pivot: {x: 0.27272728, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97fbac28f1c989f4fb71d0287a6f59ab
+      internalID: 2039636046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_6
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 44
+        width: 43
+        height: 37
+      alignment: 9
+      pivot: {x: 0.25581396, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f7fbe9fe5ef2ef4dbba82389062edcb
+      internalID: -806345355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_7
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 44
+        width: 43
+        height: 37
+      alignment: 9
+      pivot: {x: 0.25581396, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40453afa2cbf3994290af0d23b15afa3
+      internalID: -128668081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 42
+        height: 37
+      alignment: 9
+      pivot: {x: 0.7619048, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 688ee0f404397634b804bff2b296ef6e
+      internalID: 1284922418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_9
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 1
+        width: 42
+        height: 37
+      alignment: 9
+      pivot: {x: 0.7619048, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76e206717e59cab4d9cdf153ebca1427
+      internalID: 1959983427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_10
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 1
+        width: 43
+        height: 37
+      alignment: 9
+      pivot: {x: 0.74418604, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc75a1cb2e982e41b137460d72f0d4c
+      internalID: 812550937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_11
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 1
+        width: 46
+        height: 38
+      alignment: 9
+      pivot: {x: 0.6956522, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 818f9b3878cec5e45906104d3704a27d
+      internalID: 1934664221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_12
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 1
+        width: 46
+        height: 38
+      alignment: 9
+      pivot: {x: 0.6956522, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d4e511231c72d41ba119fd710157c6
+      internalID: 1009792365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_13
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 1
+        width: 46
+        height: 38
+      alignment: 9
+      pivot: {x: 0.6956522, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76aa5a62227e7cf4a9818faab1106c0b
+      internalID: -78691896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_14
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 1
+        width: 47
+        height: 38
+      alignment: 9
+      pivot: {x: 0.70212764, y: 0.02631579}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4501e9487ed82454ba4b2009891120ed
+      internalID: 77494244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatHero BatSheetLateral_15
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1
+        width: 31
+        height: 37
+      alignment: 9
+      pivot: {x: 0.32258064, y: 0.027027028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d218566d43def4bad9e2afd01353af
+      internalID: -528928292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c9e7770fd205a5b4e9bd87d76bc7a2dc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      - key: SpriteEditor.SliceOnImport
+        value: False
+    nameFileIdTable:
+      BatHero BatSheetLateral_0: -860912084
+      BatHero BatSheetLateral_1: -1833603451
+      BatHero BatSheetLateral_10: 812550937
+      BatHero BatSheetLateral_11: 1934664221
+      BatHero BatSheetLateral_12: 1009792365
+      BatHero BatSheetLateral_13: -78691896
+      BatHero BatSheetLateral_14: 77494244
+      BatHero BatSheetLateral_15: -528928292
+      BatHero BatSheetLateral_2: 1768165852
+      BatHero BatSheetLateral_3: -1059837908
+      BatHero BatSheetLateral_4: 837767541
+      BatHero BatSheetLateral_5: 2039636046
+      BatHero BatSheetLateral_6: -806345355
+      BatHero BatSheetLateral_7: -128668081
+      BatHero BatSheetLateral_8: 1284922418
+      BatHero BatSheetLateral_9: 1959983427
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

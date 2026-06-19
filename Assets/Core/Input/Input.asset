@@ -17,9 +17,10 @@ MonoBehaviour:
   in_pan: {fileID: -5630151704836100654, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
   in_interact: {fileID: 1781555164194001046, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
   in_run: {fileID: -5452013444696515142, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
+  in_runToggle: {fileID: -4659626498018951636, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
   in_abilityA: {fileID: -3016638172514620165, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
   in_abilityB: {fileID: 625682377060512596, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
-  in_abilityC: {fileID: 0}
+  in_abilityC: {fileID: 7736354306993176917, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
   in_UI:
     in_ui_navigate: {fileID: -8784545083839296357, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
     in_ui_submit: {fileID: 392368643174621059, guid: dc837cb6e269b5848aa4e559a94d3053, type: 3}
