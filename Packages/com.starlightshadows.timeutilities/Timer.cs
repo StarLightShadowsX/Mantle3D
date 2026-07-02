@@ -15,6 +15,7 @@ public class Timer
     public float length;
     public bool loop;
     public Action targetAction;
+    public bool unscaled;
 
     // State
     public float time { get; private set; }
@@ -162,8 +163,8 @@ public class Timer
     public static void Begin(ref Timer timer, float length, bool loop, Action targetAction = null, bool background = false)
     {
         if (timer == null) timer = new(length, loop, targetAction,
-            background ? global::Timer.State.BackgroundDriven : global::Timer.State.Updating);
-        else timer.SetState(background ? global::Timer.State.BackgroundDriven : global::Timer.State.Updating, true);
+            background ? State.BackgroundDriven : State.Updating);
+        else timer.SetState(background ? State.BackgroundDriven : State.Updating, true);
     }
 }
 

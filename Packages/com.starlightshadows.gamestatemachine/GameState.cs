@@ -72,7 +72,7 @@ namespace SLS.GameStateMachine
 
         [field: SerializeField] public DualEvent OnExit { get; private set; } = new();
         [field: SerializeField] public DualEvent OnEnter { get; private set; } = new();
-        [SerializeField] private DictionaryS<string, string> Parameters;
+        [field: SerializeField] public DictionaryS<string, string> Parameters { get; private set; } = new();
 
         protected virtual void OnEnterLogic() { }
         protected virtual void OnExitLogic() { }
