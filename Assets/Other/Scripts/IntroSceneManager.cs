@@ -30,7 +30,7 @@ public class IntroSceneManager : MonoBehaviour
         defaultButton.Select();
     }
     public void BeginGame() => Gameplay.Get.Enter();
-    public void EndGame()
+    public void End()
     {
         Overlay.UnderHUD.Color = Color.red;
         this.EndGame();

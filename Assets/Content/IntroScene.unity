@@ -1312,7 +1312,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1167341007}
         m_TargetAssemblyTypeName: IntroSceneManager, Assembly-CSharp
-        m_MethodName: EndGame
+        m_MethodName: End
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
